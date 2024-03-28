@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('branch_invitations', function (Blueprint $table) {
             $table->id();
             $table->string('branch_email');
-            $table->timestamps();
+            $table->dateTime('expires_at');
         });
     }
 

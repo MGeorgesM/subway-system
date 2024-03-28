@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['toilets', 'restaurant', 'parking', 'wifi', 'atm', 'pharmacy', 'store']);
-            $table->timestamps();
         });
     }
 

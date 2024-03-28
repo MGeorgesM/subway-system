@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('otp_code', 6);
             $table->dateTime('expires_at');
             $table->boolean('is_used')->default(false);
-            $table->timestamps();
         });
     }
 
