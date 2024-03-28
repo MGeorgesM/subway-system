@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('branch_invitations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('branch_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('email');
+            $table->string('branch_email');
             $table->timestamps();
         });
     }

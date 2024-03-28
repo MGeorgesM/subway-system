@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('departure_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('return_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('departure_ride_id');
+            $table->foreign('departure_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('return_ride_id')->nullable();
+            $table->foreign('return_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->decimal('price', 8, 2);
             $table->boolean('activated')->default(false);
             $table->timestamps();

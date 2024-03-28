@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('stations_facilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('facility_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('station_id');
+            $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('facility_id');
+            $table->foreign('facility_id')->references('id')->on('facilities')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

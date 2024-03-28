@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('location');
             $table->decimal('coins_balance', 8, 2)->default(0);
-            $table->foreignId('role_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->string('image_url')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();

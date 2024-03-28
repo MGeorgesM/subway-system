@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('password_reset_otps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('otp_code', 6);
             $table->dateTime('expires_at');
             $table->boolean('is_used')->default(false);

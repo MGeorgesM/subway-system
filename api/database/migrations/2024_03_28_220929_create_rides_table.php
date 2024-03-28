@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('start_station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('end_station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('start_station_id');
+            $table->foreign('start_station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('end_station_id');
+            $table->foreign('end_station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
