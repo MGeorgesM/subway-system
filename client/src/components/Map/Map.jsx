@@ -1,12 +1,41 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
 const Map = () => {
+    const [userLocation, setUserLocation] = useState(null);
+
+    const LocationMarker = () => {
+        useMapEvents({
+            click(e) {
+                // map.locate();
+                console.log(e.latlng);
+                setUserLocation(e.latlng);
+            },
+        });
+
+        // const map = useMapEvents({
+        //     click(e) {
+        //         map.locate();
+        //         console.log(e.latlng)
+        //         setUserLocation(e.latlng);
+        //     },
+        // locationfound(e) {
+        //     setUserLocation(e.latlng);
+        //     map.flyTo(e.latlng, map.getZoom());
+        // },
+        // });
+
+        return userLocation === null ? null : (
+            <Marker position={userLocation} icon={customUserIcon}>
+                <Popup>You are here</Popup>
+            </Marker>
+        );
+    };
+
     const stations = [
         {
             name: 'Station 1',
@@ -30,19 +59,27 @@ const Map = () => {
         },
     ];
 
-    const customIcon = new Icon({
+    const customUserIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
+        iconSize: [50, 50],
+    });
+
+    const customStationIcon = new Icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
         iconSize: [50, 50],
     });
 
     return (
         <MapContainer center={[33.88863, 35.49548]} zoom={13}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png" />
+
             {stations.map((station) => (
-                <Marker position={station.location} key={station.name} icon={customIcon}>
+                <Marker position={station.location} key={station.name} icon={customStationIcon}>
                     <Popup>{station.name}</Popup>
                 </Marker>
             ))}
+            <LocationMarker />
         </MapContainer>
     );
 };
