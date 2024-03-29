@@ -45,3 +45,4 @@ Route::get('rides/getAll', [RidesController::class, 'get_all_rides']);
 Route::get('rides/get/{id}', [RidesController::class, 'get_rides']);
 Route::post('rides/create', [RidesController::class, 'create_rides']);
 Route::put('rides/update/{id}', [RidesController::class, 'update_rides']);
+Route::delete('rides/delete/{id}', [RidesController::class, 'delete_rides']);

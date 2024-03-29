@@ -16,6 +16,8 @@ class RidesController extends Controller
         return response()->json(['rides' => $rides], 200);
     }
 
+
+
     public function get_rides($id)
     {
         $rides = Ride::find($id);
@@ -27,6 +29,8 @@ class RidesController extends Controller
 
         return response()->json(['rides' => $rides], 200);
     }
+
+
 
     public function create_rides(Request $req)
     {
@@ -54,8 +58,10 @@ class RidesController extends Controller
         return response()->json(['message' => 'Unauthorized'], 401);
     }
 
+
+
     public function update_rides(Request $req, $id)
-{
+    {
     $ride = Ride::find($id);
 
     if (!$ride) {
@@ -78,5 +84,22 @@ class RidesController extends Controller
     ]);
 
     return response()->json(['message' => 'Ride updated successfully'], 200);
-}       
+    }
+    
+    public function delete_rides($id)
+    {
+        $ride = Ride::find($id);
+
+        if (!$ride) {
+            return response()->json(['message' => 'Ride not found'], 404);
+        }
+
+        $user = auth()->user();
+        if(!$user || $user->role_id !== 2){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $ride->delete();
+        return response()->json(['message' => 'Ride deleted successfully'], 200);
+    }
 }
