@@ -9,14 +9,8 @@ const Map = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
-    // useEffect(() => {
-    //     if(userLocation && map) {
-    //         map.flyTo(userLocation, map.getZoom());
-    //     }
-    // })
-
     useEffect(() => {
-        console.log('userLocation', userLocation);
+        userLocation && console.log('userLocation', userLocation);
     }, [userLocation]);
 
     const stations = [
@@ -45,62 +39,42 @@ const Map = () => {
     const LocationMarker = () => {
         const map = useMapEvents({
             click(e) {
-                // map.locate();
                 const { lat, lng } = e.latlng;
                 map.flyTo([lat, lng], map.getZoom());
                 setUserLocation([lat, lng]);
             },
-
         });
-        
-        useEffect(() => {
-            console.log('running')
-            if (userLocation && map) {
-                map.flyTo(userLocation, map.getZoom());
-            }
-        }, [map]);
 
+        if (userLocation && map) {
+            map.flyTo(userLocation, map.getZoom());
+        }
 
-        // const map = useMapEvents({
-        //     click(e) {
-        //         map.locate();
-        //         console.log(e.latlng)
-        //         setUserLocation(e.latlng);
-        //     },
-        // locationfound(e) {
-        //     setUserLocation(e.latlng);
-        //     map.flyTo(e.latlng, map.getZoom());
-        // },
-        // });
+        // useEffect(() => {
+        //     console.log('running');
+        //     if (userLocation && map) {
+        //         map.flyTo(userLocation, map.getZoom());
+        //     }
+        // }, [map]);
 
-        return userLocation === null ? null : (
-            <Marker position={userLocation} icon={customUserIcon}>
-                <Popup>You are here</Popup>
-            </Marker>
-        );
+        return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
-
-    // const handleMapMove = () => {
-    //     useMapEvents({
-    //         flyTo(userLocation, map.getZoom()),
-    //     });
-    // };
 
     const handleSearch = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
-        console.log('searchquery', searchQuery);
-        const response = await fetch(`https://geocode.maps.co/search?q=${searchQuery}&api_key=${apiKey}`);
-        const data = await response.json();
 
-        console.log('data', data);
+        try {
+            const response = await fetch(`https://geocode.maps.co/search?q=${searchQuery}&api_key=${apiKey}`);
+            const data = await response.json();
 
-        if (data.length > 0) {
-            const { lat, lon } = data[0];
-            setUserLocation([parseFloat(lat), parseFloat(lon)]);
-        } else {
-            console.log('No data found');
+            if (data.length > 0) {
+                const { lat, lon } = data[0];
+                setUserLocation([parseFloat(lat), parseFloat(lon)]);
+            } else {
+                console.log('No data found');
+            }
+        } catch (error) {
+            console.log('error', error);
         }
-
     };
 
     const handleInputChange = (e) => {
