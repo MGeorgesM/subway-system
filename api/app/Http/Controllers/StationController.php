@@ -29,6 +29,7 @@ class StationController extends Controller
     }
 
 
+    // Checks if user is of ID==2 (role branch) and then creates
     public function create_station(Request $req)
     {
 
@@ -58,5 +59,24 @@ class StationController extends Controller
         }
 
         return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    public function delete_station($id)
+    {
+        $station = Station::find($id);
+
+        if(!$station){
+            return response()->json(['message' => 'Station not found'], 404);
+        }
+
+        $user = auth()->user();
+        if(!$user || $user->role_id !== 3){
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $station->delete();
+
+        return response()->json(['message' => 'Station deleted successfully'], 200);
+
     }
 }

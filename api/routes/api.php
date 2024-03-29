@@ -35,3 +35,4 @@ Route::post('users/update', [UsersController::class, 'updateUser']);
 Route::get('stations/getAll', [StationController::class, 'get_all_stations']);
 Route::get('stations/get/{id}', [StationController::class, 'get_stations']);
 Route::post('stations/create', [StationController::class, 'create_station']);
+Route::delete('stations/delete/{id}', [StationController::class, 'delete_station']);
