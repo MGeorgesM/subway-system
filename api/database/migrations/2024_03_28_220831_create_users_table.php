@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('location');
             $table->decimal('coins_balance', 8, 2)->default(0);
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles')->default(1);
             $table->string('image_url')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
