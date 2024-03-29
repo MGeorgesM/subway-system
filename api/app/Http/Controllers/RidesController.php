@@ -53,5 +53,30 @@ class RidesController extends Controller
     
         return response()->json(['message' => 'Unauthorized'], 401);
     }
-        
+
+    public function update_rides(Request $req, $id)
+{
+    $ride = Ride::find($id);
+
+    if (!$ride) {
+        return response()->json(['message' => 'Ride not found'], 404);
+    }
+
+    $user = auth()->user();
+    if (!$user || $user->role_id !== 2) {
+        return response()->json(['message' => 'Unauthorized'], 401);
+    }
+
+    $req->validate([
+        'start_time' => 'required|date_format:H:i',
+        'end_time' => 'required|date_format:H:i|after:start_time',
+    ]);
+
+    $ride->update([
+        'start_time' => $req->start_time,
+        'end_time' => $req->end_time,
+    ]);
+
+    return response()->json(['message' => 'Ride updated successfully'], 200);
+}       
 }
