@@ -9,14 +9,6 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'role_id',
-    ];
-
     protected $hidden = [
         'password',
     ];
@@ -26,6 +18,9 @@ class User extends Model
         return $this->belongsTo(Role::class);
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
-    
 }
