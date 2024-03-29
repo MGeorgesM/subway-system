@@ -7,6 +7,15 @@ use App\Models\Station;
 
 class StationController extends Controller
 {
+
+    public function get_stations()
+    {
+        $stations = Station::all();
+
+        return response()->json(['stations' => $stations], 200);
+    }
+
+
     public function create_station(Request $req)
     {
 

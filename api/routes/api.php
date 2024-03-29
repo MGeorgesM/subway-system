@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,5 @@ Route::get('users/get/{id?}', [UsersController::class, 'getUsers']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
 
 
+Route::get('stations/get', [StationController::class, 'get_stations']);
 Route::post('stations/create', [StationController::class, 'create_station']);
