@@ -32,14 +32,13 @@ class UsersController extends Controller
             $users = User::all();
             return response()->json($users);
         }
-        
+
         return response()->json(['message' => 'Unauthorized'], 401);
     }
 
     public function updateUser(Request $request)
     {
         $request->validate([
-            'id' => 'required|integer',
             'image_base64' => 'string',
             'first_name' => 'string',
             'last_name' => 'string',
@@ -47,6 +46,11 @@ class UsersController extends Controller
         ]);
 
         $user_id = auth()->user()->id;
+
+        if (!$user_id) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $user = User::find($user_id);
 
         if (!$user) {
