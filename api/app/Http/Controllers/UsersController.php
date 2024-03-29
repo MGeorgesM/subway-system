@@ -9,8 +9,8 @@ class UsersController extends Controller
 {
     public function getUsers(Request $request)
     {
-        $id = $request->query('id');
-        
+        $id = $request->id;
+
         if ($id) {
             $user = User::find($id);
 
@@ -19,11 +19,21 @@ class UsersController extends Controller
             }
 
             return response()->json($user);
-        } else {
-            $
         }
-        $users = User::all();
-        return response()->json($users);
+
+        if (!auth()->check()) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $token_user_id = auth()->user()->id;
+        $user = User::find($token_user_id);
+
+        if ($user->role_id === 3) {
+            $users = User::all();
+            return response()->json($users);
+        }
+        
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
 
     public function updateUser(Request $request)
@@ -36,7 +46,8 @@ class UsersController extends Controller
             'email' => 'string|email'
         ]);
 
-        $user = User::find($request->id);
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);

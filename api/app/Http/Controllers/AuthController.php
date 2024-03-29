@@ -15,7 +15,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -34,6 +34,11 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+     /**
+     * Register a User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(Request $request)
     {
         $request->validate([
@@ -90,7 +95,6 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
-            'token_type' => 'bearer',
         ]);
     }
 }
