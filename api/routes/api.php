@@ -3,8 +3,10 @@
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\RidesController;
 
 use Illuminate\Support\Facades\Route;
+
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
@@ -37,3 +39,8 @@ Route::get('stations/get/{id}', [StationController::class, 'get_stations']);
 Route::post('stations/create', [StationController::class, 'create_station']);
 Route::delete('stations/delete/{id}', [StationController::class, 'delete_station']);
 Route::put('stations/update/{id}', [StationController::class, 'update_station']);
+
+
+Route::get('rides/getAll', [RidesController::class, 'get_all_rides']);
+Route::get('rides/get/{id}', [RidesController::class, 'get_rides']);
+Route::post('rides/create', [RidesController::class, 'create_rides']);
