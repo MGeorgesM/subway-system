@@ -13,7 +13,7 @@ class RolesTableSeeder extends Seeder
     public function run(): void
     {
         $role = new Role();
-        $role->name = 'user';
+        $role->name = 'passenger';
         $role->save();
 
         $role = new Role();
