@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\CoinRequestController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,15 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function coinRequests()
+    {
+        return $this->hasMany(CoinsRequest::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
