@@ -8,11 +8,24 @@ use App\Models\Station;
 class StationController extends Controller
 {
 
-    public function get_stations()
+    // Get all stations
+    public function get_all_stations()
     {
         $stations = Station::all();
 
         return response()->json(['stations' => $stations], 200);
+    }
+
+    // Get a single stations depending on ID
+    public function get_stations($id)
+    {
+        $station = Station::find($id);
+
+        if (!$station) {
+            return response()->json(['message' => 'Station not found'], 404);
+        }
+
+        return response()->json(['station' => $station], 200);
     }
 
 
