@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('return_ride_id')->nullable();
             $table->foreign('return_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->decimal('price', 8, 2);
-            $table->boolean('activated')->default(false);
-            $table->dateTime('created_at');
+            $table->boolean('activated');
+            $table->dateTime('created_at')->default(now());
         });
     }
 
