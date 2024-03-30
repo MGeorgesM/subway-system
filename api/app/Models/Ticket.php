@@ -11,10 +11,11 @@ class Ticket extends Model
 
     protected $fillable = 
     [
+        'user_id',
         'departure_ride_id',
         'return_ride_id',
         'price',
-        'activated',
+        'activated'
     ];
 
     public $timestamps = false;

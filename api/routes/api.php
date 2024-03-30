@@ -52,3 +52,5 @@ Route::delete('rides/delete/{id}', [RidesController::class, 'delete_rides']);
 
 Route::get('tickets/getAll', [TicketsController::class, 'get_all_tickets']);
 Route::get('tickets/get/{id}', [TicketsController::class, 'get_tickets']);
+Route::post('tickets/create', [TicketsController::class, 'create_ticket']);
+Route::put('tickets/update/{id}', [TicketsController::class, 'update_ticket']);
