@@ -1,0 +1,56 @@
+.primary-text {
+    color: #0a66c2;
+}
+
+.dark-text {
+    color: #00000090;
+}
+
+.light-text {
+    color: #00000060;
+}
+
+.lightest-text {
+    color: #00000030;
+}
+
+.light-gray-bg {
+    background-color: #f3f2f0;
+}
+
+.white-bg {
+    background-color: #FFFFFF;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.place-holder-text {
+    color: #ADB5BD;
+}
+
+.onclick-nav-bg {
+    background-color: #ADB5BD;
+}
+
+.off-white-text {
+    color: #f8f9fa;
+}
+
+
+.primary-bg {
+    background-color: #0a66c2;
+}
+
+.secondary-bg {
+    background-color: #f3f2f0;
+}
+
+.off-white-bg-trsp {
+    background-color: rgba(244, 246, 243, 0.5);
+}
+
+
+
+/* Hover Color Button: #004182 Link Hover: #0077b5 */

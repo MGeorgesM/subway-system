@@ -3,6 +3,7 @@
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoinRequestController;
+use App\Http\Controllers\ReviewsController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
@@ -34,3 +35,6 @@ Route::get('/coins-requests', [CoinRequestController::class, 'viewRequests']);
 Route::post('/coins-requests/{id}/accept', [CoinRequestController::class, 'acceptRequest']);
 Route::post('/coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
 Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
+
+Route::post('/reviews/add', [ReviewsController::class, 'addReview']);
+Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
