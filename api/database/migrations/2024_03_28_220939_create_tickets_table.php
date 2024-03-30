@@ -21,7 +21,8 @@ return new class extends Migration
             $table->foreign('return_ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->decimal('price', 8, 2);
             $table->boolean('activated')->default(false);
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->default(now());
+            // $table->dateTime('updated_at')->nullable();
         });
     }
 
