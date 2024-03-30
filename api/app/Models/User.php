@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\CoinRequestController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;

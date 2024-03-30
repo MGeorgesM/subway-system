@@ -59,9 +59,7 @@ class StationController extends Controller
 
         return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
     }
-
-
-    
+   
     // Update the station
     public function update_station(Request $req, $id)
 {
@@ -92,9 +90,6 @@ class StationController extends Controller
     
     return response()->json(['message' => 'Station updated successfully'], 200);
 }
-
-
-
     
     // Delete a station
     public function delete_station($id)

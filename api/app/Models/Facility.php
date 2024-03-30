@@ -11,7 +11,7 @@ class Facility extends Model
 
     protected $fillable = [
         'type',
-        
     ];
+
     public $timestamps = false;
 }
