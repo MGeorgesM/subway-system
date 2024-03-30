@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('rating')->unsigned();
             $table->text('comment')->nullable();
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->default(now());
         });
     }
 

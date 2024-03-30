@@ -16,12 +16,15 @@ class Review extends Model
         'comment'
     ];
 
-    public function users() {
+    public $timestamps = false;
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function rides() {
+    public function ride()
+    {
         return $this->belongsTo(Ride::class);
     }
-
 }
