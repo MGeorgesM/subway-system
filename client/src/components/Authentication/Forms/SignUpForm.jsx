@@ -2,18 +2,15 @@ import { React, useState } from 'react';
 
 const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) => {
     const [formData, setFormData] = useState({
+        fist_name: '',
+        last_name: '',
+        location: '',
         email: '',
-        name: '',
         password: '',
-        isCompany: false,
     });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleCheckboxChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.checked });
     };
 
     const handleSubmit = (e) => {
@@ -27,25 +24,24 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
             </div>
             <form className="flex center column" onSubmit={handleSubmit}>
                 <div>
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" placeholder="first name" required onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" placeholder="last name" required onChange={handleChange} />
+                </div>
+                <div>
+                    <label>Location:</label>
+                    <input type="text" name="location" placeholder="your location" required onChange={handleChange} />
+                </div>
+                <div>
                     <label>Email:</label>
                     <input type="text" name="email" placeholder="user@mail.com" required onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Name:</label>
-                    <input type="text" name="name" placeholder="name" required onChange={handleChange} />
-                </div>
-                <div>
                     <label>Password:</label>
                     <input type="password" name="password" placeholder="password" required onChange={handleChange} />
-                </div>
-                <div className="company-check flex center">
-                    <label>Are you a company?</label>
-                    <input
-                        type="checkbox"
-                        name="isCompany"
-                        checked={formData.isCompany}
-                        onChange={handleCheckboxChange}
-                    />
                 </div>
                 <div className="flex center validation-display">
                     {apiError.length > 0 && apiError.map((error, index) => <p key={index}>{error}</p>)}
