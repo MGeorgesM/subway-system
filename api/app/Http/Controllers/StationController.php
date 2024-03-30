@@ -64,7 +64,7 @@ class StationController extends Controller
     
     // Update the station
     public function update_station(Request $req, $id)
-    {
+{
     $station = Station::find($id);
     
     if (!$station) {
@@ -91,7 +91,8 @@ class StationController extends Controller
     ]);
     
     return response()->json(['message' => 'Station updated successfully'], 200);
-    }
+}
+
 
 
     
