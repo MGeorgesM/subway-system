@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { sendRequest } from '../../core/tools/apiRequest';
@@ -13,7 +13,7 @@ import './index.css';
 const Authentication = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [apiError, setApiError] = useState([]);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const switchHandler = (isLogin) => {
         setApiError([]);
