@@ -11,6 +11,7 @@ class Station extends Model
 
     protected $table = 'stations';
     protected $fillable = [
+        'branch_id',
         'name',
         'location',
         'opening_time',
@@ -19,7 +20,7 @@ class Station extends Model
     ];
     public function station()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'branch_id');
     }
     
 }

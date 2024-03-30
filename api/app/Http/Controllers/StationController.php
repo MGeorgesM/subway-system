@@ -31,6 +31,7 @@ class StationController extends Controller
     public function create_station(Request $req)
     {
         $req->validate([
+            // 'branch_id' => 'required'
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'opening_time' => 'required|date_format:H:i',
@@ -54,8 +55,9 @@ class StationController extends Controller
             ]);
             return response()->json(['station' => $station], 201);
         }
+        
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+        return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
     }
 
 

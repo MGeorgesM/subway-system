@@ -45,7 +45,18 @@ class RidesController extends Controller
         $user = Auth::user();
 
         if ($user && $user->role_id === 2) {
-            $$ride = Ride::create([
+
+            if($req->start_station_id === $req->end_station_id){
+                return response()->json(['message'=>'Start and end stations cannot be the same.'], 400);
+            }
+
+            $startEndStationSame = Ride::where('start_station_id', $req->start_station_id)->where('end_station_id', $req->end_station_id)->exists();
+
+            if($startEndStationSame){
+                return response()->json(['message'=>'Ride with the same start and end date already exists']);
+            }
+
+            $ride = Ride::create([
                 'name' => $req->name,
                 'start_station_id' => $req->start_station_id,
                 'end_station_id' => $req->end_station_id,
