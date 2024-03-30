@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\CoinRequestController;
 use App\Http\Controllers\ReviewsController;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,7 @@ Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'user
 
 Route::post('/reviews/add', [ReviewsController::class, 'addReview']);
 Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+
+Route::post('/send-message', [ChatsController::class, 'sendMessage']);
+Route::get('/users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
+Route::get('/users/{userId}/received-chats', [ChatsController::class, 'getReceivedChats']);
