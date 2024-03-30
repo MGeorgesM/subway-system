@@ -7,9 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class HelloMail extends Mailable
+class InvitationEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Build the message.
@@ -18,7 +28,7 @@ class HelloMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Hello Email')
-                    ->view('emails.hello');
+        return $this->subject('Invitation Email Subject')
+                    ->view('emails.invitation');
     }
 }

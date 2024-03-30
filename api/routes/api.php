@@ -6,6 +6,9 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\RidesController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\BranchInvitationController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\HelloMail;
 
 use Illuminate\Support\Facades\Route;
 
@@ -60,3 +63,6 @@ Route::post('tickets/update/{id}', [TicketsController::class, 'update_ticket']);
 Route::get('facilities/getAll', [FacilitiesController::class, 'get_all_facilities']);
 Route::get('facilities/get/{id}', [FacilitiesController::class, 'get_facilities']);
 Route::post('facilities/update/{id}', [FacilitiesController::class, 'update_facilities']);
+
+
+Route::post('/send-email', [BranchInvitationController::class, 'invite']);
