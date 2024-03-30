@@ -2,10 +2,16 @@
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\CoinRequestController;
+use App\Http\Controllers\ReviewsController;
+
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\RidesController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\FacilitiesController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +40,20 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::get('users/get/{id?}', [UsersController::class, 'getUsers']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
+
+
+Route::post('/coins-requests', [CoinRequestController::class, 'requestCoin']);
+Route::get('/coins-requests', [CoinRequestController::class, 'viewRequests']);
+Route::post('/coins-requests/{id}/accept', [CoinRequestController::class, 'acceptRequest']);
+Route::post('/coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
+Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
+
+Route::post('/reviews/add', [ReviewsController::class, 'addReview']);
+Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+
+Route::post('/send-message', [ChatsController::class, 'sendMessage']);
+Route::get('/users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
+Route::get('/users/{userId}/received-chats', [ChatsController::class, 'getReceivedChats']);
 
 
 Route::get('stations/getAll', [StationController::class, 'get_all_stations']);

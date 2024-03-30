@@ -16,4 +16,8 @@ class Ride extends Model
         'start_time',
         'end_time',
     ];
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
 }
