@@ -31,9 +31,16 @@ class PassController extends Controller
         $user = User::find($token_user_id);
 
         if ($user) {
+
+            if ($user->coins_balance < 100) {
+                return response()->json(['message' => 'Insufficient coins'], 403);
+            }
+
+            $user->coins_balance = $user->coins_balance - 100;
             $pass = Pass::create([
                 'user_id' => $user->id,
             ]);
+
             return response()->json($pass);
         }
 
