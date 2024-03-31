@@ -28,7 +28,7 @@ class CoinRequestController extends Controller
 
     public function viewRequests()
     {
-        $coinRequests = CoinsRequest::all(); // Update model name here
+        $coinRequests = CoinsRequest::with('user')->get(); // Update model name here
 
         return response()->json([
             'message' => 'List of all coin requests',

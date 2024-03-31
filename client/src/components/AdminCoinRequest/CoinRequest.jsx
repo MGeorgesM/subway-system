@@ -57,7 +57,7 @@ const CoinRequest = () => {
         <tbody>
           {coinRequests.map((request) => (
             <tr key={request.id}>
-              <td>{request.user_id}</td>
+              <td>{request.user.first_name}</td>
               <td>{request.amount} $</td>
               <td>{formatDate(request.created_at)}</td>
               <td>{request.status}</td>
