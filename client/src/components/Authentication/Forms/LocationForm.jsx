@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Map from '../../../components/Map/Map';
 
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
+
+
 const LocationForm = () => {
     const [submittedLocation, setSubmittedLocation] = useState('');
     const [locationCoordinates, setLocationCoordinates] = useState({});
@@ -10,12 +14,33 @@ const LocationForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('Location Coordinates', locationCoordinates);
         localStorage.setItem('location', JSON.stringify(locationCoordinates));
+        
     }, [locationCoordinates]);
 
-    const handleLocationSubmit = () => {
-        setSubmittedLocation(location);
+    const handleLocationSubmit = async () => {
+        if (locationCoordinates) {
+            const data = new FormData();
+            data.append('lat', locationCoordinates[0]);
+            data.append('lng', locationCoordinates[1]);
+
+            
+            try {
+                console.log(data)
+                const response =  await sendRequest(requestMethods.POST, '/users/update', data);
+                console.log(response);
+                
+                            if (response.status === 200) {
+                                navigate('/');
+                            }
+                
+            } catch (error) {
+                console.log(error);
+            }
+
+        } else {
+            setSubmittedLocation(location);
+        }
     };
 
     const saveLocationCoordinates = (coordinates) => {

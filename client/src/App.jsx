@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Authentication from './components/Authentication/Authentication';
+import LocationForm from './components/Authentication/Forms/LocationForm';
 
 import './App.css';
 import './styles/colors.css';
@@ -11,6 +13,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/auth" element={<Authentication />} />
+                <Route path ="/location" element={<LocationForm />} />
             </Routes>
         </BrowserRouter>
     );
