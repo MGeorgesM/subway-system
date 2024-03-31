@@ -5,22 +5,31 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
-const Map = ({ locationInput, markersInput }) => {
+const Map = ({ locationTextInput, markersInput }) => {
     const [userLocation, setUserLocation] = useState(null);
-    const [searchQuery, setSearchQuery] = useState('');
+    // const [searchQuery, setSearchQuery] = useState('');
+
+    // useEffect(() => {
+    //     userLocation && console.log('userLocation', userLocation);
+    // }, [userLocation]);
 
     useEffect(() => {
-        userLocation && console.log('userLocation', userLocation);
-    }, [userLocation]);
+        if (locationTextInput) {
+            handleInput();
+        }
+    });
 
     const LocationMarker = () => {
-        const map = useMapEvents({
-            click(e) {
-                const { lat, lng } = e.latlng;
-                map.flyTo([lat, lng], map.getZoom());
-                setUserLocation([lat, lng]);
+        const map = useMapEvents(
+            {
+                click(e) {
+                    const { lat, lng } = e.latlng;
+                    map.flyTo([lat, lng], map.getZoom());
+                    setUserLocation([lat, lng]);
+                },
             },
-        });
+            locationTextInput
+        );
 
         if (userLocation && map) {
             map.flyTo(userLocation, map.getZoom());
@@ -36,11 +45,11 @@ const Map = ({ locationInput, markersInput }) => {
         return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
 
-    const handleSearch = async () => {
+    const handleInput = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
 
         try {
-            const response = await fetch(`https://geocode.maps.co/search?q=${searchQuery}&api_key=${apiKey}`);
+            const response = await fetch(`https://geocode.maps.co/search?q=${locationTextInput}&api_key=${apiKey}`);
             const data = await response.json();
 
             if (data.length > 0) {
@@ -72,7 +81,7 @@ const Map = ({ locationInput, markersInput }) => {
         <>
             {/* <div className="searh=container">
                 <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Enter your city" />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handelInput}>Search</button>
             </div> */}
             <MapContainer
                 center={userLocation ? userLocation : [33.88863, 35.49548]}
@@ -82,11 +91,12 @@ const Map = ({ locationInput, markersInput }) => {
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
 
-                {markersInput && markers.map((mark) => (
-                    <Marker position={mark.location} key={mark.name} icon={custommarkIcon}>
-                        <Popup>{mark.name}</Popup>
-                    </Marker>
-                ))}
+                {markersInput &&
+                    markersInput.map((mark) => (
+                        <Marker position={mark.location} key={mark?.name} icon={custommarkIcon}>
+                            <Popup>{mark?.name}</Popup>
+                        </Marker>
+                    ))}
                 <LocationMarker />
             </MapContainer>
         </>
