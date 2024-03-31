@@ -30,7 +30,7 @@ Route::post('/coins-requests/{id}/accept', [CoinRequestController::class, 'accep
 Route::post('/coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
 Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
 
-Route::post('/reviews/add', [ReviewsController::class, 'addReview']);
+Route::post('/reviews/add', [ReviewsController::class, 'addReviews']);
 Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
 
 Route::post('/send-message', [ChatsController::class, 'sendMessage']);

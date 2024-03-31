@@ -21,9 +21,13 @@ return new class extends Migration
             $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('rating')->unsigned();
             $table->text('comment')->nullable();
+
+            $table->dateTime('created_at')->default(now());
+          
             $table->dateTime('created_at');
 
             $table->unique(['ride_id', 'station_id']);
+
         });
     }
 
