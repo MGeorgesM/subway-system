@@ -26,6 +26,7 @@ class Ride extends Model
     public function endStation()
     {
         return $this->belongsTo(Station::class, 'end_station_id');
+    }
 
     public function reviews() {
         return $this->hasMany(Review::class);
