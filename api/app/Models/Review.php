@@ -12,6 +12,7 @@ class Review extends Model
     protected $fillable = [
         'user_id',
         'ride_id',
+        'station_id',
         'rating',
         'comment'
     ];
@@ -24,4 +25,7 @@ class Review extends Model
         return $this->belongsTo(Ride::class);
     }
 
+    public function stations() {
+        return $this->belongsTo(Station::class);
+    }
 }

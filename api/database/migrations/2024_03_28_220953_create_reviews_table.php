@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('ride_id');
+            $table->unsignedBigInteger('ride_id')->nullable();
             $table->foreign('ride_id')->references('id')->on('rides')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('station_id')->nullable();
+            $table->foreign('station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('rating')->unsigned();
             $table->text('comment')->nullable();
             $table->dateTime('created_at');
+
+            $table->unique(['ride_id', 'station_id']);
         });
     }
 
