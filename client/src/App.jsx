@@ -8,11 +8,12 @@ import './styles/queries.css'
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/auth" element={<Authentication />} />
-            </Routes>
-        </BrowserRouter>
+      <Authentication/>
+        // <BrowserRouter>
+        //     <Routes>
+        //         <Route path="/auth" element={<Authentication />} />
+        //     </Routes>
+        // </BrowserRouter>
     );
 }
 

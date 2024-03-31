@@ -5,36 +5,13 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
-const Map = () => {
+const Map = ({ locationInput, markersInput }) => {
     const [userLocation, setUserLocation] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         userLocation && console.log('userLocation', userLocation);
     }, [userLocation]);
-
-    const stations = [
-        {
-            name: 'Station 1',
-            location: [33.88863, 35.49548],
-        },
-        {
-            name: 'Station 2',
-            location: [33.895233, 35.484355],
-        },
-        {
-            name: 'Station 3',
-            location: [33.897927, 35.501713],
-        },
-        {
-            name: 'Station 4',
-            location: [33.887171, 35.501027],
-        },
-        {
-            name: 'Station 5',
-            location: [33.894708, 35.510307],
-        },
-    ];
 
     const LocationMarker = () => {
         const map = useMapEvents({
@@ -49,14 +26,12 @@ const Map = () => {
             map.flyTo(userLocation, map.getZoom());
         }
 
-
         // useEffect(() => {
         //     console.log('running');
         //     if (userLocation && map) {
         //         map.flyTo(userLocation, map.getZoom());
         //     }
         // }, [map]);
-
 
         return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
@@ -79,38 +54,42 @@ const Map = () => {
         }
     };
 
-    const handleInputChange = (e) => {
-        setSearchQuery(e.target.value);
-    };
+    // const handleInputChange = (e) => {
+    //     setSearchQuery(e.target.value);
+    // };
 
     const customUserIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
         iconSize: [50, 50],
     });
 
-    const customStationIcon = new Icon({
+    const custommarkIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
         iconSize: [32, 32],
     });
 
     return (
-        <div className="map-container">
-            <div className="searh=container">
+        <>
+            {/* <div className="searh=container">
                 <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Enter your city" />
                 <button onClick={handleSearch}>Search</button>
-            </div>
-            <MapContainer center={userLocation ? userLocation : [33.88863, 35.49548]} zoom={13}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <TileLayer url="https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png" />
+            </div> */}
+            <MapContainer
+                center={userLocation ? userLocation : [33.88863, 35.49548]}
+                zoom={13}
+                zoomControl={false}
+                attributionControl={false}
+            >
+                <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
 
-                {stations.map((station) => (
-                    <Marker position={station.location} key={station.name} icon={customStationIcon}>
-                        <Popup>{station.name}</Popup>
+                {markersInput && markers.map((mark) => (
+                    <Marker position={mark.location} key={mark.name} icon={custommarkIcon}>
+                        <Popup>{mark.name}</Popup>
                     </Marker>
                 ))}
                 <LocationMarker />
             </MapContainer>
-        </div>
+        </>
     );
 };
 

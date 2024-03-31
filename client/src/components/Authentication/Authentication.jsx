@@ -9,6 +9,7 @@ import SignInForm from './Forms/SignInForm';
 import SignUpForm from './Forms/SignUpForm';
 
 import './index.css';
+import LocationForm from './Forms/LocationForm';
 
 const Authentication = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -33,7 +34,7 @@ const Authentication = () => {
                 // navigate('/')
                 return;
             } else {
-                throw new Error(response.data.message);
+                throw new Error('Wrong ');
             }
         } catch (error) {
             console.log(error.message);
@@ -67,13 +68,14 @@ const Authentication = () => {
     };
 
     return (
-        <section className="form-component white-bg flex center">
-            {isLogin ? (
-                <SignInForm switchHandler={switchHandler} handleLogin={handleLogin} apiError={apiError} />
-            ) : (
-                <SignUpForm switchHandler={switchHandler} handleSignup={handleSignup} apiError={apiError} />
-            )}
-        </section>
+        // <section className="form-component white-bg flex center">
+        //     {isLogin ? (
+        //         <SignInForm switchHandler={switchHandler} handleLogin={handleLogin} apiError={apiError} />
+        //     ) : (
+        //         <SignUpForm switchHandler={switchHandler} handleSignup={handleSignup} apiError={apiError} />
+        //     )}
+        // </section>
+        <LocationForm/>
     );
 };
 

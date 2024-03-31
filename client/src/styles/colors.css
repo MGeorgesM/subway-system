@@ -1,21 +1,21 @@
 .primary-text {
-    color: #0a66c2;
+    color: #161213;
 }
 
 .dark-text {
-    color: #00000090;
+    color: #30302F;
 }
 
 .light-text {
-    color: #00000060;
+    color: #6D6B6C;
 }
 
-.lightest-text {
-    color: #00000030;
+.secondary-text {
+    color: #ED941B;
 }
 
 .light-gray-bg {
-    background-color: #f3f2f0;
+    background-color: #EFEFEF;
 }
 
 .white-bg {
@@ -26,31 +26,28 @@
     color: #FFFFFF;
 }
 
-.place-holder-text {
-    color: #ADB5BD;
+.off-white-text {
+    color: #DEE2E6;
 }
 
 .onclick-nav-bg {
     background-color: #ADB5BD;
 }
 
-.off-white-text {
-    color: #f8f9fa;
-}
-
-
 .primary-bg {
-    background-color: #0a66c2;
+    background-color: #CE091B;
 }
 
 .secondary-bg {
-    background-color: #f3f2f0;
+    background-color: #ED941B;
 }
 
 .off-white-bg-trsp {
-    background-color: rgba(244, 246, 243, 0.5);
+    background-color: #EFEFEF75;
 }
 
+.light-gray-bg-trsp {
+    background-color: #6D6B6C50;
+}
 
-
-/* Hover Color Button: #004182 Link Hover: #0077b5 */
+/* Hover Color Button: #5C0206 Link Hover: #5C0206 */

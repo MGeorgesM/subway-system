@@ -20,7 +20,7 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
     return (
         <div className="container box-shadow off-white-bg border flex center column">
             <div className="logo">
-                <img src="/assets/logo.png" alt="logo" />
+                <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
             </div>
             <form className="flex center column" onSubmit={handleSubmit}>
                 <div>
