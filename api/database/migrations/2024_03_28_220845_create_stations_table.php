@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('lng', 11, 8);
             $table->time('opening_time');
             $table->time('closing_time');
+            $table->string('image_url')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

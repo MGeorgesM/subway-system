@@ -49,7 +49,6 @@ class TicketsController extends Controller
             ]);
             return response()->json(['ticket' => 'Ticket created successfully.', $ticket], 201);
         }
-        
 
         return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
     }
