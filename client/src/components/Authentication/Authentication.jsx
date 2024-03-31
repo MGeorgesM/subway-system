@@ -27,12 +27,11 @@ const Authentication = () => {
         } else if (formData.password.length < 8 && formData.password.length > 0) {
             setError('Password must be at least 8 characters');
         } else {
-            setError([]);
+            setError('');
         }
     }, [formData]);
 
     const switchHandler = (isLogin) => {
-        setError([]);
         setIsLogin(isLogin);
     };
 
@@ -49,15 +48,15 @@ const Authentication = () => {
                 // navigate('/')
                 return;
             } else {
-                throw new Error('Wrong ');
+                throw new Error('Wrong email or password');
             }
         } catch (error) {
             console.log(error.message);
-            // setError([error.message]);
+            setError([error.message]);
         }
     };
 
-    const handleSignup = (formData) => {
+    const handleSignup = async (formData) => {
         console.log('form data', formData);
 
         // const data = new FormData();
@@ -66,19 +65,19 @@ const Authentication = () => {
         // data.append('name', formData.name);
         // data.append('isCompany', formData.isCompany);
 
-        // try {
-        //     const response = await axios.post('/users/signup.php', data);
-        //     if (response.data.status === 'success') {
-        //         localStorage.setItem('currentUser', JSON.stringify(response.data.data));
-        //         // navigate('/')
-        //         return;
-        //     } else {
-        //         throw new Error(response.data.message);
-        //     }
-        // } catch (error) {
-        //     console.log(error.message);
-        //     setError([error.message]);
-        // }
+        try {
+            const response = await sendRequest(requestMethods.POST, '/auth/register', formData);
+            if (response.status === 201) {
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+                // navigate('/')
+                return;
+            } else {
+                throw new Error(response.data.message);
+            }
+        } catch (error) {
+            console.log(error.message);
+            setError([error.message]);
+        }
     };
 
     return (
@@ -89,9 +88,9 @@ const Authentication = () => {
                 <SignUpForm
                     switchHandler={switchHandler}
                     handleSignup={handleSignup}
-                    error={error}
                     setFormData={setFormData}
                     formData={formData}
+                    error={error}
                 />
             )}
         </section>
