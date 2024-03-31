@@ -73,7 +73,6 @@ input {
     margin: 16px;
 }
 
-
 .login-btn,
 .register-btn,
 .location-btn {
@@ -84,7 +83,7 @@ input {
 .login-btn:hover,
 .register-btn:hover,
 .location-btn:hover {
-    background-color: #5C0206;
+    background-color: #980511;
 }
 
 .register-link:hover,

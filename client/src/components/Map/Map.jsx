@@ -5,19 +5,20 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
-const Map = ({ locationTextInput, markersInput }) => {
+const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
+    console.log('locationTextInput', locationTextInput);
     const [userLocation, setUserLocation] = useState(null);
     // const [searchQuery, setSearchQuery] = useState('');
-
+    
     // useEffect(() => {
-    //     userLocation && console.log('userLocation', userLocation);
-    // }, [userLocation]);
-
-    useEffect(() => {
-        if (locationTextInput) {
+        //     userLocation && console.log('userLocation', userLocation);
+        // }, [userLocation]);
+        
+        useEffect(() => {
+            if (locationTextInput) {
             handleInput();
         }
-    });
+    }, [locationTextInput]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
@@ -26,6 +27,7 @@ const Map = ({ locationTextInput, markersInput }) => {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
                     setUserLocation([lat, lng]);
+                    saveLocationCoordinates([lat, lng]);
                 },
             },
             locationTextInput
@@ -34,13 +36,6 @@ const Map = ({ locationTextInput, markersInput }) => {
         if (userLocation && map) {
             map.flyTo(userLocation, map.getZoom());
         }
-
-        // useEffect(() => {
-        //     console.log('running');
-        //     if (userLocation && map) {
-        //         map.flyTo(userLocation, map.getZoom());
-        //     }
-        // }, [map]);
 
         return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
@@ -53,7 +48,9 @@ const Map = ({ locationTextInput, markersInput }) => {
             const data = await response.json();
 
             if (data.length > 0) {
+                console.log('data',data[0])
                 const { lat, lon } = data[0];
+                saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
             } else {
                 console.log('No data found');

@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Map from '../../../components/Map/Map';
 
 const LocationForm = () => {
-    const [location, setLocation] = useState('');
     const [submittedLocation, setSubmittedLocation] = useState('');
-    const [locationCoordinates, setLocationCoordinates] = useState([]);
+    const [locationCoordinates, setLocationCoordinates] = useState({});
+    const [location, setLocation] = useState('');
+
+    useEffect(() => {
+        console.log('Location Coordinates', locationCoordinates);
+        localStorage.setItem('location', JSON.stringify(locationCoordinates));
+    }, [locationCoordinates]);
 
     const handleLocationSubmit = () => {
-        console.log('Location Submitter', location);
+
+        setSubmittedLocation(location);
     };
 
-    const 
+    const saveLocationCoordinates = (coordinates) => {
+        setLocationCoordinates(coordinates);
+    };
 
     return (
         <div className="location-form border flex center light-gray-bg border-radius box-shadow">
@@ -28,10 +36,12 @@ const LocationForm = () => {
                 <button
                     className="location-btn primary-bg white-text box-shadow border-radius-l input-btn-lg"
                     onClick={handleLocationSubmit}
-                ></button>
+                >
+                    {locationCoordinates ? 'Continue' : 'Submit'}
+                </button>
             </div>
             <div className="map-container">
-                <Map locationTextInput={location}></Map>
+                <Map locationTextInput={submittedLocation} saveLocationCoordinates={saveLocationCoordinates}></Map>
             </div>
         </div>
     );
