@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Facility extends Model
+class CoinsRequest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'type',
+        'user_id',
+        'amount',
+        'status'
     ];
 
-    public $timestamps = false;
+    public function users() {
+        return $this->belongsTo(User::class);
+    }
 }

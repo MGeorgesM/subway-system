@@ -16,8 +16,6 @@ class RidesController extends Controller
         return response()->json(['rides' => $rides], 200);
     }
 
-
-
     public function get_rides($id)
     {
         $rides = Ride::find($id);
@@ -29,8 +27,6 @@ class RidesController extends Controller
 
         return response()->json(['rides' => $rides], 200);
     }
-
-
 
     public function create_rides(Request $req)
     {
@@ -68,8 +64,6 @@ class RidesController extends Controller
     
         return response()->json(['message' => 'Unauthorized'], 401);
     }
-
-
 
     public function update_rides(Request $req, $id)
     {
