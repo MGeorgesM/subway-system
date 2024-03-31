@@ -68,14 +68,13 @@ const Authentication = () => {
     };
 
     return (
-        // <section className="form-component white-bg flex center">
-        //     {isLogin ? (
-        //         <SignInForm switchHandler={switchHandler} handleLogin={handleLogin} apiError={apiError} />
-        //     ) : (
-        //         <SignUpForm switchHandler={switchHandler} handleSignup={handleSignup} apiError={apiError} />
-        //     )}
-        // </section>
-        <LocationForm/>
+        <section className="form-component flex center">
+            {isLogin ? (
+                <SignInForm switchHandler={switchHandler} handleLogin={handleLogin} apiError={apiError} />
+            ) : (
+                <SignUpForm switchHandler={switchHandler} handleSignup={handleSignup} apiError={apiError} />
+            )}
+        </section>
     );
 };
 

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Map from '../../../components/Map/Map';
 
 const LocationForm = () => {
@@ -7,13 +7,14 @@ const LocationForm = () => {
     const [locationCoordinates, setLocationCoordinates] = useState({});
     const [location, setLocation] = useState('');
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         console.log('Location Coordinates', locationCoordinates);
         localStorage.setItem('location', JSON.stringify(locationCoordinates));
     }, [locationCoordinates]);
 
     const handleLocationSubmit = () => {
-
         setSubmittedLocation(location);
     };
 

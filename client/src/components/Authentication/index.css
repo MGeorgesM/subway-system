@@ -1,8 +1,10 @@
 .root {
     background-color: #980511;
 }
+
 .form-component {
     height: 100vh;
+    background-color: #980511;
 }
 
 .location-form {
@@ -33,22 +35,24 @@
 .logo img {
     height: 40px;
     margin: 48px;
-
 }
 
 .container {
     max-width: 30%;
-    min-width: 400px;
-    padding: 16px;
+    min-height: 600px;
+    min-width: 440px;
+    padding: 24px;
 }
 
 .container p {
     font-size: 16px;
     text-align: center;
+    margin-top: 16px;
 }
 
 .validation-display {
     height: 48px;
+    margin-bottom: 8px;
     color: #f03e3eed;
 }
 
@@ -64,14 +68,25 @@ form>div {
     width: 100%;
 }
 
+label {
+    /* margin-left: 24px; */
+}
+
 input {
     font-size: 18px;
     padding: 0 24px;
+    margin-bottom: 24px;
+    margin-top: 4px;
 }
+
+/* div > input:last-child {
+    margin-bottom: 0px;
+} */
 
 .location-form > .input-container > input {
     margin: 16px;
 }
+
 
 .login-btn,
 .register-btn,
