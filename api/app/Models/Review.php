@@ -29,7 +29,7 @@ class Review extends Model
         return $this->belongsTo(Ride::class);
     }
 
-    public function stations() {
+    public function station() {
         return $this->belongsTo(Station::class);
     }
 }
