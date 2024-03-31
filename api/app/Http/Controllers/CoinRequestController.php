@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\CoinsRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CoinRequestController extends Controller
@@ -36,22 +37,45 @@ class CoinRequestController extends Controller
     }
 
     public function acceptRequest($id)
-    {
-        $coinRequest = CoinsRequest::find($id); // Update model name here
-        
-        if (!$coinRequest) {
-            return response()->json([
-                'message' => 'Coin request not found',
-            ], 404);
-        }
+{
+    // Find the coin request by ID
+    $coinRequest = CoinsRequest::find($id);
 
-        $coinRequest->update(['status' => 'approved']);
-
+    // Check if the coin request exists
+    if (!$coinRequest) {
         return response()->json([
-            'message' => 'Coin request accepted',
-            'coin_request' => $coinRequest
-        ], 200);
+            'error' => 'Coin request not found',
+        ], 404);
     }
+
+    // Check if the coin request is already approved
+    if ($coinRequest->status === 'approved') {
+        return response()->json([
+            'error' => 'Coin request has already been approved',
+        ], 400);
+    }
+
+    // Update the coin request status to 'approved'
+    $coinRequest->update(['status' => 'approved']);
+
+    // Retrieve the user associated with the coin request
+    $user = User::find($coinRequest->user_id);
+
+    // Check if the user exists
+    if (!$user) {
+        return response()->json([
+            'error' => 'User not found for this coin request',
+        ], 404);
+    }
+
+    // Increment the user's coins_balance by the requested amount
+    $user->increment('coins_balance', $coinRequest->amount);
+
+    return response()->json([
+        'message' => 'Coin request accepted',
+        'coin_request' => $coinRequest,
+    ], 200);
+}
 
     public function discardRequest($id)
     {
