@@ -9,6 +9,7 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\RidesController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\PassController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::get('users/get/{id?}', [UsersController::class, 'getUsers']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
+
+Route::get('passes/get/{id?}', [PassController::class, 'get']);
+Route::post('passes/add', [PassController::class, 'add']);
+Route::post('passes/update', [PassController::class, 'update']);
 
 Route::post('/coins-requests', [CoinRequestController::class, 'requestCoin']);
 Route::get('/coins-requests', [CoinRequestController::class, 'viewRequests']);
