@@ -45,9 +45,7 @@ const SignInForm = ({ switchHandler, handleLogin, apiError }) => {
                         required
                     />
                 </div>
-                <div className="flex center validation-display">
-                    {apiError.length > 0 && apiError.map((error, index) => <p key={index}>{error}</p>)}
-                </div>
+                <div className="flex center validation-display">{apiError && <p>{apiError}</p>}</div>
                 <button
                     className="login-btn input-btn-lg primary-bg white-text box-shadow border-radius-l"
                     type="submit"

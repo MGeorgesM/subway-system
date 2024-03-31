@@ -1,12 +1,4 @@
-import { React, useEffect, useState } from 'react';
-
-const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) => {
-    const [formData, setFormData] = useState({
-        fist_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-    });
+const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData }) => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +15,7 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
             </div>
             <form className="flex column center" onSubmit={handleSubmit}>
                 <div>
-                    <label className='light-text'>First Name:</label>
+                    <label className="light-text">First Name:</label>
                     <input
                         className="light-gray-bg input-btn-lg border-radius-l border"
                         type="text"
@@ -34,7 +26,7 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
                     />
                 </div>
                 <div>
-                    <label className='light-text'>Last Name:</label>
+                    <label className="light-text">Last Name:</label>
                     <input
                         className="light-gray-bg input-btn-lg border-radius-l border"
                         type="text"
@@ -45,7 +37,7 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
                     />
                 </div>
                 <div>
-                    <label className='light-text'>Email:</label>
+                    <label className="light-text">Email:</label>
                     <input
                         className="light-gray-bg input-btn-lg border-radius-l border"
                         type="text"
@@ -56,7 +48,7 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
                     />
                 </div>
                 <div>
-                    <label className='light-text'>Password:</label>
+                    <label className="light-text">Password:</label>
                     <input
                         className="light-gray-bg input-btn-lg border-radius-l border"
                         type="password"
@@ -66,10 +58,11 @@ const SignupForm = ({ switchHandler, handleSignup, validationError, apiError }) 
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex center validation-display">
-                    {apiError.length > 0 && apiError.map((error, index) => <p key={index}>{error}</p>)}
-                </div>
-                <button className="login-btn input-btn-lg primary-bg white-text box-shadow border-radius-l" type="submit">
+                <div className="flex center validation-display">{error && <p>{error}</p>}</div>
+                <button
+                    className="login-btn input-btn-lg primary-bg white-text box-shadow border-radius-l"
+                    type="submit"
+                >
                     Register
                 </button>
             </form>
