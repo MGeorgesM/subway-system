@@ -18,7 +18,8 @@ class UsersTableSeeder extends Seeder
         $user->last_name = 'Mouawad';
         $user->email = 'georges@mail.com';
         $user->password = 'password';
-        $user->location = 'Zgharta';
+        $user->lat = 34.4321; // Latitude for Zgharta
+        $user->lng = 35.8665; // Longitude for Zgharta
         $user->save();
 
 
@@ -27,7 +28,8 @@ class UsersTableSeeder extends Seeder
         $user->last_name = 'Harakeh';
         $user->email = 'mohamad@mail.com';
         $user->password = 'password';
-        $user->location = 'Saida';
+        $user->lat = 33.5635; // Latitude for Saida
+        $user->lng = 35.3676; // Longitude for Saida
         $user->save();
 
         $user = new User();
@@ -35,7 +37,8 @@ class UsersTableSeeder extends Seeder
         $user->last_name = 'Abou Zeinab';
         $user->email = 'hussein@mail.com';
         $user->password = 'password';
-        $user->location = 'Beirut';
+        $user->lat = 33.8938; // Latitude for Beirut
+        $user->lng = 35.5018; // Longitude for Beirut
         $user->save();
 
 
@@ -45,7 +48,8 @@ class UsersTableSeeder extends Seeder
         $user->email = 'jad@mail.com';
         $user->password = 'password';
         $user->role_id = Role::where('name', 'branch')->first()->id;
-        $user->location = 'Beirut';
+        $user->lat = 33.8938; // Latitude for Beirut
+        $user->lng = 35.5018; // Longitude for Beirut
         $user->save();
 
         $user = new User();
@@ -54,8 +58,8 @@ class UsersTableSeeder extends Seeder
         $user->email = 'admin@mail.com';
         $user->password = 'password';
         $user->role_id = Role::where('name', 'headquarter')->first()->id;
-        $user->location = 'Beirut';
+        $user->lat = 33.8938; // Latitude for Beirut
+        $user->lng = 35.5018; // Longitude for Beirut
         $user->save();
-
     }
 }

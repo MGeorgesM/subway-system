@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesTableSeeder::class,
             UsersTableSeeder::class,
+            StationsTableSeeder::class,
+            RidesTableSeeder::class,
+            TicketsTableSeeder::class,
+            FacilitiesTableSeeder::class
         ]);
     }
 }

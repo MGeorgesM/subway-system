@@ -16,6 +16,7 @@ class StationsTableSeeder extends Seeder
     {
         $stations = [
             [
+                'branch_id' => 4,
                 'name' => 'Beirut Central Station',
                 'location' => 'Beirut, Lebanon',
                 'lat' => 33.8938,
@@ -24,6 +25,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '22:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Jounieh Express',
                 'location' => 'Jounieh, Lebanon',
                 'lat' => 33.9803,
@@ -32,6 +34,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '20:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Zgharta Transit Hub',
                 'location' => 'Zgharta, Lebanon',
                 'lat' => 34.4321,
@@ -40,6 +43,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '18:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Saida South Station',
                 'location' => 'Saida, Lebanon',
                 'lat' => 33.5635,
@@ -48,6 +52,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '21:30:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Tripoli Central Depot',
                 'location' => 'Tripoli, Lebanon',
                 'lat' => 34.4369,
@@ -56,6 +61,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '23:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Baalbek Transit Center',
                 'location' => 'Baalbek, Lebanon',
                 'lat' => 34.0043,
@@ -64,6 +70,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '20:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Tyre Gateway',
                 'location' => 'Tyre, Lebanon',
                 'lat' => 33.2725,
@@ -72,6 +79,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '19:30:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Byblos Terminal',
                 'location' => 'Byblos, Lebanon',
                 'lat' => 34.1236,
@@ -80,6 +88,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '22:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Batroun Express',
                 'location' => 'Batroun, Lebanon',
                 'lat' => 34.2559,
@@ -88,6 +97,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '20:30:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Jbeil Metro',
                 'location' => 'Jbeil, Lebanon',
                 'lat' => 34.1213,
@@ -96,6 +106,7 @@ class StationsTableSeeder extends Seeder
                 'closing_time' => '21:00:00',
             ],
             [
+                'branch_id' => 4,
                 'name' => 'Nabatieh Interchange',
                 'location' => 'Nabatieh, Lebanon',
                 'lat' => 33.3739,
