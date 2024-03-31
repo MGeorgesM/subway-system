@@ -11,16 +11,6 @@ class UsersController extends Controller
     {
         $id = $request->id;
 
-        if ($id) {
-            $user = User::find($id);
-
-            if (!$user) {
-                return response()->json(['message' => 'User not found'], 404);
-            }
-
-            return response()->json($user);
-        }
-
         if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
@@ -30,7 +20,12 @@ class UsersController extends Controller
 
         if ($user->role_id === 3) {
             $users = User::all();
-            return response()->json($users);
+            return response()->json([
+                'user' => $user,
+                'users' => $users
+            ]);
+        } else if ($token_user_id === $id) {
+            return response()->json($user);
         }
 
         return response()->json(['message' => 'Unauthorized'], 401);

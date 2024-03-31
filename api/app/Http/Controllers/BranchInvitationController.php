@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\BranchInvitation;
 
 class BranchInvitationController extends Controller
 {
@@ -15,7 +16,7 @@ class BranchInvitationController extends Controller
 
         $invitation = BranchInvitation::create([
             'branch_email' => $request->branch_email,
-            'expires_at' => $request->expires_at,
+            'expires_at' => now()->addDays(7),
         ]);
 
         Mail::to($invitation->branch_email)->send(new InvitationEmail($invitation));

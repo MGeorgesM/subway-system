@@ -15,13 +15,13 @@ class FacilitiesTableSeeder extends Seeder
     public function run()
     {
         $facilities = [
-            ['type' => 'toilets'],
-            ['type' => 'restaurant'],
-            ['type' => 'parking'],
-            ['type' => 'wifi'],
-            ['type' => 'atm'],
-            ['type' => 'pharmacy'],
-            ['type' => 'store'],
+            ['name' => 'toilets'],
+            ['name' => 'restaurant'],
+            ['name' => 'parking'],
+            ['name' => 'wifi'],
+            ['name' => 'atm'],
+            ['name' => 'pharmacy'],
+            ['name' => 'store'],
         ];
 
         Facility::insert($facilities);

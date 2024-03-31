@@ -17,8 +17,13 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             StationsTableSeeder::class,
             RidesTableSeeder::class,
+
             FacilitiesTableSeeder::class,
             TicketsTableSeeder::class,
+
+            TicketsTableSeeder::class,
+            FacilitiesTableSeeder::class
+
         ]);
     }
 }

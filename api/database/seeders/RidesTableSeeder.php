@@ -13,44 +13,42 @@ class RidesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $ride = new Ride();
-        $ride->name = 'Ride A';
-        $ride->start_station_id = '1';
-        $ride->end_station_id = '2';
-        $ride->start_time = '08:00';
-        $ride->end_time = '18:00';
-        $ride->save();
+        $rides = [];
+        $numberOfRides = 30;
+        $stations = [
+            'Beirut Central Station',
+            'Jounieh Express',
+            'Zgharta Transit Hub',
+            'Saida South Station',
+            'Tripoli Central Depot',
+            'Baalbek Transit Center',
+            'Tyre Terminal',
+            'Byblos Junction',
+            'Nabatieh Transfer Point',
+            'Aley Stop',
+        ];
 
-        $ride = new Ride();
-        $ride->name = 'Ride B';
-        $ride->start_station_id = '1';
-        $ride->end_station_id = '2';
-        $ride->start_time = '10:00';
-        $ride->end_time = '12:00';
-        $ride->save();
+        for ($i = 0; $i < $numberOfRides; $i++) {
+            $startStationIndex = rand(0, count($stations) - 1);
+            $endStationIndex = rand(0, count($stations) - 1);
 
-        $ride = new Ride();
-        $ride->name = 'Ride C';
-        $ride->start_station_id = '1';
-        $ride->end_station_id = '3';
-        $ride->start_time = '08:00';
-        $ride->end_time = '10:00';
-        $ride->save();
+            while ($startStationIndex === $endStationIndex) {
+                $endStationIndex = rand(0, count($stations) - 1);
+            }
 
-        $ride = new Ride();
-        $ride->name = 'Ride A';
-        $ride->start_station_id = '3';
-        $ride->end_station_id = '5';
-        $ride->start_time = '14:00';
-        $ride->end_time = '15:00';
-        $ride->save();
+            $rideName = 'Ride ' . ($i + 1);
 
-        $ride = new Ride();
-        $ride->name = 'Ride A';
-        $ride->start_station_id = '4';
-        $ride->end_station_id = '1';
-        $ride->start_time = '12:30';
-        $ride->end_time = '13:50';
-        $ride->save();
+            $rides[] = [
+                'name' => $rideName,
+                'start_station_id' => $startStationIndex + 1,
+                'end_station_id' => $endStationIndex + 1,
+                'start_time' => now()->addDays(rand(0, 30))->addHours(rand(0, 23))->addMinutes(rand(0, 59))->format('Y-m-d H:i:s'),
+                'end_time' => now()->addDays(rand(0, 30))->addHours(rand(0, 23))->addMinutes(rand(0, 59))->format('Y-m-d H:i:s'),
+            ];
+        }
+
+        foreach ($rides as $ride) {
+            Ride::create($ride);
+        }
     }
 }
