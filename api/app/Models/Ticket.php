@@ -19,4 +19,19 @@ class Ticket extends Model
     ];
 
     public $timestamps = false;
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function departureRide()
+    {
+        return $this->belongsTo(Ride::class, 'departure_ride_id');
+    }
+
+    public function returnRide()
+    {
+        return $this->belongsTo(Ride::class, 'return_ride_id');
+    }
 }

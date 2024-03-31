@@ -36,7 +36,13 @@ class RidesTableSeeder extends Seeder
                 $endStationIndex = rand(0, count($stations) - 1);
             }
 
-            $rideName = 'Ride ' . ($i + 1);
+            $rideName = 'Ride ' . rand(1, 999);
+
+            $price = rand(10, 100);
+            $lastDigit = substr($price, -1);
+            if ($lastDigit != 0 && $lastDigit != 9) {
+                $price = floor($price / 10) * 10 + (rand(0, 1) ? 0 : 9);
+            }
 
             $rides[] = [
                 'name' => $rideName,
@@ -44,6 +50,7 @@ class RidesTableSeeder extends Seeder
                 'end_station_id' => $endStationIndex + 1,
                 'start_time' => now()->addDays(rand(0, 30))->addHours(rand(0, 23))->addMinutes(rand(0, 59))->format('Y-m-d H:i:s'),
                 'end_time' => now()->addDays(rand(0, 30))->addHours(rand(0, 23))->addMinutes(rand(0, 59))->format('Y-m-d H:i:s'),
+                'price' => $price,
             ];
         }
 

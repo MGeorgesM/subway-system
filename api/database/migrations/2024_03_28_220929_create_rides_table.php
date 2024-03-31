@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('end_station_id')->references('id')->on('stations')->onDelete('cascade')->onUpdate('cascade');
             $table->time('start_time');
             $table->time('end_time');
+            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }

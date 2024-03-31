@@ -14,7 +14,7 @@ class TicketsTableSeeder extends Seeder
      */
  public function run(): void
     {
-        $userIds = [1, 2, 3, 4];
+        $userIds = [1, 2, 3];
         $rideIds = [1, 2, 3, 4];
 
         foreach ($userIds as $userId) {

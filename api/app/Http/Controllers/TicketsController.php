@@ -15,8 +15,6 @@ class TicketsController extends Controller
         return response()->json(['ticket' => $ticket], 200);
     }
 
-
-    
     public function get_tickets($id)
     {
         $ticket = Ticket::find($id);
@@ -27,8 +25,6 @@ class TicketsController extends Controller
 
         return response()->json(['ticket' => $ticket], 200);
     }
-
-
 
     public function create_ticket(Request $req)
     {
@@ -53,31 +49,27 @@ class TicketsController extends Controller
         return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
     }
 
-
-
-
-
     public function update_ticket(Request $request, $id)
-{
-    if (!auth()->check()) {
-        return response()->json(['message' => 'Unauthorized'], 401);
+    {
+        if (!auth()->check()) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $user = auth()->user();
+
+        if ($user->role_id !== 2) {
+            return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
+        }
+
+        $ticket = Ticket::find($id);
+
+        if (!$ticket) {
+            return response()->json(['message' => 'Ticket not found'], 404);
+        }
+
+        $ticket->activated = $request->activated;
+        $ticket->save();
+
+        return response()->json(['ticket' => 'Ticket activated status updated successfully.', 'data' => $ticket], 200);
     }
-
-    $user = auth()->user();
-
-    if ($user->role_id !== 2) {
-        return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
-    }
-
-    $ticket = Ticket::find($id);
-
-    if (!$ticket) {
-        return response()->json(['message' => 'Ticket not found'], 404);
-    }
-
-    $ticket->activated = $request->activated;
-    $ticket->save();
-
-    return response()->json(['ticket' => 'Ticket activated status updated successfully.', 'data' => $ticket], 200);
-}
 }

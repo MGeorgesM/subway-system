@@ -49,6 +49,15 @@ const Map = () => {
             map.flyTo(userLocation, map.getZoom());
         }
 
+
+        // useEffect(() => {
+        //     console.log('running');
+        //     if (userLocation && map) {
+        //         map.flyTo(userLocation, map.getZoom());
+        //     }
+        // }, [map]);
+
+
         return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
 

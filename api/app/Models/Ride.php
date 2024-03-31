@@ -17,7 +17,19 @@ class Ride extends Model
         'end_time',
     ];
 
+
+    public function startStation()
+    {
+        return $this->belongsTo(Station::class, 'start_station_id');
+    }
+
+    public function endStation()
+    {
+        return $this->belongsTo(Station::class, 'end_station_id');
+    }
+
     public function reviews() {
         return $this->hasMany(Review::class);
+
     }
 }
