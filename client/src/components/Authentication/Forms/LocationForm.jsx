@@ -7,17 +7,18 @@ import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 const LocationForm = () => {
     const [submittedLocation, setSubmittedLocation] = useState('');
-    const [locationCoordinates, setLocationCoordinates] = useState({});
+    const [locationCoordinates, setLocationCoordinates] = useState([]);
     const [location, setLocation] = useState('');
 
     const navigate = useNavigate();
+    console.log(locationCoordinates)
 
     useEffect(() => {
         localStorage.setItem('location', JSON.stringify(locationCoordinates));
     }, [locationCoordinates]);
 
     const handleLocationSubmit = async () => {
-        if (locationCoordinates) {
+        if (locationCoordinates.length > 0) {
             const data = new FormData();
             data.append('lat', locationCoordinates[0]);
             data.append('lng', locationCoordinates[1]);
@@ -57,7 +58,7 @@ const LocationForm = () => {
                     className="location-btn primary-bg white-text box-shadow border-radius-l input-btn-lg"
                     onClick={handleLocationSubmit}
                 >
-                    {locationCoordinates ? 'Continue' : 'Submit'}
+                    {locationCoordinates.length > 0 ? 'Continue' : 'Submit'}
                 </button>
             </div>
             <div className="map-container">

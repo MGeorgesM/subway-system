@@ -20,7 +20,7 @@ const Authentication = () => {
     });
 
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         if (!formData.email.includes('@') && formData.email.length > 0) {
             setError('Invalid email');
@@ -42,7 +42,6 @@ const Authentication = () => {
 
         try {
             const response = await sendRequest(requestMethods.POST, '/auth/login', data);
-            console.log(response.data);
             if (response.status === 200) {
                 localStorage.setItem('token', JSON.stringify(response.data.token));
                 navigate('/');
@@ -67,7 +66,6 @@ const Authentication = () => {
                 throw new Error();
             }
         } catch (error) {
-            console.log(error.response.data.message);
             setError([error.response.data.message]);
         }
     };
