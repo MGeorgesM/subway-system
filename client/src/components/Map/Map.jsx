@@ -7,15 +7,17 @@ import { Icon } from 'leaflet';
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     console.log('markers', markersInput);
-    const [userLocation, setUserLocation] = useState(null);
+    const [userLocation, setUserLocation] = useState(
+        JSON.parse(localStorage.getItem('location')) ? JSON.parse(localStorage.getItem('location')) : null
+    );
     // const [searchQuery, setSearchQuery] = useState('');
-    
+
     // useEffect(() => {
-        //     userLocation && console.log('userLocation', userLocation);
-        // }, [userLocation]);
-        
-        useEffect(() => {
-            if (locationTextInput) {
+    //     userLocation && console.log('userLocation', userLocation);
+    // }, [userLocation]);
+
+    useEffect(() => {
+        if (locationTextInput) {
             handleInput();
         }
     }, [locationTextInput, markersInput]);
@@ -48,7 +50,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             const data = await response.json();
 
             if (data.length > 0) {
-                console.log('data',data[0])
+                console.log('data', data[0]);
                 const { lat, lon } = data[0];
                 saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
@@ -88,9 +90,9 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                 attributionControl={false}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
-
-                {markersInput && markersInput.stations &&
-                    markersInput.stations.map(station => (
+                {markersInput &&
+                    markersInput.stations &&
+                    markersInput.stations.map((station) => (
                         <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
                             <Popup>
                                 <div>
@@ -99,7 +101,8 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                                 </div>
                             </Popup>
                         </Marker>
-                    ))};
+                    ))}
+                ;
                 <LocationMarker />
             </MapContainer>
         </>
