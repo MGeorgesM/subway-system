@@ -22,28 +22,30 @@ const BranchInvitationForm = () => {
   };
 
   return (
-    <div className="branch-invitation-form">
-      <h2>Send Branch Invitation</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Branch Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <div className='branch-invitation-main'>
+        <div className="branch-invitation-form">
+        <h2>Send Branch Invitation</h2>
+        <form onSubmit={handleSubmit}>
+            <div>
+            <label htmlFor="email">Branch Email:</label>
+            <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+            />
+            </div>
+            <button type="submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Send Invitation'}
+            </button>
+            {message && (
+            <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
+                {message}
+            </div>
+            )}
+        </form>
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Sending...' : 'Send Invitation'}
-        </button>
-        {message && (
-          <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
-            {message}
-          </div>
-        )}
-      </form>
     </div>
   );
 };
