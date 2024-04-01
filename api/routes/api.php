@@ -21,7 +21,7 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/logout', [AuthController::class, 'logout']);
 
-Route::get('users/get/{id?}', [UsersController::class, 'getUsers']);
+Route::get('users/get', [UsersController::class, 'getUser']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
 
 Route::get('passes/get/{id?}', [PassController::class, 'get']);

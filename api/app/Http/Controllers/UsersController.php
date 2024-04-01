@@ -7,28 +7,30 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function getUsers(Request $request)
+    public function getUser()
     {
-        $id = $request->id;
-
         if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $token_user_id = auth()->user()->id;
-        $user = User::find($token_user_id);
+        $user_id = auth()->user()->id;
+        $user_role = auth()->user()->role_id;
 
-        if ($user->role_id === 3) {
+        if ($user_role === 3) {
+            $user = User::find($user_id);
             $users = User::all();
+
             return response()->json([
                 'user' => $user,
                 'users' => $users
             ]);
-        } else if ($token_user_id === $id) {
-            return response()->json($user);
-        }
+        } else {
+            $user = User::find($user_id);
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json([
+                'user' => $user
+            ]);
+        }
     }
 
     public function updateUser(Request $request)
