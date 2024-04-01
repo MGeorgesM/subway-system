@@ -1,6 +1,6 @@
-.root {
+/* .root {
     background-color: #980511;
-}
+} */
 
 .form-component {
     height: 100vh;
@@ -32,7 +32,7 @@
     margin-bottom: 16px;
 } */
 
-.logo img {
+.logo-form img {
     height: 40px;
     margin: 48px;
 }

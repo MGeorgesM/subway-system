@@ -22,5 +22,12 @@ class Station extends Model
     {
         return $this->belongsTo(User::class, 'branch_id');
     }
-    
+    public function rides()
+    {
+        return $this->hasMany(Ride::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
