@@ -46,12 +46,20 @@
     background-color: #ED941B;
 }
 
+.black-bg {
+    background-color: #161213;
+}   
+
 .off-white-bg-trsp {
     background-color: #EFEFEF75;
 }
 
 .light-gray-bg-trsp {
     background-color: #6D6B6C50;
+}
+
+.no-bg {
+    background-color: transparent;
 }
 
 /* Hover Color Button: #980511 Link Hover: #5C0206 */
