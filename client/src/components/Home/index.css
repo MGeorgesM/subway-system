@@ -3,6 +3,12 @@
     width: 100%;
 }
 
+
+.leaflet-container {
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+}
+
 .search>input {
     width: 600px;
     position: absolute;
@@ -30,6 +36,7 @@
 
 .ads {
     width: 100%;
+    padding-bottom: 96px;
 }
 
 .ad-img {

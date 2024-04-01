@@ -1,14 +1,33 @@
+import { useEffect , useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './index.css';
 
 const Navbar = ({ bg = 'no-bg' }) => {
+    const [scrolled, setScrolled] = useState(false);
     const navigate = useNavigate();
     const userSignedIn = localStorage.getItem('token') ? true : false;
+    const navBg = scrolled ? 'black-bg-trsp' : bg;
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     return (
-        <section className={`navbar ${bg}`}>
+        <div className={`navbar ${navBg}`}>
             <nav className="nav-elements flex space-between light">
                 <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/')}/>
                 <div>
@@ -29,7 +48,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                     </div>
                 </div>
             </nav>
-        </section>
+        </div>
     );
 };
 
