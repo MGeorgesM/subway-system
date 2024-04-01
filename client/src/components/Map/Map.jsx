@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-    console.log('locationTextInput', locationTextInput);
+    console.log('markers', markersInput);
     const [userLocation, setUserLocation] = useState(null);
     // const [searchQuery, setSearchQuery] = useState('');
     
@@ -18,7 +18,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             if (locationTextInput) {
             handleInput();
         }
-    }, [locationTextInput]);
+    }, [locationTextInput, markersInput]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
@@ -69,7 +69,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
         iconSize: [50, 50],
     });
 
-    const custommarkIcon = new Icon({
+    const customMarkIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
         iconSize: [32, 32],
     });
@@ -89,12 +89,17 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
 
-                {markersInput &&
-                    markersInput.map((mark) => (
-                        <Marker position={mark.location} key={mark?.name} icon={custommarkIcon}>
-                            <Popup>{mark?.name}</Popup>
+                {markersInput && markersInput.stations &&
+                    markersInput.stations.map(station => (
+                        <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
+                            <Popup>
+                                <div>
+                                    <h3>{station.name}</h3>
+                                    <p>{station.address}</p>
+                                </div>
+                            </Popup>
                         </Marker>
-                    ))}
+                    ))};
                 <LocationMarker />
             </MapContainer>
         </>
