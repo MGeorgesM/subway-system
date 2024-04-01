@@ -1,0 +1,95 @@
+.profile-wrapper {
+  background-color: #161213;
+  height: 100vh;
+}
+
+.right-header {
+  display: flex;
+  gap: 20px;
+  width: 20%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.general-btn {
+  text-decoration: none;
+  background: none;
+  color: #efefef;
+  background-color: red;
+  width: 50%;
+  border-radius: 8px;
+  padding: 5%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.general-btn:hover {
+  background-color: #5c0206;
+}
+
+.left-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #efefef;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.user-info-wrapper {
+  display: flex;
+  background-color: #f5b573;
+  padding-left: 10.5%;
+  padding-right: 10%;
+  margin-top: 1%;
+  height: 25vh;
+  gap: 40px;
+}
+
+.personal-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 20px;
+  align-items: center;
+}
+
+.personal-info-right {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  font-size: 20px;
+  gap: 20px;
+  background-color: rebeccapurple;
+  width: 20%;
+}
+
+.personal-info p:first-child {
+  font-size: 40px;
+}
+
+.user-info img {
+  height: 20vh;
+}
+
+.edit-buttton {
+  font-size: 25px;
+  color: #30302f;
+}
+
+.edit-buttton:hover {
+  cursor: pointer;
+  color: #6d6b6c;
+}
