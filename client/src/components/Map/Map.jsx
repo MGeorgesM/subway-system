@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-    console.log('markers', markersInput);
+
     const [userLocation, setUserLocation] = useState(
         JSON.parse(localStorage.getItem('location')) ? JSON.parse(localStorage.getItem('location')) : null
     );

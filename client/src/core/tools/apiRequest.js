@@ -13,8 +13,6 @@ export const sendRequest = async (method, route, body) => {
     },
   });
 
-  console.log(`Bearer ${JSON.parse(localStorage.getItem("token"))}`)
-
 //   if (response.status === 401) {
 //     localStorage.removeItem("token");
 //   }

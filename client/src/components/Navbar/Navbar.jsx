@@ -36,7 +36,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                         <button className="nav-login white-text primary-bg box-shadow border-radius regular" onClick={
                             () => {
                                 if (userSignedIn) {
-                                    navigate('/welcome');
+                                    navigate('/auth');
                                     localStorage.clear()
                                 } else {
                                     navigate('/auth');

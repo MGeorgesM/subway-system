@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Ride;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-
+use App\Models\Review;
 
 class RidesController extends Controller
 {
@@ -24,6 +23,7 @@ class RidesController extends Controller
             return response()->json(['message' => 'Ride does not exist'], 404);
         }
 
+        $rideRating = Review::where('ride_id', $id)->avg('rating');
 
         return response()->json(['rides' => $rides], 200);
     }
