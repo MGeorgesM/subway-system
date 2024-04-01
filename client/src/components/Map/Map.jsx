@@ -82,6 +82,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             </div> */}
             <MapContainer
                 center={userLocation ? userLocation : [33.88863, 35.49548]}
+                scrollWheelZoom={false}
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}

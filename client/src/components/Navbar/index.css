@@ -4,6 +4,7 @@
     width: 100%;
     height: 120px;
     padding: 0 80px;
+    z-index: 1000;
 }
 
 .nav-elements {

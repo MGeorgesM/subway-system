@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-const Navbar = ({ bg = 'black-bg' }) => {
+const Navbar = ({ bg = 'no-bg' }) => {
     return (
         <section className={`navbar ${bg}`}>
             <nav className="nav-elements flex space-between light">
