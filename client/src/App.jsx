@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Home from './components/Home/Home';
+import Station from './components/Station/Station';
 import Profile from './components/profile/profile';
 import Footer from './components/Footer/Footer';
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
+                <Route path="/station" element={<Station />} />
                 <Route path="/profile" element={<Profile />} />
             </Routes>
         <Footer/>

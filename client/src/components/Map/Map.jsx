@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
+
+import { Icon } from 'leaflet';
+import { formatTime } from '../../core/tools/formatTime';
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
-import { Icon } from 'leaflet';
+
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-
     const [userLocation, setUserLocation] = useState(
         JSON.parse(localStorage.getItem('location')) ? JSON.parse(localStorage.getItem('location')) : null
     );
+    const navigate = useNavigate();
     // const [searchQuery, setSearchQuery] = useState('');
 
     // useEffect(() => {
@@ -95,9 +99,11 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                     markersInput.stations.map((station) => (
                         <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
                             <Popup>
-                                <div>
+                                <div className='popup-text'>
                                     <h3>{station.name}</h3>
-                                    <p>{station.address}</p>
+                                    <p>{station.location}</p>
+                                    <p>Open from {formatTime(station.opening_time)} til {formatTime(station.closing_time)}</p>
+                                    <p onClick={() => navigate(`/station?id=${station.id}`)}>More Info</p>
                                 </div>
                             </Popup>
                         </Marker>
