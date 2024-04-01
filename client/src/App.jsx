@@ -8,6 +8,7 @@ import BranchInvitationForm from './components/BranchInvitation/BranchInvitation
 import DisplayUser from './components/DisplayUser/DisplayUser';
 import DisplayBranch from './components/DisplayBranch/DisplayBranch';
 import DisplayRide from './components/DisplayRide/DisplayRide';
+import DisplayStation from './components/DisplayStation/DisplayStation';
 
 import './App.css';
 import './styles/colors.css';
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/display-users" element={<DisplayUser />} />
                 <Route path="/display-branches" element={<DisplayBranch />} />
                 <Route path="/display-rides" element={<DisplayRide />} />
+                <Route path="/display-stations" element={<DisplayStation />} />
             </Routes>
         </BrowserRouter>
     );
