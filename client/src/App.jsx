@@ -6,6 +6,8 @@ import Profile from "./components/profile/profile";
 import CoinRequest from './components/AdminCoinRequest/CoinRequest';
 import BranchInvitationForm from './components/BranchInvitation/BranchInvitationForm';
 import DisplayUser from './components/DisplayUser/DisplayUser';
+import DisplayBranch from './components/DisplayBranch/DisplayBranch';
+import DisplayRide from './components/DisplayRide/DisplayRide';
 
 import './App.css';
 import './styles/colors.css';
@@ -22,6 +24,8 @@ function App() {
                 <Route path="/coin-request" element={<CoinRequest />} />
                 <Route path="/branch-invitation" element={<BranchInvitationForm />} />
                 <Route path="/display-users" element={<DisplayUser />} />
+                <Route path="/display-branches" element={<DisplayBranch />} />
+                <Route path="/display-rides" element={<DisplayRide />} />
             </Routes>
         </BrowserRouter>
     );

@@ -13,6 +13,7 @@ const CoinRequest = () => {
     try {
       const response = await axios.get('/coins-requests');
       setCoinRequests(response.data.coin_requests);
+      console.log(response.data.coin_requests);
     } catch (error) {
       console.error('Error fetching coin requests:', error);
     }
@@ -48,6 +49,7 @@ const CoinRequest = () => {
         <thead>
           <tr>
             <th>User ID</th>
+            <th>Full Name</th>
             <th>Amount</th>
             <th>Request Time</th>
             <th>Status</th>
@@ -57,7 +59,8 @@ const CoinRequest = () => {
         <tbody>
           {coinRequests.map((request) => (
             <tr key={request.id}>
-              <td>{request.user.first_name}</td>
+              <td>{request.id}</td>
+              <td>{request.user.first_name} {request.user.last_name}</td>
               <td>{request.amount} $</td>
               <td>{formatDate(request.created_at)}</td>
               <td>{request.status}</td>

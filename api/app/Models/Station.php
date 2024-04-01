@@ -22,5 +22,7 @@ class Station extends Model
     {
         return $this->belongsTo(User::class, 'branch_id');
     }
+
+    
     
 }

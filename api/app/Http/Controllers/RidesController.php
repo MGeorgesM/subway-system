@@ -12,7 +12,9 @@ class RidesController extends Controller
 {
     public function get_all_rides()
     {
-        $rides = Ride::all();
+        $rides = Ride::with('startStation', 'endStation')->get();
+
+        // $rides = Ride::all();
         return response()->json(['rides' => $rides], 200);
     }
 

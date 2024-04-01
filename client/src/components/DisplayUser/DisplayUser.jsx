@@ -27,7 +27,7 @@ const DisplayUser = () => {
       <table className='user-table'>
         <thead>
           <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Full Name</th>
             <th>Email</th>
             <th>Location</th>
