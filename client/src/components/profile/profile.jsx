@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import "./profile.css";
 import userImage from "../../assets/user-image.jpeg";
+import adminImage from "../../assets/admin-image.jpg";
 import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { sendRequest } from "../../core/tools/apiRequest";
@@ -9,11 +10,22 @@ import { requestMethods } from "../../core/tools/apiRequestMethods";
 function Profile() {
   const [user, setUser] = useState("");
   const [displayContent, setDisplayContent] = useState("user-reviews");
+  const [activeButton, setActiveButton] = useState("userReviews");
 
   useEffect(() => {
     getUserInfo();
     console.log(user);
   }, []);
+
+  const handleClick = (button) => {
+    setActiveButton(button);
+
+    if (button === "userReviews") {
+      setDisplayContent("user-reviews");
+    } else if (button === "adminMessages") {
+      setDisplayContent("admin-messages");
+    }
+  };
 
   const getUserInfo = async () => {
     try {
@@ -86,10 +98,16 @@ function Profile() {
 
       <div className="user-reviews-wrapper">
         <div className="button-switcher">
-          <h1 onClick={() => setDisplayContent("user-reviews")}>
+          <h1
+            className={activeButton === "userReviews" ? "active" : ""}
+            onClick={() => handleClick("userReviews")}
+          >
             User Reviews
           </h1>
-          <h1 onClick={() => setDisplayContent("admin-messages")}>
+          <h1
+            className={activeButton === "adminMessages" ? "active" : ""}
+            onClick={() => handleClick("adminMessages")}
+          >
             Admin Messages
           </h1>
         </div>
@@ -124,7 +142,26 @@ function Profile() {
         )}
         {displayContent === "admin-messages" && (
           <div className="admin-messages-wrapper">
-            <p>Admin Messages Content Goes Here</p>
+            <div className="chat-header">
+              <div className="chat-header-left">
+                <p>My chats</p>
+              </div>
+
+              <div className="chat-header-right">
+                <img src={adminImage}></img>
+                <p>Admin Name</p>
+              </div>
+            </div>
+
+            <div className="middle-wrapper">
+              <div className="choose-chat">
+                <p>Station Name</p>
+                <p>Station Name</p>
+                <p>Station Name</p>
+                <p>Station Name</p>
+              </div>
+              <div className="chat"></div>
+            </div>
           </div>
         )}
       </div>
