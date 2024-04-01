@@ -9,6 +9,9 @@ import { requestMethods } from "../../core/tools/apiRequestMethods";
 
 function Profile() {
   const [user, setUser] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [displayContent, setDisplayContent] = useState("user-reviews");
   const [activeButton, setActiveButton] = useState("userReviews");
   const [isEditing, setIsEditing] = useState(false);
@@ -47,6 +50,25 @@ function Profile() {
     }
   };
 
+  const updateUserInfo = async () => {
+    try {
+      const response = await sendRequest(requestMethods.POST, "/users/update", {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+      });
+      if (response.status === 200) {
+        console.log("User updated successfully");
+        getUserInfo();
+        setIsEditing(false);
+      } else {
+        console.log("Failed to update user:", response.data.message);
+      }
+    } catch (error) {
+      console.log("Error updating user:", error.message);
+    }
+  };
+
   function ReviewCard({ name, stationName, review }) {
     return (
       <div className="review-card">
@@ -63,12 +85,41 @@ function Profile() {
     setIsEditing(true);
   }
 
+  function closeEditUser() {
+    setIsEditing(false);
+  }
+
   return (
     <div className="profile-wrapper">
       {isEditing && <div className="blurred"></div>}
       {isEditing && (
         <div className="is-editting">
-          <h1>is editting div</h1>
+          <div className="edit-inputs">
+            <img src={userImage}></img>
+            <input
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></input>
+            <input
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            ></input>
+            <input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+          </div>
+          <div className="editting-buttons">
+            <button className="general-btn" onClick={updateUserInfo}>
+              Confirm
+            </button>
+            <button className="general-btn" onClick={closeEditUser}>
+              Close
+            </button>
+          </div>
         </div>
       )}
       <div className="profile-header">
