@@ -1,0 +1,44 @@
+.main-station {
+    height: 60vh;
+    width: 100%;
+}
+
+.station-header {
+    width: 100%;
+    padding: 64px;
+}
+
+.header-icons {
+    gap: 16px;
+}
+
+.ride-container {
+    max-width: 100%;
+    height: auto;
+
+}
+
+.name-price {
+    gap: 16px;
+}
+
+.destinations {
+    gap: 16px;
+}
+
+
+
+.ride-card {
+    width: 1200px;
+    height: 90px;
+}
+
+.rating-select {
+    gap: 16px;
+}
+
+.select-btn {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+}
