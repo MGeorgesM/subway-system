@@ -1,3 +1,5 @@
+import StarsRating from "../../Elements/StarsRating";
+
 const Ad = ({ count, avgRating, name }) => {
     return (
         <div className="ad flex center center dark-text">
@@ -7,7 +9,7 @@ const Ad = ({ count, avgRating, name }) => {
             <div className="ad-text flex column">
                 <h1>{count === 1 ? 'Your Nearest Station' : 'Our Most Popular'}</h1>
                 <h2>
-                    {name} | {avgRating && avgRating}
+                    {name}
                 </h2>
                 <p>
                     {count === 1
