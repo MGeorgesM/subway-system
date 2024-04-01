@@ -24,6 +24,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
         if (locationTextInput) {
             handleInput();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationTextInput, markersInput]);
 
     const LocationMarker = () => {

@@ -5,13 +5,14 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 
 import Map from '../Map/Map';
+import Ridecard from './Ridecard/Ridecard';
 
 import './index.css';
 
 const Station = () => {
     const [stations, setStations] = useState([]);
     const [station, setStation] = useState(null);
-    const [avgRating, setAvgRating] = useState(0);
+
     const [startingRides, setStartingRides] = useState([]);
     const [endingRides, setEndingRides] = useState([]);
     const [searchParams] = useSearchParams();
@@ -27,7 +28,6 @@ const Station = () => {
                     setStations(response.data.stations);
                     const station = response.data.stations.find((station) => station.id === stationId);
                     setStation(station);
-                    setAvgRating(response.data.rating);
                     console.log('station', response.data);
                 } else {
                     throw new Error();
@@ -64,9 +64,9 @@ const Station = () => {
             <div className="main-station white-bg flex column">
                 <Map locationTextInput={[station?.lat, station?.lng]} markersInput={stations}></Map>
             </div>
-            <div className="station-header flex space-between">
+            <div className="section-header flex space-between">
                 <div className="header-text">
-                    <h1>STATION NAME</h1>
+                    <h1>{STATION NAME}</h1>
                     <h3>Location - STATUS</h3>
                     <p>Opens at</p>
                     <p>Closes at</p>
@@ -90,36 +90,22 @@ const Station = () => {
                     </div>
                 </div>
             </div>
-            <div className="rides-container flex column">
-                <div className="ride-card flex space-around light-gray-bg box-shadow border-radius-l">
-                    <div className="name-price flex center">
-                        <h3>RIDENAME</h3>
-                        <p>Price</p>
-                    </div>
-                    <div className="destinations flex center">
-                        <div className="time-location-display flex column center">
-                            <h3 className="location">LOCATION</h3>
-                            <h3 className="time">TIME</h3>
-                        </div>
-                        <div className="arrow">
-                            <img src="./images/assets/arrow.svg" alt='arrow' />
-                        </div>
-                        <div className="time-location-display flex column center">
-                            <h3 className="location">LOCATION</h3>
-                            <h3 className="time">TIME</h3>
-                        </div>
-                    </div>
-                    <div className="rating-select flex">
-                        <div className="rating flex center">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                        <button className="select-btn primary-bg border-radius-m box-shadow white-text">Select</button>
-                    </div>
-                </div>
+            <div className="section-header">
+                <h2 className="bold">Outgoing Rides</h2>
             </div>
+            {startingRides.length > 0 ? (
+                startingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+            ) : (
+                <p>No rides found</p>
+            )}
+            <div className="section-header">
+                <h2 className="bold">Incoming Rides</h2>
+            </div>
+            {endingRides.length > 0 ? (
+                endingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+            ) : (
+                <p>No rides found</p>
+            )}
         </>
     );
 };
