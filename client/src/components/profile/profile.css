@@ -44,7 +44,7 @@
 
 .user-info-wrapper {
   display: flex;
-  background-color: #f5b573;
+  background-color: #6d6b6c;
   padding-left: 10.5%;
   padding-right: 10%;
   margin-top: 1%;
@@ -69,11 +69,15 @@
 .personal-info-right {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 1%;
   font-size: 20px;
   gap: 20px;
-  background-color: rebeccapurple;
   width: 20%;
+}
+
+.personal-info-right button {
+  width: 80%;
 }
 
 .personal-info p:first-child {
@@ -92,4 +96,85 @@
 .edit-buttton:hover {
   cursor: pointer;
   color: #6d6b6c;
+}
+
+.user-reviews-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 2%;
+  height: 60vh;
+}
+
+.user-reviews-wrapper h1 {
+  color: #efefef;
+}
+
+.reviews-cards-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 40vh;
+  width: 80%;
+}
+
+.review-card {
+  margin-top: 3%;
+  align-items: center;
+  text-align: center;
+  background-color: #6d6b6c;
+  width: 25%;
+  height: 40vh;
+}
+
+.review-card p {
+  color: #efefef;
+}
+
+.review-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-top: 3%;
+}
+
+.profile-footer {
+  height: 15vh;
+  width: 100%;
+  background-color: #30302f;
+}
+
+.profile-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #efefef;
+  padding-left: 10%;
+  padding-right: 10%;
+  align-items: center;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 15px;
+  width: 40%;
+}
+
+.icon {
+  width: 7%;
+  height: 1.2rem;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: #980511;
+}
+
+.right-footer {
+  display: flex;
+  gap: 15px;
+}
+
+.right-footer p:hover {
+  cursor: pointer;
+  color: #980511;
 }
