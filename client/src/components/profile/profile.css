@@ -410,3 +410,121 @@
   width: 100px;
   border-radius: 50px;
 }
+
+@media screen and (min-width: 1401px) {
+  .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  .review-card {
+    height: 32vh;
+  }
+
+  .user-info-wrapper {
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 1201px) {
+  .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  .review-card {
+    height: 32vh;
+  }
+
+  .user-info-wrapper {
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .user-info-wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .personal-info-right {
+    width: 30%;
+  }
+
+  .review-card {
+    width: 30%;
+    height: 35vh;
+  }
+
+  .button-switcher h1 {
+    font-size: 24px;
+  }
+
+  .footer-icons {
+    width: 70%;
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .person-info-first-name {
+    font-size: 26px;
+  }
+
+  .review-card {
+    width: 300px;
+    height: 35vh;
+  }
+
+  .reviews-cards-wrapper {
+    width: 85%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .user-reviews-wrapper {
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 723px) {
+  .reviews-cards-wrapper {
+    justify-content: center;
+  }
+
+  .user-reviews-wrapper {
+    height: 130vh;
+  }
+
+  .button-switcher h1 {
+    display: flex;
+    font-size: 19px;
+    height: 2rem;
+    align-items: center;
+  }
+
+  .footer-icons {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .right-footer {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjust styles for even smaller screens */
+  .right-header {
+    width: 40%;
+  }
+
+  .general-btn {
+    width: 100%;
+  }
+
+  .user-info img {
+    height: 15vh;
+  }
+
+  /* Add more adjustments as needed */
+}

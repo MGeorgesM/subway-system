@@ -139,7 +139,7 @@ function Profile() {
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>
-              <b>
+              <b className="person-info-first-name">
                 {user.first_name} {user.last_name}{" "}
                 <MdEdit className="edit-buttton" onClick={editUser} />
               </b>
