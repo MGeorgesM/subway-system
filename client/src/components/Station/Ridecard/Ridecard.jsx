@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Ridecard = ({ride}) => {
+const Ridecard = ({ride, addRide, selectedRide}) => {
 
-    const {name, price, start_time, end_time, start_station_id, end_station_id} = ride;
+    const {id, name, price, start_time, end_time, start_station_id, end_station_id} = ride;
 
     return (
         <div className="rides-container flex column">
@@ -31,7 +31,7 @@ const Ridecard = ({ride}) => {
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <button className="select-btn primary-bg border-radius-m box-shadow white-text">Select</button>
+                    <button className={`select-btn border-radius-m box-shadow ${selectedRide === id ? 'clicked' : 'primary-bg white-text'} `} onClick={() => addRide(id)}>{selectedRide === id ? 'Remove' : 'Select'}</button>
                 </div>
             </div>
         </div>

@@ -17,18 +17,18 @@ const Station = () => {
     const [endingRides, setEndingRides] = useState([]);
     const [searchParams] = useSearchParams();
 
-    const stationId = searchParams.get('id');
-    console.log('stationId', stationId);
+    const [selectedRide, setSelectedRide] = useState([]);
+
+    const stationId = parseInt(searchParams.get('id'));
 
     useEffect(() => {
-        const getStation = async () => {
+        const getStations = async () => {
             try {
                 const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
                 if (response.status === 200) {
-                    setStations(response.data.stations);
-                    const station = response.data.stations.find((station) => station.id === stationId);
+                    const station = response.data.stations.find((station) => station.id == stationId);
+                    setStations(response.data);
                     setStation(station);
-                    console.log('station', response.data);
                 } else {
                     throw new Error();
                 }
@@ -55,59 +55,67 @@ const Station = () => {
             }
         };
 
-        getStation();
+        getStations();
         getRides();
     }, [stationId]);
 
-    return (
-        <>
-            <div className="main-station white-bg flex column">
-                <Map locationTextInput={[station?.lat, station?.lng]} markersInput={stations}></Map>
-            </div>
-            <div className="section-header flex space-between">
-                <div className="header-text">
-                    <h1>{STATION NAME}</h1>
-                    <h3>Location - STATUS</h3>
-                    <p>Opens at</p>
-                    <p>Closes at</p>
-                </div>
-                <div className="header-icons flex column center">
-                    <div className="rating">
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <div className="facilities">
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                </div>
-            </div>
-            <div className="section-header">
-                <h2 className="bold">Outgoing Rides</h2>
-            </div>
-            {startingRides.length > 0 ? (
-                startingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
-            ) : (
-                <p>No rides found</p>
-            )}
-            <div className="section-header">
-                <h2 className="bold">Incoming Rides</h2>
-            </div>
-            {endingRides.length > 0 ? (
-                endingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
-            ) : (
-                <p>No rides found</p>
-            )}
-        </>
-    );
-};
+    const addRide = (rideId) => {
+        selectedRide === rideId ? setSelectedRide('') : setSelectedRide(rideId);
+    };
 
+    if (station)
+        return (
+            <>
+                <div className="main-station white-bg flex column">
+                    <Map locationTextInput={station.location} markersInput={stations}></Map>
+                </div>
+                <div className="section-header flex space-between">
+                    <div className="header-text">
+                        <h1>{station.name}</h1>
+                        <h3>
+                            {station.location} - {station.status}
+                        </h3>
+                        <p>Opens at {station.openning_time}</p>
+                        <p>Closes at {station.closing_time}</p>
+                    </div>
+                    <div className="header-icons flex column center">
+                        <div className="rating">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <div className="facilities">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div className="section-header">
+                    <h2 className="bold">Outgoing Rides</h2>
+                </div>
+                {startingRides.length > 0 ? (
+                    startingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+                ) : (
+                    <p>No rides found</p>
+                )}
+                <div className="section-header">
+                    <h2 className="bold">Incoming Rides</h2>
+                </div>
+                {endingRides.length > 0 ? (
+                    endingRides.map((ride) => (
+                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide}></Ridecard>
+                    ))
+                ) : (
+                    <p>No rides found</p>
+                )}
+            </>
+        );
+};
 export default Station;

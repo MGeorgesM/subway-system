@@ -11,14 +11,9 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     const [userLocation, setUserLocation] = useState(
-        JSON.parse(localStorage.getItem('location')).length>0 ? JSON.parse(localStorage.getItem('location')) : null
+        JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
     );
     const navigate = useNavigate();
-    // const [searchQuery, setSearchQuery] = useState('');
-
-    // useEffect(() => {
-    //     userLocation && console.log('userLocation', userLocation);
-    // }, [userLocation]);
 
     useEffect(() => {
         if (locationTextInput) {
@@ -34,7 +29,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
                     setUserLocation([lat, lng]);
-                    saveLocationCoordinates([lat, lng]);
+                    saveLocationCoordinates && saveLocationCoordinates([lat, lng]);
                 },
             },
             locationTextInput
@@ -57,7 +52,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             if (data.length > 0) {
                 console.log('data', data[0]);
                 const { lat, lon } = data[0];
-                saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
+                saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
             } else {
                 console.log('No data found');
@@ -66,10 +61,6 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             console.log('error', error);
         }
     };
-
-    // const handleInputChange = (e) => {
-    //     setSearchQuery(e.target.value);
-    // };
 
     const customUserIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',

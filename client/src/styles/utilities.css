@@ -132,6 +132,7 @@ button {
 
 .clicked:hover {
     color: #DEE2E6;
+    background-color: #CE091B;
 }
 
 .input-btn-lg {
