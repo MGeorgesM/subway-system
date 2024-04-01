@@ -37,7 +37,9 @@ class UsersController extends Controller
             'image_base64' => 'string',
             'first_name' => 'string',
             'last_name' => 'string',
-            'email' => 'string|email'
+            'email' => 'string|email',
+            'lat' => 'numeric',
+            'lng' => 'numeric',
         ]);
 
         $user_id = auth()->user()->id;
@@ -72,6 +74,11 @@ class UsersController extends Controller
 
         if ($request->email) {
             $user->email = $request->email;
+        }
+
+        if ($request->lat) {
+            $user->lat = $request->lat;
+            $user->lng = $request->lng;
         }
 
         $user->save();

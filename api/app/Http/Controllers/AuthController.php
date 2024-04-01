@@ -45,7 +45,6 @@ class AuthController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4',
         ]);
@@ -53,7 +52,6 @@ class AuthController extends Controller
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        $user->location = $request->location;
         $user->email = $request->email;
         $branch_invitation = BranchInvitation::where('branch_email', $request->email)->first();
         if ($branch_invitation) {
