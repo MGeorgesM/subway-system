@@ -42,11 +42,11 @@ class UsersController extends Controller
             'lng' => 'numeric',
         ]);
 
-        $user_id = auth()->user()->id;
-
-        if (!$user_id) {
+        if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+
+        $user_id = auth()->user()->id;
 
         $user = User::find($user_id);
 

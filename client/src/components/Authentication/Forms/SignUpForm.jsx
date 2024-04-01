@@ -10,7 +10,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
     };
     return (
         <div className="container box-shadow light-gray-bg border-radius flex center column">
-            <div className="logo">
+            <div className="logo-form">
                 <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
             </div>
             <form className="flex column center" onSubmit={handleSubmit}>
