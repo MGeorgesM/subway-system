@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Map from '../Map/Map';
+import Ad from './Ad/Ad';
 
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
@@ -33,17 +34,28 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="main flex column center">
-            <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
-            <div className="search">
-                <input
-                    className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"
-                    type="text"
-                    placeholder="Search for nearest stations"
-                    onKeyUp={(e) => e.key === 'Enter' && setSearch(e.target.value)}
-                ></input>
+        <>
+            <div className="main flex column center">
+                <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
+                <div className="search">
+                    <input
+                        className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"
+                        type="text"
+                        placeholder="Search for nearest stations"
+                        onKeyUp={(e) => e.key === 'Enter' && setSearch(e.target.value)}
+                    ></input>
+                </div>
             </div>
-        </div>
+            <div className="recommendations">
+                <h1 className="regular">Recommended Stations</h1>
+                <div className="stations flex center"></div>
+            </div>
+
+            <div className="ads flex column center white-bg">
+                    <Ad count={1} adTypeName={'Your Nearest Station'} avgRating={5} name={'Beirut Express'} />
+                    <Ad count={2} adTypeName={'Our Most Popular'} avgRating={5} name={'Beirut Express'} />
+            </div>
+        </>
     );
 };
 
