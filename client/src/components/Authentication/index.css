@@ -1,29 +1,29 @@
 .root {
-    background-color: #980511;
+  background-color: #980511;
 }
 
 .form-component {
-    height: 100vh;
-    background-color: #980511;
+  height: 100vh;
+  background-color: #980511;
 }
 
 .location-form {
-    height:720px;
-    width: 880px;
-    margin: 0 auto;
+  height: 720px;
+  width: 880px;
+  margin: 0 auto;
 }
 
 .location-form > .input-container {
-    width: 50%;
+  width: 50%;
 }
 
 .map-container {
-    max-width: 50%;
+  max-width: 50%;
 }
 
 .leaflet-container {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 /* .input-container {
@@ -33,46 +33,45 @@
 } */
 
 .logo img {
-    height: 40px;
-    margin: 48px;
+  height: 40px;
+  margin: 48px;
 }
 
 .container {
-    max-width: 30%;
-    min-height: 600px;
-    min-width: 440px;
-    padding: 24px;
+  max-width: 30%;
+  min-height: 600px;
+  min-width: 440px;
+  padding: 24px;
 }
 
 .container p {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 16px;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 16px;
 }
 
 .validation-display {
-    height: 48px;
-    color: #f03e3eed;
+  height: 48px;
+  color: #f03e3eed;
 }
 
-.validation-display>p {
-    font-size: 16px;
+.validation-display > p {
+  font-size: 16px;
 }
 
 form {
-    width: 80%;
+  width: 80%;
 }
 
-form>div {
-    width: 100%;
+form > div {
+  width: 100%;
 }
 
-
-input {
-    font-size: 18px;
-    padding: 0 24px;
-    margin-bottom: 24px;
-    margin-top: 4px;
+.container input {
+  font-size: 18px;
+  padding: 0 24px;
+  margin-bottom: 24px;
+  margin-top: 4px;
 }
 
 /* div > input:last-child {
@@ -80,24 +79,24 @@ input {
 } */
 
 .location-form > .input-container > input {
-    margin: 16px;
+  margin: 16px;
 }
 
 .login-btn,
 .register-btn,
 .location-btn {
-    cursor: pointer;
-    font-size: 20px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .login-btn:hover,
 .register-btn:hover,
 .location-btn:hover {
-    background-color: #980511;
+  background-color: #980511;
 }
 
 .register-link:hover,
 .login-link:hover {
-    color: #5C0206;
-    cursor: pointer;
+  color: #5c0206;
+  cursor: pointer;
 }

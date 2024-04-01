@@ -11,6 +11,7 @@ function Profile() {
   const [user, setUser] = useState("");
   const [displayContent, setDisplayContent] = useState("user-reviews");
   const [activeButton, setActiveButton] = useState("userReviews");
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     getUserInfo();
@@ -58,8 +59,18 @@ function Profile() {
     );
   }
 
+  function editUser() {
+    setIsEditing(true);
+  }
+
   return (
     <div className="profile-wrapper">
+      {isEditing && <div className="blurred"></div>}
+      {isEditing && (
+        <div className="is-editting">
+          <h1>is editting div</h1>
+        </div>
+      )}
       <div className="profile-header">
         <div className="left-header">
           <h1>Onwards</h1>
@@ -78,8 +89,8 @@ function Profile() {
           <div className="personal-info">
             <p>
               <b>
-                {user.first_name} {user.last_name}
-                <MdEdit className="edit-buttton" />
+                {user.first_name} {user.last_name}{" "}
+                <MdEdit className="edit-buttton" onClick={editUser} />
               </b>
             </p>
             <p>
@@ -169,7 +180,7 @@ function Profile() {
                 </div>
                 <div className="enter-message">
                   <input placeholder="Send message"></input>
-                  <button>Send</button>
+                  <button className="send-btn">Send</button>
                 </div>
               </div>
             </div>
