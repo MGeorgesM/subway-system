@@ -88,4 +88,45 @@ class UsersController extends Controller
             'user' => $user
         ]);
     }
+
+    public function shutDownBranch($id)
+    {
+        $branch = User::find($id);
+
+        if (!$branch) {
+            return response()->json(['message' => 'Branch not found'], 404);
+        }
+
+        $branch->active = 0;
+        $branch->save();
+
+        return response()->json(['message' => 'Branch shut down successfully', 'branch' => $branch]);
+    }
+
+    public function activateBranch($id)
+    {
+        $branch = User::find($id);
+
+        if (!$branch) {
+            return response()->json(['message' => 'Branch not found'], 404);
+        }
+
+        $branch->active = 1;
+        $branch->save();
+
+        return response()->json(['message' => 'Branch activate successfully', 'branch' => $branch]);
+    }
+
+    public function deleteBranch($id)
+{
+    $branch = User::find($id);
+
+    if (!$branch) {
+        return response()->json(['message' => 'Branch not found'], 404);
+    }
+
+    $branch->delete();
+
+    return response()->json(['message' => 'Branch deleted successfully']);
+}
 }
