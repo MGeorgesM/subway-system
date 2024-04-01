@@ -5,7 +5,6 @@ import Map from '../../../components/Map/Map';
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
-
 const LocationForm = () => {
     const [submittedLocation, setSubmittedLocation] = useState('');
     const [locationCoordinates, setLocationCoordinates] = useState({});
@@ -15,7 +14,6 @@ const LocationForm = () => {
 
     useEffect(() => {
         localStorage.setItem('location', JSON.stringify(locationCoordinates));
-        
     }, [locationCoordinates]);
 
     const handleLocationSubmit = async () => {
@@ -24,20 +22,16 @@ const LocationForm = () => {
             data.append('lat', locationCoordinates[0]);
             data.append('lng', locationCoordinates[1]);
 
-            
             try {
-                console.log(data)
-                const response =  await sendRequest(requestMethods.POST, '/users/update', data);
-                console.log(response);
-                
-                            if (response.status === 200) {
-                                navigate('/');
-                            }
-                
+                const response = await sendRequest(requestMethods.POST, '/users/update', data);
+                if (response.status === 200) {
+                    navigate('/');
+                } else {
+                    throw new Error();
+                }
             } catch (error) {
-                console.log(error);
+                console.log(error.response.data.message);
             }
-
         } else {
             setSubmittedLocation(location);
         }

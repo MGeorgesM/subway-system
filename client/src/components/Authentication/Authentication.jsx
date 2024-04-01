@@ -64,11 +64,11 @@ const Authentication = () => {
                 navigate('/location');
                 return;
             } else {
-                throw new Error(response.data.message);
+                throw new Error();
             }
         } catch (error) {
-            console.log(error.message);
-            setError([error.message]);
+            console.log(error.response.data.message);
+            setError([error.response.data.message]);
         }
     };
 
