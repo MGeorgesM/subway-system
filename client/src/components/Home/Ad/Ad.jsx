@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Ad = ({ count,avgRating, name }) => {
+const Ad = ({ count, avgRating, name }) => {
     return (
         <div className="ad flex center center dark-text">
             <div className={`ad-img ${count === 1 && 'hidden'}`}>
@@ -23,5 +21,4 @@ const Ad = ({ count,avgRating, name }) => {
         </div>
     );
 };
-
-export default Ad
+export default Ad;

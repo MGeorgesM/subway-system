@@ -35,7 +35,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="main flex column center">
+            <div className="main white-bg flex column">
                 <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
                 <div className="search">
                     <input
@@ -45,15 +45,16 @@ const Home = () => {
                         onKeyUp={(e) => e.key === 'Enter' && setSearch(e.target.value)}
                     ></input>
                 </div>
-            </div>
-            <div className="recommendations">
-                <h1 className="regular">Recommended Stations</h1>
+                <div className="recommendations">
+                    <h1 className="bold">Recommended Stations</h1>
+                </div>
+                <h2>Discover top picks for your journey ahead</h2>
                 <div className="stations flex center"></div>
             </div>
 
             <div className="ads flex column center white-bg">
-                    <Ad count={1} adTypeName={'Your Nearest Station'} avgRating={5} name={'Beirut Express'} />
-                    <Ad count={2} adTypeName={'Our Most Popular'} avgRating={5} name={'Beirut Express'} />
+                <Ad count={1} adTypeName={'Your Nearest Station'} avgRating={5} name={'Beirut Express'} />
+                <Ad count={2} adTypeName={'Our Most Popular'} avgRating={5} name={'Beirut Express'} />
             </div>
         </>
     );
