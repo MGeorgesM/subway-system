@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
+import { sendRequest } from '../../core/tools/apiRequest';
+import { requestMethods } from '../../core/tools/apiRequestMethods';
 
 const DisplayUser = () => {
   const [users, setUsers] = useState([]);
 
+  const fetchUsers = async () => {
+    try {
+      const response = await sendRequest(requestMethods.GET, '/users/get');
+      const filteredUsers = response.data.users.filter(user => user.role_id === 1);
+      setUsers(filteredUsers);
+    } catch (error) {
+      console.error('Error fetching users:', error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get('/users/get/1');
-      setUsers(response.data.users);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
 
   return (
     <div className='user-list'>
@@ -24,20 +27,20 @@ const DisplayUser = () => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Full Name</th>
             <th>Email</th>
             <th>Location</th>
+            <th>Balance</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.first_name}</td>
-              <td>{user.last_name}</td>
+              <td>{user.first_name} {user.last_name}</td>
               <td>{user.email}</td>
               <td>{user.location}</td>
+              <td>{user.coins_balance} $</td>
             </tr>
           ))}
         </tbody>
