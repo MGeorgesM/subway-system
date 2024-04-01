@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { formatTime } from '../../core/tools/formatTime';
 
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
@@ -73,9 +74,9 @@ const Station = () => {
                     <div className="header-text">
                         <h1>{station.name}</h1>
                         <h3>
-                            {station.location} - {station.status}
+                            {station.location} - {station.active ? 'Active' : 'Inactive'}
                         </h3>
-                        <p>Opens at {station.openning_time}</p>
+                        <p>Opens at {formatTime(station.opening_time)}</p>
                         <p>Closes at {station.closing_time}</p>
                     </div>
                     <div className="header-icons flex column center">
@@ -101,7 +102,9 @@ const Station = () => {
                     <h2 className="bold">Outgoing Rides</h2>
                 </div>
                 {startingRides.length > 0 ? (
-                    startingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+                    startingRides.map((ride) => (
+                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide}></Ridecard>
+                    ))
                 ) : (
                     <p>No rides found</p>
                 )}
@@ -109,12 +112,17 @@ const Station = () => {
                     <h2 className="bold">Incoming Rides</h2>
                 </div>
                 {endingRides.length > 0 ? (
-                    endingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide}></Ridecard>
-                    ))
+                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
                 ) : (
                     <p>No rides found</p>
                 )}
+                <div className="proceed">
+                    <div className="proceed-btn-container flex center ">
+                        <button className="proceed-btn primary-bg white-text bold">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
             </>
         );
 };
