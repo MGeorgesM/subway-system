@@ -11,7 +11,7 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     const [userLocation, setUserLocation] = useState(
-        JSON.parse(localStorage.getItem('location')) ? JSON.parse(localStorage.getItem('location')) : null
+        JSON.parse(localStorage.getItem('location')).length>0 ? JSON.parse(localStorage.getItem('location')) : null
     );
     const navigate = useNavigate();
     // const [searchQuery, setSearchQuery] = useState('');

@@ -11,22 +11,30 @@ import './index.css';
 
 const Home = () => {
     const [nearestStation, setNearestStation] = useState(null);
+    const [userLocation, setUserLocation] = useState(
+        JSON.parse(localStorage.getItem('location')).length > 0
+            ? JSON.parse(localStorage.getItem('location'))
+            : [33.88863, 35.49548]
+    );
     const [topStation, setTopStation] = useState(null);
     const [location, setLocation] = useState([]);
     const [stations, setStations] = useState([]);
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        const userLocation = JSON.parse(localStorage.getItem('location')) || [33.88863, 35.49548];
         const getStations = async () => {
             try {
                 const response = await sendRequest(requestMethods.GET, '/stations/getAll', null);
                 if (response.status === 200) {
                     let nearestStation = findNearestStation(response.data.stations, userLocation[0], userLocation[1]);
-                    const nearestStationRatingRequest = await sendRequest(requestMethods.GET,`/reviews/average?stationId=${nearestStation.id}`,null);
+                    const nearestStationRatingRequest = await sendRequest(
+                        requestMethods.GET,
+                        `/reviews/average?stationId=${nearestStation.id}`,
+                        null
+                    );
                     nearestStation = { ...nearestStation, rating: nearestStationRatingRequest.data.station_rating };
-                    setStations(response.data);
                     setNearestStation(nearestStation);
+                    setStations(response.data);
                     console.log('nearestStation', nearestStation);
                 } else {
                     throw new Error();
@@ -59,7 +67,7 @@ const Home = () => {
             } catch (error) {
                 console.log(error.response.data.message);
             }
-        }
+        };
         getStations();
         getTopStation();
         getRides();
@@ -87,7 +95,12 @@ const Home = () => {
             </div>
             <div className="stations flex center"></div>
             <div className="ads flex column center white-bg">
-                <Ad count={1} adTypeName={'Your Nearest Station'} avgRating={nearestStation?.rating} name={nearestStation?.name} />
+                <Ad
+                    count={1}
+                    adTypeName={'Your Nearest Station'}
+                    avgRating={nearestStation?.rating}
+                    name={nearestStation?.name}
+                />
                 <Ad count={2} adTypeName={'Our Most Popular'} avgRating={topStation?.rating} name={topStation?.name} />
             </div>
         </>
