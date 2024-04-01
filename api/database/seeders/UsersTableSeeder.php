@@ -37,8 +37,6 @@ class UsersTableSeeder extends Seeder
         $user->last_name = 'Abou Zeinab';
         $user->email = 'hussein@mail.com';
         $user->password = 'password';
-        $user->lat = 33.8938; // Latitude for Beirut
-        $user->lng = 35.5018; // Longitude for Beirut
         $user->save();
 
 
@@ -48,8 +46,6 @@ class UsersTableSeeder extends Seeder
         $user->email = 'jad@mail.com';
         $user->password = 'password';
         $user->role_id = Role::where('name', 'branch')->first()->id;
-        $user->lat = 33.8938; // Latitude for Beirut
-        $user->lng = 35.5018; // Longitude for Beirut
         $user->save();
 
         $user = new User();
