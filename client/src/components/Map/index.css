@@ -11,3 +11,7 @@
 .popup-text p:last-child {
     cursor: pointer;
 }
+
+.leaflet-tile {
+    border: 0px;
+}

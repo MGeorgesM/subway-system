@@ -77,7 +77,7 @@ const Station = () => {
                             {station.location} - {station.active ? 'Active' : 'Inactive'}
                         </h3>
                         <p>Opens at {formatTime(station.opening_time)}</p>
-                        <p>Closes at {station.closing_time}</p>
+                        <p>Closes at {formatTime(station.closing_time)}</p>
                     </div>
                     <div className="header-icons flex column center">
                         <div className="rating">
@@ -118,9 +118,7 @@ const Station = () => {
                 )}
                 <div className="proceed">
                     <div className="proceed-btn-container flex center ">
-                        <button className="proceed-btn primary-bg white-text bold">
-                            Book Now
-                        </button>
+                        <button className="proceed-btn primary-bg white-text bold">Book Now</button>
                     </div>
                 </div>
             </>

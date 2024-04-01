@@ -9,7 +9,7 @@
 
 .nav-elements {
     height: 100%;
-    width: 1000px;
+    width: 1140px;
     margin: 0 auto;
 }
 
@@ -26,9 +26,20 @@
 }
 
 
-.nav-login, .nav-link {
+.nav-login,
+.nav-link {
     height: 48px;
     width: 150px;
     font-size: 20px;
     margin: 0;
+}
+
+.nav-login:hover {
+    background-color: #EFEFEF;
+    color: #CE091B;
+    border: solid 1px #CE091B;
+}
+
+.nav-link:hover {
+    color: #ED941B;
 }

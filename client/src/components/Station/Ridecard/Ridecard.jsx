@@ -4,7 +4,7 @@ import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
 import { formatTime } from '../../../core/tools/formatTime';
 
-const Ridecard = ({ ride, addRide, selectedRide }) => {
+const Ridecard = ({ ride, addRide, selectedRide , stationId }) => {
     const [startSation, setStartStation] = useState(null);
     const [endStation, setEndStation] = useState(null);
 
@@ -41,14 +41,14 @@ const Ridecard = ({ ride, addRide, selectedRide }) => {
 
     return (
         <div className="rides-container flex column">
-            <div className="ride-card flex space-around light-gray-bg box-shadow border border-radius-l">
+            <div className="ride-card flex space-around light-gray-bg box-shadow border">
                 <div className="name-rating flex space-between">
                     <h3>{name}</h3>
                     <div className="rating flex center">
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
+                        <i className="fa-regular fa-star"></i>
                     </div>
                 </div>
                 <div className="destinations flex center">
@@ -64,7 +64,7 @@ const Ridecard = ({ ride, addRide, selectedRide }) => {
                         <h3 className="time">{formatTime(end_time)}</h3>
                     </div>
                 </div>
-                <div className="price-select flex space-between">
+{    addRide &&             <div className="price-select flex space-between">
                     <p>${price}</p>
                     <button
                         className={`select-btn border-radius-m box-shadow ${
@@ -74,7 +74,7 @@ const Ridecard = ({ ride, addRide, selectedRide }) => {
                     >
                         {selectedRide === id ? 'Remove' : 'Select'}
                     </button>
-                </div>
+                </div>}
             </div>
         </div>
     );

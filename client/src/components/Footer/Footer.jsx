@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <div className="footer flex space-between gray-bg white-text light">
+        <div className="footer flex gray-bg white-text light">
             <div className="footer-social flex center">
                 <i className="fa-brands fa-twitter"></i>
                 <i className="fa-brands fa-facebook"></i>
