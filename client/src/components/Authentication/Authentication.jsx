@@ -48,7 +48,7 @@ const Authentication = () => {
       );
       if (response.status === 200) {
         localStorage.setItem("token", JSON.stringify(response.data.token));
-        navigate("/");
+        navigate("/profile");
         return;
       } else {
         throw new Error("Wrong email or password");

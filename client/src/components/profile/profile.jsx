@@ -14,7 +14,6 @@ function Profile() {
 
   useEffect(() => {
     getUserInfo();
-    console.log(user);
   }, []);
 
   const handleClick = (button) => {
@@ -29,13 +28,19 @@ function Profile() {
 
   const getUserInfo = async () => {
     try {
-      const response = await sendRequest(requestMethods.GET, `/users/get/4`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
+      const response = await sendRequest(requestMethods.GET, `/users/get`);
+      if (response.status !== 200) {
+        console.log("error");
+        throw new Error(
+          `Failed to fetch user data. Status: ${response.status}`
+        );
       }
-      const data = await response.json();
-      setUser(data);
-      console.log(data);
+      const data = response.data;
+      if (data) {
+        setUser(data.user);
+      } else {
+        console.error("Empty response data");
+      }
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
@@ -73,14 +78,12 @@ function Profile() {
           <div className="personal-info">
             <p>
               <b>
-                Sara Smith <MdEdit className="edit-buttton" />
+                {user.first_name} {user.last_name}
+                <MdEdit className="edit-buttton" />
               </b>
             </p>
             <p>
-              <b>US - Florida</b>
-            </p>
-            <p>
-              <b>sarah.smith@gmail.com</b>
+              <b>{user.email}</b>
             </p>
           </div>
 
@@ -89,7 +92,7 @@ function Profile() {
               <b>Balance:</b>
             </p>
             <p>
-              <b>150 coins</b>
+              <b>{user.coins_balance}</b>
             </p>
             <button className="general-btn">Request Coins</button>
           </div>

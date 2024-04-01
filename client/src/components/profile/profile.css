@@ -62,7 +62,7 @@
 .personal-info {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
   font-size: 20px;
   align-items: center;
 }
