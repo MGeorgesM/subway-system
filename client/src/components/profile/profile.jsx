@@ -160,7 +160,15 @@ function Profile() {
                 <p>Station Name</p>
                 <p>Station Name</p>
               </div>
-              <div className="chat"></div>
+              <div className="chat-section">
+                <div className="chat">
+                  <p>Hello!</p>
+                </div>
+                <div className="enter-message">
+                  <input placeholder="Send message"></input>
+                  <button>Send</button>
+                </div>
+              </div>
             </div>
           </div>
         )}
