@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './index.css'
 
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
