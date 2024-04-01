@@ -5,6 +5,7 @@ import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Home from './components/Home/Home';
 import Profile from './components/profile/profile';
+import Footer from './components/Footer/Footer';
 
 import './App.css';
 import './styles/colors.css';
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/profile" element={<Profile />} />
             </Routes>
+        <Footer/>
         </BrowserRouter>
     );
 }

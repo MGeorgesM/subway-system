@@ -1,7 +1,7 @@
 const Ad = ({ count, avgRating, name }) => {
     return (
         <div className="ad flex center center dark-text">
-            <div className={`ad-img ${count === 1 && 'hidden'}`}>
+            <div className={`ad-img ${count === 2 && 'hidden'}`}>
                 <img src="./images/assets/station.jpeg" alt="ad" className="border-radius" />
             </div>
             <div className="ad-text flex column">
@@ -15,7 +15,7 @@ const Ad = ({ count, avgRating, name }) => {
                         : "Our highest rated station, nestled in the heart of the city, epitomizes convenience and efficiency. Boasting state-of-the-art facilities and impeccable cleanliness, it's a beacon of modern transit."}
                 </p>
             </div>
-            <div className={`ad-img ${count === 2 && 'hidden'}`}>
+            <div className={`ad-img ${count === 1 && 'hidden'}`}>
                 <img src="./images/assets/station.jpeg" alt="ad" className="border-radius" />
             </div>
         </div>
