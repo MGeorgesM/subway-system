@@ -1,11 +1,25 @@
-{/* <div class="popup flex column center hidden" id="popup">
-<div class="popup-inner green-bg flex column space-evenly box-shadow border-radius">
-    <div class="popup-text off-white-text">
-        <h1>Notice</h1>
-        <div>
-            <p class="notice-text" id="popup-message"></p>
+import React from 'react';
+
+import './Popup.css';
+
+const Popup = ({message, handleContinue}) => {
+    return (
+        <div className="popup flex column center black-bg-trsp">
+            <div className="popup-inner white-bg flex column space-evenly box-shadow border-radius">
+                <div className="popup-text black-text">
+                    <h1>Notice</h1>
+                    <div>
+                        <p className="notice-text">
+                            {message}
+                        </p>
+                    </div>
+                </div>
+                <button className="popup-btn primary-btn border-radius border" onClick={handleContinue} >
+                    Continue
+                </button>
+            </div>
         </div>
-    </div>
-    <a class="popup-btn off-white-bg border-radius border" id="continue-btn">Continue</a>
-</div>
-</div> */}
+    );
+};
+
+export default Popup;

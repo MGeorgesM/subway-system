@@ -7,18 +7,21 @@ import { formatTime } from '../../core/tools/formatTime';
 
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
+import Popup from '../Elements/Popup/Popup';
 
 import './index.css';
+
 
 const Station = () => {
     const [stations, setStations] = useState([]);
     const [station, setStation] = useState(null);
-
     const [startingRides, setStartingRides] = useState([]);
     const [endingRides, setEndingRides] = useState([]);
     const [searchParams] = useSearchParams();
+    const [selectedRide, setSelectedRide] = useState('');
 
-    const [selectedRide, setSelectedRide] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     const stationId = parseInt(searchParams.get('id'));
 
@@ -68,6 +71,11 @@ const Station = () => {
 
     const handleProceed = () => {
         console.log('Proceed', selectedRide);
+        if (!selectedRide) {
+            setPopupMessage('Please select a ride to proceed');
+            setShowPopup(true);
+            return;
+        }
         navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`);
     };
 
@@ -128,6 +136,7 @@ const Station = () => {
                         <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>Book Now</button>
                     </div>
                 </div>
+                {showPopup && <Popup message={popupMessage} handleContinue={() => setShowPopup(false)}></Popup>}
             </>
         );
 };

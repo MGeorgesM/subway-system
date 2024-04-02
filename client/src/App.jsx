@@ -25,6 +25,7 @@ function App() {
                 <Route path="/station" element={<Station />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ticket" element={<Ticket />} />
+                <Route path="*" element={<Home />} />
             </Routes>
         <Footer/>
         </BrowserRouter>
