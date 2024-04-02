@@ -21,24 +21,24 @@ const SignInForm = ({ switchHandler, handleLogin, error }) => {
         <>
             <form className="flex column" onSubmit={handleSubmit}>
                 <div>
-                    <label className="light-text">Email:</label>
+                    <label className="light-text">Email</label>
                     <input
                         type="text"
                         name="email"
                         placeholder="user@mail.com"
                         onChange={handleChange}
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         required
                     />
                 </div>
                 <div>
-                    <label className="light-text">Password:</label>
+                    <label className="light-text">Password</label>
                     <input
                         type="password"
                         name="password"
                         placeholder="password"
                         onChange={handleChange}
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         required
                     />
                 </div>

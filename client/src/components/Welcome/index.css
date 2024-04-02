@@ -1,0 +1,44 @@
+:root {
+    --header-height: 120px;
+    --footer-height: 220px;
+}
+
+.main-welcome {
+    height: calc(100vh - var(--header-height));
+    width: 100%;
+    margin-top: var(--header-height);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75),
+            rgba(255, 255, 255, 0.5)),
+        url(../../../public/images/assets/hero.jpg);
+    background-size: cover;
+}
+
+.welcome-text h1 {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.welcome-text p {
+    font-size: 24px;
+    text-align: center;
+    max-width: 60%;
+    font-weight: 500;
+}
+
+.welcome-btns {
+    margin-top: 16px;
+    gap: 8px;
+}
+
+.welcome-btns button {
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+}
+
+.secondary {
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+}

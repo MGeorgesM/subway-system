@@ -76,7 +76,7 @@ const Authentication = () => {
 
     return (
         <div className="form-component flex center">
-            <div className="container box-shadow light-gray-bg border-radius flex center column">
+            <div className="container box-shadow border-radius flex center column">
                 <div className="logo-form">
                     <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
                 </div>

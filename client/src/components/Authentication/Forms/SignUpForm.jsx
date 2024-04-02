@@ -11,9 +11,9 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
         <>
             <form className="flex column center" onSubmit={handleSubmit}>
                 <div>
-                    <label className="light-text">First Name:</label>
+                    <label className="light-text">First Name</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="first_name"
                         placeholder="first name"
@@ -22,9 +22,9 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                     />
                 </div>
                 <div>
-                    <label className="light-text">Last Name:</label>
+                    <label className="light-text">Last Name</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="last_name"
                         placeholder="last name"
@@ -33,9 +33,9 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                     />
                 </div>
                 <div>
-                    <label className="light-text">Email:</label>
+                    <label className="light-text">Email</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="email"
                         placeholder="user@mail.com"
@@ -46,7 +46,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                 <div>
                     <label className="light-text">Password:</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="password"
                         name="password"
                         placeholder="password"

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation here
 
 import Navbar from './components/Navbar/Navbar';
+import Welcome from './components/Welcome/Welcome';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Home from './components/Home/Home';
@@ -40,7 +41,7 @@ const App = () => {
 
     // Define navbar background color based on the route
     const getNavbarBgColor = () => {
-        if (location.pathname === '/welcome') {
+        if (location.pathname === '/') {
             return 'black-bg';
         }
     };
@@ -49,13 +50,14 @@ const App = () => {
         <>
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Welcome />} />
+                <Route path="/browse" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ticket" element={<Ticket />} />
-                <Route path="*" element={<Home />} />
+                <Route path="*" element={<Welcome />} />
             </Routes>
             {isNavbarVisible && <Footer />}
         </>

@@ -5,7 +5,7 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { formatTime } from '../../core/tools/formatTime';
 
-import './Ticket.css';
+import './index.css';
 
 const Ticket = () => {
     const [count, setCount] = useState(1);

@@ -4,15 +4,20 @@
 
 .form-component {
     height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(41, 41, 41, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url(../../../public/images/assets/hero-2.jpg);
+    background-size: cover;
 }
 
 .location-form {
-    height:720px;
+    height: 720px;
     width: 880px;
     margin: 0 auto;
 }
 
-.location-form > .input-container {
+.location-form>.input-container {
     width: 50%;
 }
 
@@ -41,6 +46,7 @@
     min-height: 600px;
     min-width: 440px;
     padding: 24px;
+    background-color: #EFEFEF;
 }
 
 .container p {
@@ -91,7 +97,7 @@ input {
     margin-bottom: 0px;
 } */
 
-.location-form > .input-container > input {
+.location-form>.input-container>input {
     margin: 16px;
 }
 
@@ -114,3 +120,7 @@ input {
     cursor: pointer;
 }
 
+/* .skip-prompt {
+    font-size: 16px;
+    margin-top: 16px;
+} */

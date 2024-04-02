@@ -148,8 +148,7 @@ button {
 }
 
 .clicked:hover {
-    color: #DEE2E6;
-    background-color: #CE091B;
+    background-color: #D1D0D1;
 }
 
 .input-btn-lg {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Popup.css';
+import './index.css';
 
 const Popup = ({message, handleContinue}) => {
     return (
