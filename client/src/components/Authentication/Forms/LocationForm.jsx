@@ -42,6 +42,19 @@ const LocationForm = () => {
         setLocationCoordinates(coordinates);
     };
 
+    const handleLocationRetrieval = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log(position);
+                const { latitude, longitude } = position.coords;
+                setLocationCoordinates([latitude, longitude]);
+            });
+        } else {
+            console.log('Geolocation is not supported by this browser.');
+        }
+    };
+    
+
     return (
         <div className="form-component flex center">
             <div className="location-form border flex center light-gray-bg border-radius box-shadow">
@@ -55,6 +68,7 @@ const LocationForm = () => {
                         onChange={(e) => setLocation(e.target.value)}
                         required
                     />
+                    <i className="light-text getlocation-btn fa-solid fa-location-crosshairs" onClick={handleLocationRetrieval}></i>
                     <button
                         className="location-btn primary-bg white-text box-shadow border-radius-l input-btn-lg"
                         onClick={handleLocationSubmit}

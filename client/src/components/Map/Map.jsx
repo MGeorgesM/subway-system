@@ -27,7 +27,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates}) => {
             handleInput();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [locationTextInput, markersInput]);
+    }, [locationTextInput, markersInput, storedLocation]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
