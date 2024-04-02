@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ride;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\User;
@@ -34,16 +35,22 @@ class TicketsController extends Controller
         }
 
         $user = auth()->user();
+        $ride = Ride::where('id', $req->rideId)->first();
+        $ticket_price = $ride->price * $req->count;
 
         if ($user->role_id === 1) {
             $ticket = Ticket::create([
                 'user_id' => $user->id,
-                'departure_ride_id' => $req->departure_ride_id,
+                'departure_ride_id' => $req->rideId,
                 'return_ride_id' => $req->return_ride_id,
-                'price' => $req->price,
-                'activated' => $req->activated,
+                'price' => $ticket_price,
             ]);
-            return response()->json(['ticket' => 'Ticket created successfully.', $ticket], 201);
+
+            $user_db = User::find($user->id);
+            $user_db->coins_balance = $user_db->coins_balance - $ticket_price;
+            $user_db->save();
+
+            return response()->json(['message' => 'Ticket created successfully.', 'ticket' => $ticket], 201);
         }
 
         return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);

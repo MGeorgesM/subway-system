@@ -1,4 +1,4 @@
-import StarsRating from "../../Elements/StarsRating";
+import StarsRating from "../../Elements/StarsRating/StarsRating";
 
 const Ad = ({ count, avgRating, name }) => {
     return (

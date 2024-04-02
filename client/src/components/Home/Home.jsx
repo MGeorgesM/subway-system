@@ -56,21 +56,21 @@ const Home = () => {
                 console.log(error.response.data.message);
             }
         };
-        const getRides = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
-                if (response.status === 200) {
-                    console.log('rides', response.data.rides);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
+        // const getRides = async () => {
+        //     try {
+        //         const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
+        //         if (response.status === 200) {
+        //             console.log('rides', response.data.rides);
+        //         } else {
+        //             throw new Error();
+        //         }
+        //     } catch (error) {
+        //         console.log(error.response.data.message);
+        //     }
+        // };
         getStations();
         getTopStation();
-        getRides();
+        // getRides();
         setLocation(userLocation);
     }, []);
 

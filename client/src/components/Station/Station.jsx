@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { formatTime } from '../../core/tools/formatTime';
@@ -22,12 +22,14 @@ const Station = () => {
 
     const stationId = parseInt(searchParams.get('id'));
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const getStations = async () => {
             try {
                 const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
                 if (response.status === 200) {
-                    const station = response.data.stations.find((station) => station.id == stationId);
+                    const station = response.data.stations.find((station) => station.id === stationId);
                     setStations(response.data);
                     setStation(station);
                 } else {
@@ -64,6 +66,11 @@ const Station = () => {
         selectedRide === rideId ? setSelectedRide('') : setSelectedRide(rideId);
     };
 
+    const handleProceed = () => {
+        console.log('Proceed', selectedRide);
+        navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`);
+    };
+
     if (station)
         return (
             <>
@@ -81,20 +88,20 @@ const Station = () => {
                     </div>
                     <div className="header-icons flex column center">
                         <div className="rating">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                         </div>
                         <div className="facilities">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -118,7 +125,7 @@ const Station = () => {
                 )}
                 <div className="proceed">
                     <div className="proceed-btn-container flex center ">
-                        <button className="proceed-btn primary-bg white-text bold">Book Now</button>
+                        <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>Book Now</button>
                     </div>
                 </div>
             </>

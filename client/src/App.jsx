@@ -6,6 +6,7 @@ import LocationForm from './components/Authentication/Forms/LocationForm';
 import Home from './components/Home/Home';
 import Station from './components/Station/Station';
 import Profile from './components/profile/profile';
+import Ticket from './components/Ticket/Ticket';
 import Footer from './components/Footer/Footer';
 
 import './App.css';
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/ticket" element={<Ticket />} />
             </Routes>
         <Footer/>
         </BrowserRouter>
