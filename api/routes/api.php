@@ -35,7 +35,7 @@ Route::post('/coins-requests/{id}/discard', [CoinRequestController::class, 'disc
 Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
 
 Route::post('/reviews/add', [ReviewsController::class, 'addReviews']);
-Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+Route::get('/reviews/user', [ReviewsController::class, 'getPassengerReviews']);
 
 Route::post('/send-message', [ChatsController::class, 'sendMessage']);
 Route::get('/users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
