@@ -135,6 +135,7 @@
   background-color: #6d6b6c;
   width: 25%;
   height: 40vh;
+  border-radius: 15px;
   overflow-y: auto;
 }
 
@@ -196,6 +197,7 @@
   align-items: center;
   width: 50%;
   gap: 20px;
+  font-size: 15px;
 }
 .button-switcher h1 {
   color: #efefef;
@@ -411,7 +413,7 @@
   border-radius: 50px;
 }
 
-@media screen and (min-width: 1401px) {
+@media screen and (min-width: 1500px) {
   .profile-wrapper {
     margin: 0 auto;
   }
@@ -451,7 +453,10 @@
 
   .review-card {
     width: 30%;
-    height: 35vh;
+    height: 46vh;
+  }
+  .reviews-cards-wrapper {
+    width: 95%;
   }
 
   .button-switcher h1 {

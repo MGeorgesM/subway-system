@@ -15,6 +15,7 @@ function Profile() {
   const [displayContent, setDisplayContent] = useState("user-reviews");
   const [activeButton, setActiveButton] = useState("userReviews");
   const [isEditing, setIsEditing] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     getUserInfo();
@@ -42,6 +43,10 @@ function Profile() {
       const data = response.data;
       if (data) {
         setUser(data.user);
+        setFirstName(data.user.first_name);
+        setLastName(data.user.last_name);
+        setEmail(data.user.email);
+        setImage(data.user.image_url);
       } else {
         console.error("Empty response data");
       }
@@ -52,11 +57,17 @@ function Profile() {
 
   const updateUserInfo = async () => {
     try {
-      const response = await sendRequest(requestMethods.POST, "/users/update", {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-      });
+      const formData = new FormData();
+      formData.append("first_name", firstName);
+      formData.append("last_name", lastName);
+      formData.append("email", email);
+      formData.append("image_url", image);
+
+      const response = await sendRequest(
+        requestMethods.POST,
+        "/users/update",
+        formData
+      );
       if (response.status === 200) {
         console.log("User updated successfully");
         getUserInfo();
@@ -89,13 +100,29 @@ function Profile() {
     setIsEditing(false);
   }
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="profile-wrapper">
       {isEditing && <div className="blurred"></div>}
       {isEditing && (
         <div className="is-editting">
           <div className="edit-inputs">
-            <img src={userImage}></img>
+            {image && <img src={image} alt="User" />}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            ></input>
             <input
               placeholder="First Name"
               value={firstName}
@@ -135,7 +162,7 @@ function Profile() {
       </div>
 
       <div className="user-info-wrapper">
-        <img src={userImage}></img>
+        <img src={`${image}`} alt="User" />
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>
