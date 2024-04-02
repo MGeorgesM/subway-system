@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('receiver_id');
             $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->text('message');
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->useCurrent();
         });
     }
 

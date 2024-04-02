@@ -1,0 +1,41 @@
+.map-container {
+    height: 100%;
+    width: 100%;
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}
+
+.popup-text {
+    margin: 0 !important;
+}
+
+.popup-text p {
+    font-size: 16px;
+    margin: 12px 0 !important;
+}
+
+.popup-text h3 {
+    font-weight: 700;
+}
+
+.popup-text h3:hover {
+    color: #980511;
+    cursor: pointer;
+}
+
+.leaflet-tile {
+    border: 0px;
+}
+
+.leaflet-popup-close-button {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    color: #161213;
+    border-radius: 8px !important;
+    padding: 16px !important;
+}

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\BranchInvitation;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -31,10 +32,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        $user = auth()->user();
+
+        return response()->json([
+            'token' => $token,
+        ]);
     }
 
-     /**
+    /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -44,7 +49,6 @@ class AuthController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:4',
         ]);
@@ -52,14 +56,19 @@ class AuthController extends Controller
         $user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        $user->location = $request->location;
         $user->email = $request->email;
+        $branch_invitation = BranchInvitation::where('branch_email', $request->email)->first();
+        if ($branch_invitation) {
+            $user->role_id = 2;
+        }
         $user->password = $request->password;
         $user->save();
 
         $token = auth()->login($user);
 
-        return $this->respondWithToken($token);
+        return response()->json([
+            'token' => $token,
+        ], 201);
     }
 
     /**
@@ -94,7 +103,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
+            'token' => $token,
         ]);
     }
 }

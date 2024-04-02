@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('location');
+            $table->decimal('lat', 10, 8)->default(33.8938);
+            $table->decimal('lng', 11, 8)->default(35.5018);
             $table->decimal('coins_balance', 8, 2)->default(0);
             $table->unsignedBigInteger('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles');

@@ -1,0 +1,78 @@
+.primary-text {
+    color: #CE091B;
+}
+
+.black-text {
+    color: #161213;
+}
+
+.dark-text {
+    color: #30302F;
+}
+
+.light-text {
+    color: #6D6B6C;
+}
+
+.secondary-text {
+    color: #ED941B;
+}
+
+.gray-bg {
+    background-color: #404040;
+
+}
+
+.light-gray-bg {
+    background-color: #EFEFEF;
+}
+
+.white-bg {
+    background-color: #FFFFFF;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.off-white-text {
+    color: #DEE2E6;
+}
+
+.off-white-bg {
+    color: #DEE2E6;
+}
+
+.onclick-nav-bg {
+    background-color: #ADB5BD;
+}
+
+.primary-bg {
+    background-color: #CE091B;
+}
+
+.secondary-bg {
+    background-color: #ED941B;
+}
+
+.black-bg {
+    background-color: #161213;
+}
+
+.black-bg-trsp {
+    background-color: #16121350;
+}   
+
+.off-white-bg-trsp {
+    background-color: #DEE2E650;
+}
+
+.light-gray-bg-trsp {
+    background-color: #6D6B6C50;
+}
+
+.no-bg {
+    background-color: transparent;
+}
+
+/* Hover Color Button: #980511 Link Hover: #5C0206 */

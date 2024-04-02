@@ -7,33 +7,30 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function getUsers(Request $request)
+    public function getUser()
     {
-        $id = $request->id;
-
-        if ($id) {
-            $user = User::find($id);
-
-            if (!$user) {
-                return response()->json(['message' => 'User not found'], 404);
-            }
-
-            return response()->json($user);
-        }
-
         if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $token_user_id = auth()->user()->id;
-        $user = User::find($token_user_id);
+        $user_id = auth()->user()->id;
+        $user_role = auth()->user()->role_id;
 
-        if ($user->role_id === 3) {
+        if ($user_role === 3) {
+            $user = User::find($user_id);
             $users = User::all();
-            return response()->json($users);
-        }
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json([
+                'user' => $user,
+                'users' => $users
+            ]);
+        } else {
+            $user = User::find($user_id);
+
+            return response()->json([
+                'user' => $user
+            ]);
+        }
     }
 
     public function updateUser(Request $request)
@@ -42,14 +39,16 @@ class UsersController extends Controller
             'image_base64' => 'string',
             'first_name' => 'string',
             'last_name' => 'string',
-            'email' => 'string|email'
+            'email' => 'string|email',
+            'lat' => 'numeric',
+            'lng' => 'numeric',
         ]);
 
-        $user_id = auth()->user()->id;
-
-        if (!$user_id) {
+        if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+
+        $user_id = auth()->user()->id;
 
         $user = User::find($user_id);
 
@@ -77,6 +76,11 @@ class UsersController extends Controller
 
         if ($request->email) {
             $user->email = $request->email;
+        }
+
+        if ($request->lat) {
+            $user->lat = $request->lat;
+            $user->lng = $request->lng;
         }
 
         $user->save();
