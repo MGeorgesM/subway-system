@@ -11,15 +11,22 @@ import './index.css';
 
 const Home = () => {
     const [nearestStation, setNearestStation] = useState(null);
-    const [userLocation, setUserLocation] = useState(
-        JSON.parse(localStorage.getItem('location')).length > 0
-            ? JSON.parse(localStorage.getItem('location'))
-            : [33.88863, 35.49548]
-    );
+    // const [userLocation, setUserLocation] = useState(
+    //     JSON.parse(localStorage.getItem('location')).length > 0
+    //         ? JSON.parse(localStorage.getItem('location'))
+    //         : [33.88863, 35.49548]
+    // );
     const [topStation, setTopStation] = useState(null);
     const [location, setLocation] = useState([]);
     const [stations, setStations] = useState([]);
     const [search, setSearch] = useState('');
+
+    const storedLocation = JSON.parse(localStorage.getItem('location'));
+    const defaultLocation = [33.88863, 35.49548];
+
+    const [userLocation, setUserLocation] = useState(
+        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+    );
 
     useEffect(() => {
         const getStations = async () => {
@@ -77,7 +84,13 @@ const Home = () => {
     return (
         <>
             <div className="main white-bg flex column">
-                <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
+                <Map
+                    locationTextInput={search}
+                    saveLocationCoordinates={setLocation}
+                    markersInput={stations}
+                    userLocation={userLocation}
+                    setUserLocation={setUserLocation}
+                ></Map>
                 <div className="search">
                     <input
                         className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"

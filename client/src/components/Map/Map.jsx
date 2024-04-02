@@ -9,10 +9,14 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 
 
-const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-    const [userLocation, setUserLocation] = useState(
-        JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
-    );
+const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, userLocation, setUserLocation }) => {
+    // const storedLocation = JSON.parse(localStorage.getItem('location'));
+    // const defaultLocation = [33.88863, 35.49548];
+
+    // const [userLocation, setUserLocation] = useState(
+    //     storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+    // );
+
     const navigate = useNavigate();
 
     useEffect(() => {
