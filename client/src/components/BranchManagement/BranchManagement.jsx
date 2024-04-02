@@ -53,7 +53,7 @@ const BranchManagement = () => {
 
   return (
     <div className='user-list'>
-      <h2>Display Branches</h2>
+      <h2>Branche Management</h2>
       <table className='user-table'>
         <thead>
           <tr>
@@ -76,6 +76,7 @@ const BranchManagement = () => {
           ))}
         </tbody>
       </table>
+      <button className="activate-btn">Add Branch</button>
     </div>
   );
 };
