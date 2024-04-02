@@ -38,7 +38,7 @@ const App = () => {
 
     const getNavbarBgColor = () => {
         if (location.pathname === '/') {
-            return 'black-bg-trsp';
+            return 'black-bg';
         }
     };
 
