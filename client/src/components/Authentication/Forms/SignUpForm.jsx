@@ -10,7 +10,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
     return (
         <>
             <form className="flex column center" onSubmit={handleSubmit}>
-                <div>
+                <div className="field">
                     <label className="light-text">First Name</label>
                     <input
                         className="off-white-bg input-btn-lg border-radius-l border"
@@ -21,7 +21,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label className="light-text">Last Name</label>
                     <input
                         className="off-white-bg input-btn-lg border-radius-l border"
@@ -32,7 +32,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label className="light-text">Email</label>
                     <input
                         className="off-white-bg input-btn-lg border-radius-l border"
@@ -43,7 +43,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label className="light-text">Password:</label>
                     <input
                         className="off-white-bg input-btn-lg border-radius-l border"

@@ -26,7 +26,7 @@ const LocationForm = () => {
             try {
                 const response = await sendRequest(requestMethods.POST, '/users/update', data);
                 if (response.status === 200) {
-                    navigate('/');
+                    navigate('/browse');
                 } else {
                     throw new Error();
                 }
@@ -56,8 +56,8 @@ const LocationForm = () => {
 
     return (
         <div className="form-component flex center">
-            <div className="location-form border flex center off-white-bg border-radius box-shadow">
-                <div className="input-container flex column center">
+            <div className="location-form border flex center border-radius box-shadow">
+                <div className="field input-container flex column center">
                     <h1 className="regular">Where are you?</h1>
                     <input
                         className="border-radius-l border input-btn-lg"

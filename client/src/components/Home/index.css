@@ -28,7 +28,7 @@
     border-bottom-right-radius: unset;
 }
 
-.search>input {
+.home-search>input {
     width: 600px;
     position: absolute;
     bottom: 0;
@@ -36,10 +36,12 @@
     transform: translateX(-50%);
     z-index: 999;
     margin-bottom: 64px;
+    padding: 0 24px;
+    font-size: 18px;
 }
 
-.search>input::placeholder,
-.search>input {
+.home-search>input::placeholder,
+.home-search>input {
     color: #ED941B;
     font-weight: 700;;
 }

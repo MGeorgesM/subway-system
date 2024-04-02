@@ -78,12 +78,17 @@ form>div {
     position: relative;
 }
 
-input {
+.field input {
     font-size: 18px;
     padding: 0 24px;
     margin-bottom: 24px;
     margin-top: 4px;
+    color: #6D6B6C;
 }
+
+/* .field label {
+    padding: 0 24px;
+} */
 
 .getlocation-btn {
     cursor: pointer;
@@ -96,6 +101,10 @@ input {
 /* div > input:last-child {
     margin-bottom: 0px;
 } */
+
+.location-form {
+    background-color: #EFEFEF;
+}
 
 .location-form>.input-container>input {
     margin: 16px;

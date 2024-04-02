@@ -20,7 +20,7 @@ const SignInForm = ({ switchHandler, handleLogin, error }) => {
     return (
         <>
             <form className="flex column" onSubmit={handleSubmit}>
-                <div>
+                <div className='field'>
                     <label className="light-text">Email</label>
                     <input
                         type="text"
@@ -31,7 +31,7 @@ const SignInForm = ({ switchHandler, handleLogin, error }) => {
                         required
                     />
                 </div>
-                <div>
+                <div className='field'>
                     <label className="light-text">Password</label>
                     <input
                         type="password"

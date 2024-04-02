@@ -6,12 +6,15 @@ import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { formatTime } from '../../core/tools/formatTime';
 
 import './index.css';
+import Popup from '../Elements/Popup/Popup';
 
 const Ticket = () => {
     const [count, setCount] = useState(1);
     const [searchParams] = useSearchParams();
     const [ride, setRide] = useState({});
     const [user, setUser] = useState({});
+    const [popupMessage, setPopupMessage] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
 
     const navigate = useNavigate();
 
@@ -20,7 +23,7 @@ const Ticket = () => {
     console.log(stationId)
 
     useEffect(() => {
-        const getTicket = async () => {
+        const getRide = async () => {
             try {
                 const response = await sendRequest(requestMethods.GET, `rides/get/${rideId}`, null);
                 if (response.status === 200) {
@@ -48,7 +51,7 @@ const Ticket = () => {
             }
         };
         getUser();
-        getTicket();
+        getRide();
     }, [rideId]);
 
 
@@ -74,7 +77,11 @@ const Ticket = () => {
             const response =  await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
             if (response.status === 201) {
                 console.log('Ticket created', response.data.ticket);
+                setShowPopup(true);
+                setPopupMessage('Your Purchase was successfull');
             } else {
+                setShowPopup(true);
+                setPopupMessage('Your Purchase was denied');
                 throw new Error();
             }
         
@@ -88,7 +95,12 @@ const Ticket = () => {
         navigate(`/station?id=${stationId}`)
     };
 
+    const handleProceed = () => {
+        setShowPopup(false);
+    };
+
     if (user && ride ) return (
+        <>
         <div className="ticket-main flex center">
             <div className="ride-details-container flex column center border-radius box-shadow">
                 <div className="ride-details-title dark-text flex center column">
@@ -129,6 +141,8 @@ const Ticket = () => {
                 </div>
             </div>
         </div>
+        { showPopup && <Popup message={popupMessage} handleContinue={handleProceed}/>}
+        </>
     );
 };
 

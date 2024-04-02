@@ -11,7 +11,10 @@
             rgba(255, 255, 255, 0.5)),
         url(../../../public/images/assets/hero.jpg);
     background-size: cover;
+    background-position: center;
 }
+
+
 
 .welcome-text h1 {
     font-size: 48px;

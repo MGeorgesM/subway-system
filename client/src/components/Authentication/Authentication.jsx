@@ -49,7 +49,7 @@ const Authentication = () => {
                     console.log(getuser.data)
                     localStorage.setItem('location', JSON.stringify([parseFloat(getuser.data.user.lat), parseFloat(getuser.data.user.lng)]));
                 }
-                navigate('/');
+                navigate('/browse');
                 return;
             } else {
                 throw new Error();

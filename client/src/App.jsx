@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation here
 
@@ -21,28 +21,24 @@ const App = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
     const location = useLocation();
 
-    // Define routes where the navbar should be hidden
     const hiddenRoutes = ['/auth', '/ticket', '/location'];
 
-    // Function to check if the current route is in hiddenRoutes
     const isRouteHidden = () => {
         return hiddenRoutes.includes(location.pathname);
     };
 
-    // Function to change the navbar visibility based on the route
     const updateNavbarVisibility = () => {
         setIsNavbarVisible(!isRouteHidden());
     };
 
-    // Change navbar visibility when route changes
     useEffect(() => {
         updateNavbarVisibility();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname]);
 
-    // Define navbar background color based on the route
     const getNavbarBgColor = () => {
         if (location.pathname === '/') {
-            return 'black-bg';
+            return 'black-bg-trsp';
         }
     };
 

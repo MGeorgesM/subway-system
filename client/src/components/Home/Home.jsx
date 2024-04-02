@@ -90,7 +90,7 @@ const Home = () => {
                         <h1>The World of Onwards</h1>
                     </div>
                     <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
-                    <div className="search">
+                    <div className="home-search">
                         <input
                             className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"
                             type="text"
