@@ -1,33 +1,38 @@
 import { useState, useEffect } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { formatTime } from '../../core/tools/formatTime';
 
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
+import Popup from '../Elements/Popup/Popup';
 
 import './index.css';
+
 
 const Station = () => {
     const [stations, setStations] = useState([]);
     const [station, setStation] = useState(null);
-
     const [startingRides, setStartingRides] = useState([]);
     const [endingRides, setEndingRides] = useState([]);
     const [searchParams] = useSearchParams();
+    const [selectedRide, setSelectedRide] = useState('');
 
-    const [selectedRide, setSelectedRide] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
     const stationId = parseInt(searchParams.get('id'));
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getStations = async () => {
             try {
                 const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
                 if (response.status === 200) {
-                    const station = response.data.stations.find((station) => station.id == stationId);
+                    const station = response.data.stations.find((station) => station.id === stationId);
                     setStations(response.data);
                     setStation(station);
                 } else {
@@ -64,6 +69,16 @@ const Station = () => {
         selectedRide === rideId ? setSelectedRide('') : setSelectedRide(rideId);
     };
 
+    const handleProceed = () => {
+        console.log('Proceed', selectedRide);
+        if (!selectedRide) {
+            setPopupMessage('Please select a ride to proceed');
+            setShowPopup(true);
+            return;
+        }
+        navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`);
+    };
+
     if (station)
         return (
             <>
@@ -74,27 +89,27 @@ const Station = () => {
                     <div className="header-text">
                         <h1>{station.name}</h1>
                         <h3>
-                            {station.location} - {station.active ? 'Active' : 'Inactive'}
+                            {`${station.location}, Lebanon`} - {station.active ? 'Active' : 'Inactive'}
                         </h3>
                         <p>Opens at {formatTime(station.opening_time)}</p>
                         <p>Closes at {formatTime(station.closing_time)}</p>
                     </div>
                     <div className="header-icons flex column center">
                         <div className="rating">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                         </div>
                         <div className="facilities">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
+                            <i className="fa-regular fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -103,7 +118,7 @@ const Station = () => {
                 </div>
                 {startingRides.length > 0 ? (
                     startingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide}></Ridecard>
+                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide} stationName={station.name}></Ridecard>
                     ))
                 ) : (
                     <p>No rides found</p>
@@ -112,15 +127,16 @@ const Station = () => {
                     <h2 className="bold">Incoming Rides</h2>
                 </div>
                 {endingRides.length > 0 ? (
-                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>)
                 ) : (
                     <p>No rides found</p>
                 )}
                 <div className="proceed">
                     <div className="proceed-btn-container flex center ">
-                        <button className="proceed-btn primary-bg white-text bold">Book Now</button>
+                        <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>Book Now</button>
                     </div>
                 </div>
+                {showPopup && <Popup message={popupMessage} handleContinue={() => setShowPopup(false)}></Popup>}
             </>
         );
 };

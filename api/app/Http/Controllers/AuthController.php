@@ -32,10 +32,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        $user = auth()->user();
+
+        return response()->json([
+            'token' => $token,
+        ]);
     }
 
-     /**
+    /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -63,7 +67,6 @@ class AuthController extends Controller
         $token = auth()->login($user);
 
         return response()->json([
-            'lat' => $user,
             'token' => $token,
         ], 201);
     }
