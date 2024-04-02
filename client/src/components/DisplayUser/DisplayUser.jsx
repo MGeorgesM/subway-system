@@ -13,7 +13,7 @@ const DisplayUser = () => {
       const filteredUsers = response.data.users.filter(user => user.role_id === 1);
       setUsers(filteredUsers);
     } catch (error) {
-      console.error('Error fetching users:', error.response.data.message);
+      console.error('Error fetching users:', error.response);
     }
   };
 
@@ -30,7 +30,8 @@ const DisplayUser = () => {
             <th>ID</th>
             <th>Full Name</th>
             <th>Email</th>
-            <th>Location</th>
+            <th>Lat</th>
+            <th>Lng</th>
             <th>Balance</th>
           </tr>
         </thead>
@@ -40,7 +41,8 @@ const DisplayUser = () => {
               <td>{user.id}</td>
               <td>{user.first_name} {user.last_name}</td>
               <td>{user.email}</td>
-              <td>{user.location}</td>
+              <td>{user.lat}</td>
+              <td>{user.lng}</td>
               <td>{user.coins_balance} $</td>
             </tr>
           ))}
