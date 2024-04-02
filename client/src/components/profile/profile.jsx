@@ -6,6 +6,7 @@ import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { sendRequest } from "../../core/tools/apiRequest";
 import { requestMethods } from "../../core/tools/apiRequestMethods";
+// import test from "../../../public/images/Assets";
 
 function Profile() {
   const [user, setUser] = useState("");
@@ -16,9 +17,11 @@ function Profile() {
   const [activeButton, setActiveButton] = useState("userReviews");
   const [isEditing, setIsEditing] = useState(false);
   const [image, setImage] = useState(null);
+  const [reviews, setReviews] = useState("");
 
   useEffect(() => {
     getUserInfo();
+    getUserReviews();
   }, []);
 
   const handleClick = (button) => {
@@ -35,7 +38,6 @@ function Profile() {
     try {
       const response = await sendRequest(requestMethods.GET, `/users/get`);
       if (response.status !== 200) {
-        console.log("error");
         throw new Error(
           `Failed to fetch user data. Status: ${response.status}`
         );
@@ -52,6 +54,26 @@ function Profile() {
       }
     } catch (error) {
       console.error("Error fetching data:", error.message);
+    }
+  };
+
+  const getUserReviews = async () => {
+    try {
+      const response = await sendRequest(requestMethods.GET, "/reviews/user");
+      if (response.status !== 200) {
+        throw new Error(
+          `Failed to fetch user reviews. Status: ${response.status}`
+        );
+      }
+      const data = response.data;
+      if (data) {
+        setReviews(data);
+        console.log(data);
+      } else {
+        console.log("Empty response data");
+      }
+    } catch (error) {
+      console.log("Error fetching data:", error.message);
     }
   };
 
@@ -117,7 +139,7 @@ function Profile() {
       {isEditing && (
         <div className="is-editting">
           <div className="edit-inputs">
-            {image && <img src={image} alt="User" />}
+            {image && <img src={`${image}`} alt="User" />}
             <input
               type="file"
               accept="image/*"
