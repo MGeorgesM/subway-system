@@ -16,7 +16,7 @@ const Welcome = () => {
             </div>
             <div className="welcome-btns flex center">
                 <button className="primary-btn border-radius-m" onClick={() => navigate('/auth')}>
-                    Sign Up
+                    Sign In
                 </button>
                 <button className="clicked secondary border-radius-m bold" onClick={() => navigate('/browse')}>
                     Browse
