@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
@@ -45,7 +47,7 @@ const BranchManagement = () => {
     try {
       const response = await sendRequest(requestMethods.DELETE, `/users/delete/${branchId}`);
       console.log('Branch deleted:', response.data.message);
-      fetchBranches(); // Refetch branches after successful delete
+      fetchBranches();
     } catch (error) {
       console.error('Error deleting branch:', error.response.data.message);
     }
@@ -70,13 +72,12 @@ const BranchManagement = () => {
               <td>
                 <button className='activate-btn' onClick={() => handleActive(branch.id)}>Activate</button>
                 <button className='shutdown-btn' onClick={() => handleShutDown(branch.id)}>Shut Down</button>
-                <button className='delete-btn' onClick={() => handleDelete(branch.id)}>Delete</button>
+                <button className='delete-btn' onClick={() => handleDelete(branch.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className="activate-btn">Add Branch</button>
     </div>
   );
 };

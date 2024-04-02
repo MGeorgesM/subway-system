@@ -39,7 +39,7 @@ const CoinRequest = () => {
 
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
-    return date.toLocaleDateString(); // Adjust as per your needs
+    return date.toLocaleDateString();
   };
 
   return (

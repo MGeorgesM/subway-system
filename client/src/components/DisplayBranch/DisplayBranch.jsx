@@ -29,7 +29,8 @@ const DisplayBranch = () => {
             <th>ID</th>
             <th>Branch Name</th>
             <th>Email</th>
-            <th>Location</th>
+            <th>Lat</th>
+            <th>Lng</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -39,7 +40,8 @@ const DisplayBranch = () => {
               <td>{branch.id}</td>
               <td>{branch.first_name} {branch.last_name}</td>
               <td>{branch.email}</td>
-              <td>{branch.location}</td>
+              <td>{branch.lat}</td>
+              <td>{branch.lng}</td>
               <td>{branch.active === 1 ? <span>Active</span> : <span>Not Active</span>}</td>
             </tr>
           ))}

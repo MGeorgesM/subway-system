@@ -10,6 +10,7 @@ import DisplayBranch from './components/DisplayBranch/DisplayBranch';
 import DisplayRide from './components/DisplayRide/DisplayRide';
 import DisplayStation from './components/DisplayStation/DisplayStation';
 import BranchManagement from './components/BranchManagement/BranchManagement';
+import Sidebar from './components/Sidebar/Sidebar';
 
 import './App.css';
 import './styles/colors.css';
@@ -19,18 +20,46 @@ import './styles/queries.css';
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/auth" element={<Authentication />} />
-                <Route path ="/location" element={<LocationForm />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/coin-request" element={<CoinRequest />} />
-                <Route path="/branch-invitation" element={<BranchInvitationForm />} />
-                <Route path="/display-users" element={<DisplayUser />} />
-                <Route path="/display-branches" element={<DisplayBranch />} />
-                <Route path="/display-rides" element={<DisplayRide />} />
-                <Route path="/display-stations" element={<DisplayStation />} />
-                <Route path="/branch-management" element={<BranchManagement />} />
-            </Routes>
+            <div className="app">
+                <Routes>
+                    <Route path="/auth" element={<Authentication />} />
+                    <Route path="/location" element={<LocationForm />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/admin-panel" element={<Sidebar />} />
+                </Routes>
+                <div className="content">
+                    <Routes>
+                        <Route path="/coin-request" element={<>
+                            <Sidebar />
+                            <CoinRequest />
+                        </>} />
+                        <Route path="/branch-invitation" element={<>
+                            <Sidebar />
+                            <BranchInvitationForm />
+                        </>} />
+                        <Route path="/display-users" element={<>
+                            <Sidebar />
+                            <DisplayUser />
+                        </>} />
+                        <Route path="/display-branches" element={<>
+                            <Sidebar />
+                            <DisplayBranch />
+                        </>} />
+                        <Route path="/display-rides" element={<>
+                            <Sidebar />
+                            <DisplayRide />
+                        </>} />
+                        <Route path="/display-stations" element={<>
+                            <Sidebar />
+                            <DisplayStation />
+                        </>} />
+                        <Route path="/branch-management" element={<>
+                            <Sidebar />
+                            <BranchManagement />
+                        </>} />
+                    </Routes>
+                </div>
+            </div>
         </BrowserRouter>
     );
 }
