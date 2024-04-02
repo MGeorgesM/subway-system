@@ -7,3 +7,11 @@
     height: 100%;
     width: 100%;
 }
+
+.popup-text p:last-child {
+    cursor: pointer;
+}
+
+.leaflet-tile {
+    border: 0px;
+}

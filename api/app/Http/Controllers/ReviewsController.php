@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Ticket;
+use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,6 +80,24 @@ class ReviewsController extends Controller
         return response()->json([
             'ride_rating' => $rideRating,
             'station_rating' => $stationRating,
+        ], 200);
+    }
+
+    public function getHighestRatedStation()
+    {
+        $highestRatedStation = Station::withAvg('reviews', 'rating')
+            ->orderByDesc('reviews_avg_rating')
+            ->first();
+
+
+        if (!$highestRatedStation) {
+            return response()->json(['message' => 'No reviews found for stations.'], 404);
+        }
+
+        return response()->json([
+            'id' => $highestRatedStation->id,
+            'name' => $highestRatedStation->name,
+            'rating' => $highestRatedStation->reviews_avg_rating,
         ], 200);
     }
 }

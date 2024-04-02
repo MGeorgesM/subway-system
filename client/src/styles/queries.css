@@ -1,5 +1,106 @@
-@media screen and (max-width:1344px) {}
+@media screen and (max-width:1344px) {
 
-@media screen and (max-width:944px) {}
+    .nav-elements,
+    .rides-container,
+    .ride-card {
+        width: 100%;
+        border-radius: 0;
+    }
 
-@media screen and (max-width:600px) {}
+    .footer {
+        padding: 0 32px;
+    }
+
+}
+
+@media screen and (max-width:944px) {
+    .footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .nav-list {
+        gap: unset;
+    }
+
+    .ride-card {
+        width: 100%;
+        height: 120px;
+        margin-bottom: 24px;
+    }
+
+    .name-rating,
+    .price-select {
+        width: unset;
+        flex-direction: column;
+    }
+
+    .name-rating h3 {
+        width: 100%;
+    }
+
+    .arrow {
+        width: 10%;
+    }
+
+    .arrow img {
+        width: 100%;
+    }
+
+    .ad {
+        padding: 12px;
+    }
+
+    .ad-text h1 {
+        font-size: 24px;
+    }
+
+    .ad-text h2 {
+        font-size: 20px;
+    }
+
+    .ad-text p {
+        font-size: 16px;
+    }
+
+
+}
+
+@media screen and (max-width:600px) {
+    .navbar {
+        padding: 32px;
+    }
+    .nav-link {
+        display: none;
+    }
+
+    .search input {
+        width: 90%;
+    }
+
+    .ride-card h3,
+    .ride-card p {
+        font-size: smaller;
+    }
+
+    .ride-card {
+        padding: 12px;
+    }
+
+    .recommendations {
+        padding: 64px 12px;
+        text-align: center;
+    }
+    .ad {
+        flex-direction: column;
+        height: auto;
+    }
+    .ad-text {
+        margin-bottom: 12px;
+    }
+
+    .ad img {
+      margin-top: 12px;
+    }
+}

@@ -3,26 +3,33 @@
 namespace App\Http\Controllers;
 use App\Models\CoinsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CoinRequestController extends Controller
 {
     public function requestCoin(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'amount' => 'required|numeric|min:1',
-        ]);
-
-        $coinRequest = CoinsRequest::create([ // Update model name here
-            'user_id' => $request->user_id,
-            'amount' => $request->amount,
-            'status' => 'pending', // Initial status is pending
-        ]);
-
-        return response()->json([
-            'message' => 'Coin request created successfully',
-            'coin_request' => $coinRequest
-        ], 201);
+        $user = Auth::user();
+        
+        if ($user) {
+            $request->validate([
+                'amount' => 'required|numeric|min:1',
+            ]);
+    
+            $coinRequest = CoinsRequest::create([
+                'user_id' => $user->id,
+                'amount' => $request->amount,
+                'status' => 'pending',
+            ]);
+    
+            return response()->json([
+                'message' => 'Coin request created successfully',
+                'coin_request' => $coinRequest
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
     }
 
     public function viewRequests()

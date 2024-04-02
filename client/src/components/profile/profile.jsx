@@ -18,6 +18,9 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [image, setImage] = useState(null);
   const [reviews, setReviews] = useState("");
+  const [requstCoins, setRequestCoins] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [coinsMessage, setCoinsMessage] = useState("");
 
   useEffect(() => {
     getUserInfo();
@@ -114,12 +117,44 @@ function Profile() {
     );
   }
 
+  const userRequestsCoins = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("amount", amount);
+
+      const response = await sendRequest(
+        requestMethods.POST,
+        "/coins-requests",
+        formData
+      );
+
+      if (response.status === 200) {
+        console.log("Requested amount is pending");
+        setCoinsMessage("Requested amount is pending");
+      } else {
+        console.log("Failed to request coins: ", response.data.message);
+        setCoinsMessage("Failed to request coins");
+      }
+    } catch (error) {
+      console.log("Error requesting coins: ", error.message);
+      setCoinsMessage("You can only use numbers");
+    }
+  };
+
   function editUser() {
     setIsEditing(true);
   }
 
   function closeEditUser() {
     setIsEditing(false);
+  }
+
+  function openRequestCoins() {
+    setRequestCoins(true);
+  }
+
+  function closeRequestCoins() {
+    setRequestCoins(false);
   }
 
   const handleImageChange = (e) => {
@@ -141,6 +176,7 @@ function Profile() {
           <div className="edit-inputs">
             {image && <img src={`${image}`} alt="User" />}
             <input
+              className="choose-image-button"
               type="file"
               accept="image/*"
               onChange={handleImageChange}
@@ -171,17 +207,37 @@ function Profile() {
           </div>
         </div>
       )}
-      <div className="profile-header">
-        <div className="left-header">
-          <h1>Onwards</h1>
-          <p>Subway System</p>
-        </div>
 
-        <div className="right-header">
-          <p>About Us</p>
-          <button className="general-btn">Sign In</button>
+      {requstCoins && <div className="blurred"></div>}
+      {requstCoins && (
+        <div className="is-requesting-coins">
+          <div>
+            <h1>Request Coins</h1>
+          </div>
+
+          <div className="request-coins-wrapper">
+            <input
+              placeholder="Amout"
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
+            ></input>
+          </div>
+
+          {coinsMessage && <p className="coins-message">{coinsMessage}</p>}
+
+          <div className="editting-buttons">
+            <button className="general-btn" onClick={userRequestsCoins}>
+              Confirm
+            </button>
+            <button className="general-btn" onClick={closeRequestCoins}>
+              Close
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
+      <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
         <img src={`${image}`} alt="User" />
@@ -189,7 +245,7 @@ function Profile() {
           <div className="personal-info">
             <p>
               <b className="person-info-first-name">
-                {user.first_name} {user.last_name}{" "}
+                {user.first_name} {user.last_name}
                 <MdEdit className="edit-buttton" onClick={editUser} />
               </b>
             </p>
@@ -205,7 +261,9 @@ function Profile() {
             <p>
               <b>{user.coins_balance}</b>
             </p>
-            <button className="general-btn">Request Coins</button>
+            <button className="general-btn" onClick={openRequestCoins}>
+              Request Coins
+            </button>
           </div>
         </div>
       </div>
@@ -286,19 +344,6 @@ function Profile() {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="profile-footer">
-        <div className="footer-icons">
-          <FaTwitter className="icon" />
-          <FaFacebook className="icon" />
-          <FaInstagram className="icon" />
-          <p>Subway System App - SE Factory - April 2024</p>
-        </div>
-        <div className="right-footer">
-          <p>Careers</p>
-          <p>About Us</p>
-        </div>
       </div>
     </div>
   );

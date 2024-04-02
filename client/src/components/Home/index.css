@@ -1,0 +1,77 @@
+.main {
+    height: 100vh;
+    width: 100%;
+}
+
+
+.leaflet-container {
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+}
+
+.search>input {
+    width: 600px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    margin-bottom: 64px;
+}
+
+.search>input::placeholder,
+.search>input {
+    color: #ED941B;
+}
+
+.recommendations {
+    width: 100%;
+    padding: 96px 96px 48px 96px;
+}
+
+.text {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.ads {
+    width: 100%;
+    padding-bottom: 96px;
+}
+
+.ad-img {
+    height: 240px;
+}
+
+.ad-img img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad {
+    height: 400px;
+    max-width: 1050px;
+    gap: 24px;
+}
+
+.ad-text {
+    max-width: 700px;
+    padding: 24px 16px;
+}
+
+.ad-text h1 {
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.ad-text h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.ad-text p {
+    font-size: 20px;
+    line-height: 1.25;
+    font-weight: 400;
+}

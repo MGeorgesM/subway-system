@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
+
+import { Icon } from 'leaflet';
+import { formatTime } from '../../core/tools/formatTime';
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
-import { Icon } from 'leaflet';
+
 
 const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-    console.log('locationTextInput', locationTextInput);
-    const [userLocation, setUserLocation] = useState(null);
-    // const [searchQuery, setSearchQuery] = useState('');
-    
-    // useEffect(() => {
-        //     userLocation && console.log('userLocation', userLocation);
-        // }, [userLocation]);
-        
-        useEffect(() => {
-            if (locationTextInput) {
+    const [userLocation, setUserLocation] = useState(
+        JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
+    );
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (locationTextInput) {
             handleInput();
         }
-    }, [locationTextInput]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [locationTextInput, markersInput]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
@@ -27,7 +29,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
                     setUserLocation([lat, lng]);
-                    saveLocationCoordinates([lat, lng]);
+                    saveLocationCoordinates && saveLocationCoordinates([lat, lng]);
                 },
             },
             locationTextInput
@@ -48,9 +50,9 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             const data = await response.json();
 
             if (data.length > 0) {
-                console.log('data',data[0])
+                console.log('data', data[0]);
                 const { lat, lon } = data[0];
-                saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
+                saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
             } else {
                 console.log('No data found');
@@ -60,16 +62,12 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
         }
     };
 
-    // const handleInputChange = (e) => {
-    //     setSearchQuery(e.target.value);
-    // };
-
     const customUserIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
         iconSize: [50, 50],
     });
 
-    const custommarkIcon = new Icon({
+    const customMarkIcon = new Icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
         iconSize: [32, 32],
     });
@@ -82,18 +80,27 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
             </div> */}
             <MapContainer
                 center={userLocation ? userLocation : [33.88863, 35.49548]}
+                scrollWheelZoom={false}
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
-
                 {markersInput &&
-                    markersInput.map((mark) => (
-                        <Marker position={mark.location} key={mark?.name} icon={custommarkIcon}>
-                            <Popup>{mark?.name}</Popup>
+                    markersInput.stations &&
+                    markersInput.stations.map((station) => (
+                        <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
+                            <Popup>
+                                <div className='popup-text'>
+                                    <h3>{station.name}</h3>
+                                    <p>{station.location}</p>
+                                    <p>Open from {formatTime(station.opening_time)} til {formatTime(station.closing_time)}</p>
+                                    <p onClick={() => navigate(`/station?id=${station.id}`)}>More Info</p>
+                                </div>
+                            </Popup>
                         </Marker>
                     ))}
+                ;
                 <LocationMarker />
             </MapContainer>
         </>
