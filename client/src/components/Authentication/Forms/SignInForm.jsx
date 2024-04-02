@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 
 import '../index.css';
 
-const SignInForm = ({ switchHandler, handleLogin, apiError }) => {
+const SignInForm = ({ switchHandler, handleLogin, error }) => {
     const [formdata, setFormData] = useState({});
 
     const handleSubmit = (e) => {
@@ -18,10 +18,7 @@ const SignInForm = ({ switchHandler, handleLogin, apiError }) => {
     };
 
     return (
-        <div className="container box-shadow light-gray-bg border-radius flex center column">
-            <div className="logo-form">
-                <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
-            </div>
+        <>
             <form className="flex column" onSubmit={handleSubmit}>
                 <div>
                     <label className="light-text">Email:</label>
@@ -45,7 +42,7 @@ const SignInForm = ({ switchHandler, handleLogin, apiError }) => {
                         required
                     />
                 </div>
-                <div className="flex center validation-display">{apiError && <p>{apiError}</p>}</div>
+                <div className="flex center validation-display">{error && <p>{error}</p>}</div>
                 <button
                     className="login-btn input-btn-lg primary-bg white-text box-shadow border-radius-l"
                     type="submit"
@@ -59,7 +56,7 @@ const SignInForm = ({ switchHandler, handleLogin, apiError }) => {
                     Register Now
                 </span>
             </p>
-        </div>
+        </>
     );
 };
 

@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import StarsRating from "../../Elements/StarsRating/StarsRating";
 
-const Ad = ({ count, avgRating, name }) => {
+import './index.css';
+
+const Ad = ({ count, avgRating, name, stationId }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="ad flex center center dark-text">
             <div className={`ad-img ${count === 2 && 'hidden'}`}>
@@ -8,7 +14,9 @@ const Ad = ({ count, avgRating, name }) => {
             </div>
             <div className="ad-text flex column">
                 <h1>{count === 1 ? 'Your Nearest Station' : 'Our Most Popular'}</h1>
-                <h2>
+                <h2 onClick={()=>{navigate(`/station?id=${stationId}`)
+
+                }}>
                     {name}
                 </h2>
                 <p>

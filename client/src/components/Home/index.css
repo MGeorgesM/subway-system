@@ -3,6 +3,25 @@
     width: 100%;
 }
 
+.welcome-home {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    color: #ED941B;
+    z-index: 999;
+}
+
+.welcome-home h1 {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.welcome-home h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
 
 .leaflet-container {
     border-top-right-radius: unset;
@@ -22,6 +41,7 @@
 .search>input::placeholder,
 .search>input {
     color: #ED941B;
+    font-weight: 700;;
 }
 
 .recommendations {

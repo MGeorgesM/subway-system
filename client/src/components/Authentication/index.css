@@ -4,7 +4,6 @@
 
 .form-component {
     height: 100vh;
-    background-color: #980511;
 }
 
 .location-form {
@@ -52,10 +51,12 @@
 
 .validation-display {
     height: 48px;
-    color: #f03e3eed;
+    color: #980511;
 }
 
 .validation-display>p {
+    margin-top: 0px;
+    margin-bottom: 16px;
     font-size: 16px;
 }
 

@@ -81,43 +81,49 @@ const Home = () => {
         setLocation(userLocation);
     }, []);
 
-    return (
-        <>
-            <div className="main white-bg flex column">
-                <Map
-                    locationTextInput={search}
-                    saveLocationCoordinates={setLocation}
-                    markersInput={stations}
-                    userLocation={userLocation}
-                    setUserLocation={setUserLocation}
-                ></Map>
-                <div className="search">
-                    <input
-                        className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"
-                        type="text"
-                        placeholder="Search for nearest stations"
-                        onKeyUp={(e) => e.key === 'Enter' && setSearch(e.target.value)}
-                    ></input>
+    if (nearestStation && topStation)
+        return (
+            <>
+                <div className="main white-bg flex column">
+                    <div className="welcome-home">
+                        <h2>Step Into</h2>
+                        <h1>The World of Onwards</h1>
+                    </div>
+                    <Map locationTextInput={search} saveLocationCoordinates={setLocation} markersInput={stations}></Map>
+                    <div className="search">
+                        <input
+                            className="input-btn-lg border-dark border-radius-l off-white-bg-trsp"
+                            type="text"
+                            placeholder="Search for available stations..."
+                            onKeyUp={(e) => e.key === 'Enter' && setSearch(e.target.value)}
+                        ></input>
+                    </div>
                 </div>
-            </div>
-            <div className="recommendations white-bg">
-                <div className="text">
-                    <h1 className="bold">Recommended Stations</h1>
-                    <h2>Discover top picks for your journey ahead</h2>
+                <div className="recommendations white-bg">
+                    <div className="text">
+                        <h1 className="bold">Recommended Stations</h1>
+                        <h2>Discover top picks for your journey ahead</h2>
+                    </div>
                 </div>
-            </div>
-            <div className="stations flex center"></div>
-            <div className="ads flex column center white-bg">
-                <Ad
-                    count={1}
-                    adTypeName={'Your Nearest Station'}
-                    avgRating={nearestStation?.rating}
-                    name={nearestStation?.name}
-                />
-                <Ad count={2} adTypeName={'Our Most Popular'} avgRating={topStation?.rating} name={topStation?.name} />
-            </div>
-        </>
-    );
+                <div className="stations flex center"></div>
+                <div className="ads flex column center white-bg">
+                    <Ad
+                        count={1}
+                        adTypeName={'Your Nearest Station'}
+                        avgRating={nearestStation.rating}
+                        name={nearestStation.name}
+                        stationId={nearestStation.id}
+                    />
+                    <Ad
+                        count={2}
+                        adTypeName={'Our Most Popular'}
+                        avgRating={topStation.rating}
+                        name={topStation.name}
+                        stationId={topStation.id}
+                    />
+                </div>
+            </>
+        );
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-.popup {
+.popupmain {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,14 +8,14 @@
 
 }
 
-.popup-inner {
+.popupmain-inner {
     height: 50vh;
     width: 30%;
     min-width: 450px;
     overflow: hidden;
 }
 
-.popup-text {
+.popupmain-text {
     height: 60%;
 }
 
@@ -26,13 +26,13 @@
 }
 
 
-.popup-text h1 {
+.popupmain-text h1 {
     font-size: 36px;
     padding-bottom: 8px;
     text-align: center;
 }
 
-.popup-text p {
+.popupmain-text p {
     padding: 8px;
     margin-top: 10%;
     font-size: 24px;
@@ -41,7 +41,7 @@
 }
 
 
-.popup-btn:hover {
+.popupmain-btn:hover {
     background-color: #52796F;
     color: #f8f9fa;
     cursor: pointer;

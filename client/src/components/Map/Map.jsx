@@ -9,13 +9,16 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 
 
-const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, userLocation, setUserLocation }) => {
-    // const storedLocation = JSON.parse(localStorage.getItem('location'));
-    // const defaultLocation = [33.88863, 35.49548];
-
+const Map = ({ locationTextInput, markersInput, saveLocationCoordinates}) => {
     // const [userLocation, setUserLocation] = useState(
-    //     storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+    //     JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
     // );
+    const storedLocation = JSON.parse(localStorage.getItem('location'));
+    const defaultLocation = [33.88863, 35.49548];
+
+    const [userLocation, setUserLocation] = useState(
+        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+    );
 
     const navigate = useNavigate();
 
@@ -67,13 +70,13 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, userLoc
     };
 
     const customUserIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
-        iconSize: [50, 50],
+        iconUrl: './images/assets/user-marker.svg',
+        iconSize: [30, 30],
     });
 
     const customMarkIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
-        iconSize: [32, 32],
+        iconUrl: './images/assets/station-marker.svg',
+        iconSize: [30, 30],
     });
 
     return (
@@ -96,10 +99,9 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, userLoc
                         <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
                             <Popup>
                                 <div className='popup-text'>
-                                    <h3>{station.name}</h3>
+                                    <h3 onClick={() => navigate(`/station?id=${station.id}`)}>{station.name}</h3>
                                     <p>{station.location}</p>
-                                    <p>Open from {formatTime(station.opening_time)} til {formatTime(station.closing_time)}</p>
-                                    <p onClick={() => navigate(`/station?id=${station.id}`)}>More Info</p>
+                                    <p>{formatTime(station.opening_time)} till {formatTime(station.closing_time)}</p>
                                 </div>
                             </Popup>
                         </Marker>

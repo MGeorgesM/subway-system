@@ -89,7 +89,7 @@ const Station = () => {
                     <div className="header-text">
                         <h1>{station.name}</h1>
                         <h3>
-                            {station.location} - {station.active ? 'Active' : 'Inactive'}
+                            {`${station.location}, Lebanon`} - {station.active ? 'Active' : 'Inactive'}
                         </h3>
                         <p>Opens at {formatTime(station.opening_time)}</p>
                         <p>Closes at {formatTime(station.closing_time)}</p>
@@ -118,7 +118,7 @@ const Station = () => {
                 </div>
                 {startingRides.length > 0 ? (
                     startingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide}></Ridecard>
+                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide} stationName={station.name}></Ridecard>
                     ))
                 ) : (
                     <p>No rides found</p>
@@ -127,7 +127,7 @@ const Station = () => {
                     <h2 className="bold">Incoming Rides</h2>
                 </div>
                 {endingRides.length > 0 ? (
-                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride}></Ridecard>)
+                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>)
                 ) : (
                     <p>No rides found</p>
                 )}

@@ -1,5 +1,4 @@
 const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData }) => {
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -9,10 +8,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
         handleSignup(formData);
     };
     return (
-        <div className="container box-shadow light-gray-bg border-radius flex center column">
-            <div className="logo-form">
-                <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
-            </div>
+        <>
             <form className="flex column center" onSubmit={handleSubmit}>
                 <div>
                     <label className="light-text">First Name:</label>
@@ -72,7 +68,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                     Sign In
                 </span>
             </p>
-        </div>
+        </>
     );
 };
 
