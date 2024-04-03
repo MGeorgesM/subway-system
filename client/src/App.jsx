@@ -11,7 +11,6 @@ import Profile from './components/Profile/Profile';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
-import PassengerRoutes from './components/ProtectedRoutes/PassengerRoutes';
 
 import './App.css';
 import './styles/colors.css';
