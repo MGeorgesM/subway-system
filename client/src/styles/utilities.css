@@ -103,6 +103,10 @@ button {
     border: 1px solid #30302F;
 }
 
+.border-red {
+    border: #CE091B 1px solid;
+}
+
 .border-radius {
     border-radius: 8px;
 }
@@ -127,6 +131,19 @@ button {
     font-weight: 700;
 }
 
+.primary-btn {
+    background-color: #CE091B;
+    color:white;
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.primary-btn:hover {
+    background-color: #980511;
+}
+
 .clicked {
     color: #CE091B;
     background-color: #EFEFEF;
@@ -134,7 +151,7 @@ button {
 }
 
 .clicked:hover {
-    color: #DEE2E6;
+    background-color: #D1D0D1;
 }
 
 .input-btn-lg {

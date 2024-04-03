@@ -1,13 +1,21 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
+import Navbar from './components/Navbar/Navbar';
+import Welcome from './components/Welcome/Welcome';
+import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home';
+import Station from './components/Station/Station';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
-import Profile from "./components/profile/profile";
+import Profile from './components/profile/profile';
 import CoinRequest from './components/AdminCoinRequest/CoinRequest';
 import BranchInvitationForm from './components/BranchInvitation/BranchInvitationForm';
 import DisplayUser from './components/DisplayUser/DisplayUser';
 import DisplayBranch from './components/DisplayBranch/DisplayBranch';
 import DisplayRide from './components/DisplayRide/DisplayRide';
+import Ticket from './components/Ticket/Ticket';
 import DisplayStation from './components/DisplayStation/DisplayStation';
 import BranchManagement from './components/BranchManagement/BranchManagement';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -17,51 +25,122 @@ import './styles/colors.css';
 import './styles/utilities.css';
 import './styles/queries.css';
 
-function App() {
+const App = () => {
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const location = useLocation();
+
+    const hiddenRoutes = ['/auth', '/ticket', '/location'];
+
+    const isRouteHidden = () => {
+        return hiddenRoutes.includes(location.pathname);
+    };
+
+    const updateNavbarVisibility = () => {
+        setIsNavbarVisible(!isRouteHidden());
+    };
+
+    useEffect(() => {
+        updateNavbarVisibility();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location.pathname]);
+
+    const getNavbarBgColor = () => {
+        if (location.pathname === '/') {
+            return 'black-bg';
+        }
+    };
+
     return (
-        <BrowserRouter>
+        <>
+            {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
             <div className="app">
                 <Routes>
+                    <Route path="/" element={<Welcome />} />
+                    <Route path="/browse" element={<Home />} />
                     <Route path="/auth" element={<Authentication />} />
                     <Route path="/location" element={<LocationForm />} />
+                    <Route path="/station" element={<Station />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/ticket" element={<Ticket />} />
                     <Route path="/admin-panel" element={<Sidebar />} />
+                    <Route path="*" element={<Welcome />} />
                 </Routes>
-                <div className="content">
-                    <Routes>
-                        <Route path="/coin-request" element={<>
-                            <Sidebar />
-                            <CoinRequest />
-                        </>} />
-                        <Route path="/branch-invitation" element={<>
-                            <Sidebar />
-                            <BranchInvitationForm />
-                        </>} />
-                        <Route path="/display-users" element={<>
-                            <Sidebar />
-                            <DisplayUser />
-                        </>} />
-                        <Route path="/display-branches" element={<>
-                            <Sidebar />
-                            <DisplayBranch />
-                        </>} />
-                        <Route path="/display-rides" element={<>
-                            <Sidebar />
-                            <DisplayRide />
-                        </>} />
-                        <Route path="/display-stations" element={<>
-                            <Sidebar />
-                            <DisplayStation />
-                        </>} />
-                        <Route path="/branch-management" element={<>
-                            <Sidebar />
-                            <BranchManagement />
-                        </>} />
-                    </Routes>
-                </div>
+                {isNavbarVisible && <Footer />}
             </div>
-        </BrowserRouter>
+            <Routes>
+                <Route path="/auth" element={<Authentication />} />
+                <Route path="/location" element={<LocationForm />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
+            <div className="content">
+                <Routes>
+                    <Route
+                        path="/coin-request"
+                        element={
+                            <>
+                                <Sidebar />
+                                <CoinRequest />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/branch-invitation"
+                        element={
+                            <>
+                                <Sidebar />
+                                <BranchInvitationForm />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/display-users"
+                        element={
+                            <>
+                                <Sidebar />
+                                <DisplayUser />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/display-branches"
+                        element={
+                            <>
+                                <Sidebar />
+                                <DisplayBranch />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/display-rides"
+                        element={
+                            <>
+                                <Sidebar />
+                                <DisplayRide />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/display-stations"
+                        element={
+                            <>
+                                <Sidebar />
+                                <DisplayStation />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/branch-management"
+                        element={
+                            <>
+                                <Sidebar />
+                                <BranchManagement />
+                            </>
+                        }
+                    />
+                </Routes>
+            </div>
+        </>
     );
-}
+};
 
 export default App;

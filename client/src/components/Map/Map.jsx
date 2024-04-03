@@ -5,17 +5,21 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 
-const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
-    console.log('locationTextInput', locationTextInput);
-    const [userLocation, setUserLocation] = useState(null);
-    // const [searchQuery, setSearchQuery] = useState('');
-    
-    // useEffect(() => {
-        //     userLocation && console.log('userLocation', userLocation);
-        // }, [userLocation]);
-        
-        useEffect(() => {
-            if (locationTextInput) {
+const Map = ({ locationTextInput, markersInput, saveLocationCoordinates}) => {
+    // const [userLocation, setUserLocation] = useState(
+    //     JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
+    // );
+    const storedLocation = JSON.parse(localStorage.getItem('location'));
+    const defaultLocation = [33.88863, 35.49548];
+
+    const [userLocation, setUserLocation] = useState(
+        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+    );
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (locationTextInput) {
             handleInput();
         }
     }, [locationTextInput]);
@@ -65,13 +69,13 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     // };
 
     const customUserIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
-        iconSize: [50, 50],
+        iconUrl: './images/assets/user-marker.svg',
+        iconSize: [30, 30],
     });
 
-    const custommarkIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
-        iconSize: [32, 32],
+    const customMarkIcon = new Icon({
+        iconUrl: './images/assets/station-marker.svg',
+        iconSize: [30, 30],
     });
 
     return (
@@ -89,9 +93,16 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
 
                 {markersInput &&
-                    markersInput.map((mark) => (
-                        <Marker position={mark.location} key={mark?.name} icon={custommarkIcon}>
-                            <Popup>{mark?.name}</Popup>
+                    markersInput.stations &&
+                    markersInput.stations.map((station) => (
+                        <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
+                            <Popup>
+                                <div className='popup-text'>
+                                    <h3 onClick={() => navigate(`/station?id=${station.id}`)}>{station.name}</h3>
+                                    <p>{station.location}</p>
+                                    <p>{formatTime(station.opening_time)} till {formatTime(station.closing_time)}</p>
+                                </div>
+                            </Popup>
                         </Marker>
                     ))}
                 <LocationMarker />
