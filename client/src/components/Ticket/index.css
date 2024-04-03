@@ -1,8 +1,15 @@
 .ticket-main {
     height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75),
+            rgba(255, 255, 255, 0.5)),
+        url(../../../public/images/assets/hero.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .ride-details-container {
+    background-color: #EFEFEF;
     height: 600px;
     min-width: 440px;
 }
@@ -13,7 +20,7 @@
 }
 
 
-.ride-details-title h1{
+.ride-details-title h1 {
     padding-bottom: 16px;
     font-size: 24px;
 }
@@ -60,6 +67,7 @@
     font-size: 16px;
     border: none;
     text-align: center;
+    background-color: #f7f7f7;
 
 }
 
@@ -84,7 +92,7 @@
 }
 
 .total h2 {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .checkout {
@@ -92,10 +100,10 @@
     gap: 12px;
 }
 
-.cancel-btn, .checkout-btn {
+.cancel-btn,
+.checkout-btn {
     text-align: center;
     font-size: 16px;
     height: 40px;
     width: 120px;
 }
-

@@ -7,9 +7,11 @@ import Welcome from './components/Welcome/Welcome';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Station from './components/Station/Station';
+import Profile from './components/Profile/Profile';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
+import PassengerRoutes from './components/ProtectedRoutes/PassengerRoutes';
 
 import './App.css';
 import './styles/colors.css';
@@ -44,19 +46,18 @@ const App = () => {
     return (
         <>
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
-
             <Routes>
                 <Route path="/" element={<Welcome />} />
                 <Route path="/browse" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
-                {/* <Route path="/profile" element={<Profile />} /> */}
-                <Route path="/ticket" element={<Ticket />} />
-                {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
                 <Route path="*" element={<Welcome />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/ticket" element={<Ticket />} />
             </Routes>
             {isNavbarVisible && <Footer />}
+            {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
             {/* <div className="content">
                 <Routes>
                     <Route

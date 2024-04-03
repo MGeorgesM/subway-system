@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
+import Loading from '../Elements/Loading/Loading';
 
 const Station = () => {
     const [stations, setStations] = useState([]);
@@ -23,6 +24,9 @@ const Station = () => {
 
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [isMapLoading, setIsMapLoading] = useState(true);
 
     const stationId = parseInt(searchParams.get('id'));
 
@@ -36,6 +40,7 @@ const Station = () => {
                     const station = response.data.stations.find((station) => station.id === stationId);
                     setStations(response.data);
                     setStation(station);
+                    setIsLoading(false);
                 } else {
                     throw new Error();
                 }
@@ -77,75 +82,78 @@ const Station = () => {
             setShowPopup(true);
             return;
         }
-        navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`);
+        const token = localStorage.getItem('token');
+        token ? navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`) : navigate('/auth');
     };
 
-    if (station)
-        return (
-            <>
-                <div className="main-station white-bg flex column">
-                    <Map locationTextInput={station.location} markersInput={stations}></Map>
+    if (station) return (
+        <>
+            <div className="main-station white-bg flex column">
+                <Map
+                    locationTextInput={station.location}
+                    markersInput={stations}
+                    setIsMapLoading={setIsMapLoading}
+                    showUserLocation={false}
+                ></Map>
+            </div>
+            <div className="section-header flex space-between">
+                <div className="header-text">
+                    <h1>{station.name}</h1>
+                    <h3>
+                        {`${station.location}, Lebanon`} - {station.active ? 'Active' : 'Inactive'}
+                    </h3>
+                    <p>Opens at {formatTime(station.opening_time)}</p>
+                    <p>Closes at {formatTime(station.closing_time)}</p>
                 </div>
-                <div className="section-header flex space-between">
-                    <div className="header-text">
-                        <h1>{station.name}</h1>
-                        <h3>
-                            {`${station.location}, Lebanon`} - {station.active ? 'Active' : 'Inactive'}
-                        </h3>
-                        <p>Opens at {formatTime(station.opening_time)}</p>
-                        <p>Closes at {formatTime(station.closing_time)}</p>
+                <div className="header-icons flex column center">
+                    <div className="rating">
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                     </div>
-                    <div className="header-icons flex column center">
-                        <div className="rating">
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                        </div>
-                        <div className="facilities">
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                        </div>
-                    </div>
-                </div>
-                <div className="section-header">
-                    <h2 className="bold">Outgoing Rides</h2>
-                </div>
-                {startingRides.length > 0 ? (
-                    startingRides.map((ride) => (
-                        <Ridecard
-                            key={ride.id}
-                            ride={ride}
-                            addRide={addRide}
-                            selectedRide={selectedRide}
-                            stationName={station.name}
-                        ></Ridecard>
-                    ))
-                ) : (
-                    <p>No rides found</p>
-                )}
-                <div className="section-header">
-                    <h2 className="bold">Incoming Rides</h2>
-                </div>
-                {endingRides.length > 0 ? (
-                    endingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>
-                    ))
-                ) : (
-                    <p>No rides found</p>
-                )}
-                <div className="proceed">
-                    <div className="proceed-btn-container flex center ">
-                        <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>
-                            Book Now
-                        </button>
+                    <div className="facilities">
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                        <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                     </div>
                 </div>
-                {showPopup && <Popup message={popupMessage} handleContinue={() => setShowPopup(false)}></Popup>}
-            </>
-        );
+            </div>
+            <div className="section-header">
+                <h2 className="bold">Outgoing Rides</h2>
+            </div>
+            {startingRides.length > 0 ? (
+                startingRides.map((ride) => (
+                    <Ridecard
+                        key={ride.id}
+                        ride={ride}
+                        addRide={addRide}
+                        selectedRide={selectedRide}
+                        stationName={station.name}
+                    ></Ridecard>
+                ))
+            ) : (
+                <p>No Rides Currently Available</p>
+            )}
+            <div className="section-header">
+                <h2 className="bold">Incoming Rides</h2>
+            </div>
+            {endingRides.length > 0 ? (
+                endingRides.map((ride) => <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>)
+            ) : (
+                <p>No Rides Currently Available</p>
+            )}
+            <div className="proceed">
+                <div className="proceed-btn-container flex center ">
+                    <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>
+                        Book Now
+                    </button>
+                </div>
+            </div>
+            {showPopup && <Popup message={popupMessage} handleContinue={() => setShowPopup(false)}></Popup>}
+        </>
+    );
 };
 export default Station;
