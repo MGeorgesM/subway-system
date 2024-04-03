@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 export const useNavBarLogic = () => {
     const [scrolled, setScrolled] = useState(false);

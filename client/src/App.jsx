@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Elements/Navbar/Navbar';
 import Welcome from './components/Welcome/Welcome';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Elements/Footer/Footer';
 import Home from './components/Home/Home';
 import Station from './components/Station/Station';
 import Profile from './components/Profile/Profile';
