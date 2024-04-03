@@ -23,7 +23,7 @@ const App = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const location = useLocation();
 
-  const hiddenRoutes = ["/auth", "/ticket", "/location"];
+  const hiddenRoutes = ["/auth", "/ticket", "/location", "/GetAllStations"];
 
   const isRouteHidden = () => {
     return hiddenRoutes.includes(location.pathname);
@@ -53,7 +53,7 @@ const App = () => {
         <Route path="/auth" element={<Authentication />} />
         <Route path="/location" element={<LocationForm />} />
         <Route path="/station" element={<Station />} />
-        <Route path="*" element={<Welcome />} />
+        {/* <Route path="*" element={<Welcome />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/ticket" element={<Ticket />} />
       </Routes>

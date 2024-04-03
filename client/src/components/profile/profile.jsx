@@ -23,18 +23,6 @@ function Profile() {
   const [amount, setAmount] = useState("");
   const [coinsMessage, setCoinsMessage] = useState("");
 
-  const CustomPrevArrow = (props) => (
-    <button {...props} className="slick-prev">
-      Previous
-    </button>
-  );
-
-  const CustomNextArrow = (props) => (
-    <button {...props} className="slick-next">
-      Next
-    </button>
-  );
-
   const sliderSettings = {
     dots: true,
     infinite: true,

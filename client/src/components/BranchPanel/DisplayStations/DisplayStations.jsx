@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { sendRequest } from "../../../core/tools/apiRequest";
 import { requestMethods } from "../../../core/tools/apiRequestMethods";
+import "./DisplayStations.css";
 
 const DisplayStations = () => {
   const [stationData, setStationData] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedStation, setEditedStation] = useState({
+    id: "",
+    name: "",
+    location: "",
+    lat: "",
+    lng: "",
+    opening_time: "",
+    closing_time: "",
+    active: "",
+  });
 
   const fetchStations = async () => {
     try {
@@ -14,12 +26,112 @@ const DisplayStations = () => {
     }
   };
 
+  const updateStations = async () => {
+    try {
+      const response = await sendRequest(
+        requestMethods.POST,
+        `stations/update/${editedStation.id}`,
+        editedStation
+      );
+      console.log("Station updated:", response.data);
+      fetchStations();
+    } catch (error) {
+      console.log("Error updating stating:", error.response.data.message);
+    }
+  };
+
+  const handleEdit = (id) => {
+    const stationToEdit = stationData.find((station) => station.id === id);
+    if (stationToEdit) {
+      setEditedStation(stationToEdit);
+      setIsEditing(true);
+      console.log("Editing station with ID:", id);
+    } else {
+      console.error("Station not found for editing");
+    }
+  };
+
+  const closeEdit = () => {
+    setIsEditing(false);
+  };
+
+  const confirmEdit = () => {
+    updateStations();
+    closeEdit();
+  };
+
   useEffect(() => {
     fetchStations();
   }, []);
 
   return (
     <div className="station-list">
+      {isEditing && <div className="blurred-background"></div>}
+      {isEditing && (
+        <div className="branch-editting">
+          <input
+            type="text"
+            value={editedStation.id}
+            onChange={(e) =>
+              setEditedStation({ ...editedStation, id: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.name}
+            onChange={(e) =>
+              setEditedStation({ ...editedStation, name: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.location}
+            onChange={(e) =>
+              setEditedStation({ ...editedStation, location: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.lat}
+            onChange={(e) =>
+              setEditedStation({ ...editedStation, lat: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.lng}
+            onChange={(e) =>
+              setEditedStation({ ...editedStation, lng: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.opening_time}
+            onChange={(e) =>
+              setEditedStation({
+                ...editedStation,
+                opening_time: e.target.value,
+              })
+            }
+          />
+          <input
+            type="text"
+            value={editedStation.closing_time}
+            onChange={(e) =>
+              setEditedStation({
+                ...editedStation,
+                closing_time: e.target.value,
+              })
+            }
+          />
+
+          <div className="branched-buttons">
+            <button onClick={confirmEdit}>Confirm</button>
+            <button onClick={closeEdit}>Close</button>
+          </div>
+        </div>
+      )}
+
       <h2>Display Stations</h2>
       <table className="station-table">
         <thead>
@@ -29,7 +141,10 @@ const DisplayStations = () => {
             <th>Location</th>
             <th>Latitude</th>
             <th>Longitude</th>
+            <th>Opening Time</th>
+            <th>Closing Time</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +163,9 @@ const DisplayStations = () => {
                 ) : (
                   <span>Not Active</span>
                 )}
+              </td>
+              <td>
+                <button onClick={() => handleEdit(station.id)}>Edit</button>
               </td>
             </tr>
           ))}
