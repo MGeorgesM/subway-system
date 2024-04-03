@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { faStarHalfAlt as faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
 const StarsRating = ({ rating }) => {
     const filledStars = Math.floor(rating);
@@ -12,7 +13,7 @@ const StarsRating = ({ rating }) => {
         stars.push(<FontAwesomeIcon key={i} icon={solidStar} color="#FFD700" />);
     }
     if (hasHalfStar) {
-        stars.push(<FontAwesomeIcon key="half-star" icon={solidStar} color="#FFD700" />);
+        stars.push(<FontAwesomeIcon icon={faStarHalfStroke} color='#FFD700' />);
     }
     const remainingStars = 5 - stars.length;
     for (let i = 0; i < remainingStars; i++) {
