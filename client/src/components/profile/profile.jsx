@@ -39,7 +39,7 @@ function Profile() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 5,
     arrows: true,
   };
@@ -250,7 +250,10 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src="./images/assets/mohamadDelete/user-image.jpeg" alt="user-profile"></img>
+        <img
+          src="./images/assets/mohamadDelete/user-image.jpeg"
+          alt="user-profile"
+        ></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>
@@ -299,11 +302,18 @@ function Profile() {
             <Slider {...sliderSettings}>
               {reviews.map((review, index) => (
                 <div key={index} className="review-slide">
-                  <p>Ride ID: {review.ride_id}</p>
-                  <p>Station ID: {review.station_id}</p>
-                  <p>Rating: {review.rating}</p>
-                  <p>Comment: {review.comment}</p>
-                  {/* Add any other fields you want to display */}
+                  <p>
+                    <b>Ride ID:</b> {review.ride_id}
+                  </p>
+                  <p>
+                    <b>Station ID:</b> {review.station_id}
+                  </p>
+                  <p className="stars-ratings">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <FaStar key={i} />
+                    ))}
+                  </p>
+                  <p>{review.comment}</p>
                 </div>
               ))}
             </Slider>
@@ -317,7 +327,10 @@ function Profile() {
               </div>
 
               <div className="chat-header-right">
-                <img src="./images/assets/mohamadDELETE/admin-image.jpg" alt="admin-image"></img>
+                <img
+                  src="./images/assets/mohamadDELETE/admin-image.jpg"
+                  alt="admin-image"
+                ></img>
                 <p>Admin Name</p>
               </div>
             </div>

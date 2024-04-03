@@ -112,11 +112,8 @@
 
 .reviews-cards-wrapper {
   height: 20vh;
-  padding: 1%;
   width: 60%;
-  /* background-color: red; */
   color: #efefef;
-  position: relative;
 }
 
 .slick-dots {
@@ -125,16 +122,32 @@
   align-items: center !important;
   justify-content: center !important;
   background-color: #efefef;
-  bottom: -24px !important;
-  width: 40% !important;
-  margin-left: 30% !important;
+  bottom: -40px !important;
+  width: 35% !important;
+  margin-left: 28% !important;
+}
+
+.slick-track {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .review-slide {
-  border: 2px solid #ce091b;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 80% !important;
   background-color: #6d6b6c;
-  padding: 2%;
-  height: 15vh; /* Add a border between slides */
+  border-radius: 15px;
+  min-height: 25vh;
+  margin: 1%;
+}
+
+.stars-ratings {
+  color: yellow;
 }
 
 .review-card {
@@ -176,6 +189,7 @@
   width: 50%;
   gap: 20px;
   font-size: 15px;
+  margin-bottom: 3%;
 }
 .button-switcher h1 {
   color: #efefef;
@@ -191,8 +205,10 @@
 
 .button-switcher h1.active {
   color: #efefef;
-  box-shadow: rgba(92, 2, 6.25) 0px 30px 60px -12px inset,
-    rgba(92, 2, 6.3) 0px 18px 36px -18px inset;
+  background-color: rgb(112, 22, 22);
+  box-shadow: rgba(255, 2, 2, 0.25) 0px 0.0625em 0.0625em,
+    rgba(250, 250, 250, 0.2) 0px 0.125em 0.5em,
+    rgba(255, 0, 0, 0.1) 0px 0px 0px 1px inset;
 }
 
 .chat-header {
