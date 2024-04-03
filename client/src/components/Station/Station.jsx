@@ -124,7 +124,7 @@ const Station = () => {
                     </div>
                     <div className="header-icons flex column center">
                         <div className="rating">
-                            <StarsRating rating={5} />
+                            <StarsRating rating={parseFloat(stationRating)} />
                         </div>
                         <div className="facilities">
                             <FontAwesomeIcon icon={faStar} color="#6D6B6C" />

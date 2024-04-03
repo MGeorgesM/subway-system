@@ -9,10 +9,10 @@ const StarsRating = ({ rating }) => {
     const stars = [];
 
     for (let i = 0; i < filledStars; i++) {
-        stars.push(<FontAwesomeIcon key={i} icon={solidStar} color="#ED941B" />);
+        stars.push(<FontAwesomeIcon key={i} icon={solidStar} color="#FFD700" />);
     }
     if (hasHalfStar) {
-        stars.push(<FontAwesomeIcon key="half-star" icon={solidStar} color="#ED941B" half />);
+        stars.push(<FontAwesomeIcon key="half-star" icon={solidStar} color="#FFD700" />);
     }
     const remainingStars = 5 - stars.length;
     for (let i = 0; i < remainingStars; i++) {
