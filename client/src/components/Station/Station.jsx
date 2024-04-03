@@ -35,7 +35,6 @@ const Station = () => {
                         locationTextInput={station.location}
                         markersInput={stations}
                         // setIsMapLoading={setIsMapLoading}
-                        showUserLocation={false}
                     ></Map>
                 </div>
                 <div className="section-header flex space-between">

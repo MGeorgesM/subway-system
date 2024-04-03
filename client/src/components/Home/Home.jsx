@@ -99,7 +99,6 @@ const Home = () => {
                             markersInput={stations}
                             setIsMapLoading={setIsMapLoading}
                             userLocationProp={location}
-                            showUserLocation={true}
                         ></Map>
                         <div className="home-search">
                             <input

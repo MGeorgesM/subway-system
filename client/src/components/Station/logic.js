@@ -32,50 +32,56 @@ export const useStationLogic = () => {
 
     const navigate = useNavigate();
 
-    const getStations = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
-            if (response.status === 200) {
-                const station = response.data.stations.find((station) => station.id === stationId); // setStationsData({ ...stationsData, station: station, stations: response.data.stations });
-                setStations(response.data);
-                setStation(station);
-            } else {
-                throw new Error();
+    useEffect(() => {
+        const getStations = async () => {
+            try {
+                const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
+                if (response.status === 200) {
+                    const station = response.data.stations.find((station) => station.id === stationId); // setStationsData({ ...stationsData, station: station, stations: response.data.stations });
+                    setStations(response.data);
+                    setStation(station);
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                console.log(error.response.data.message);
             }
-        } catch (error) {
-            console.log(error.response.data.message);
-        }
-    };
+        };
 
-    const getRides = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
-            if (response.status === 200) {
-                const startingRides = response.data.rides.filter((ride) => ride.start_station_id === stationId);
-                const endingRides = response.data.rides.filter((ride) => ride.end_station_id === stationId);
+        const getRides = async () => {
+            try {
+                const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
+                if (response.status === 200) {
+                    const startingRides = response.data.rides.filter((ride) => ride.start_station_id === stationId);
+                    const endingRides = response.data.rides.filter((ride) => ride.end_station_id === stationId);
 
-                // setStationsData({ ...stationsData, startingRides: startingRides, endingRides: endingRides });
-                setStartingRides(startingRides);
-                setEndingRides(endingRides);
-            } else {
-                throw new Error();
+                    // setStationsData({ ...stationsData, startingRides: startingRides, endingRides: endingRides });
+                    setStartingRides(startingRides);
+                    setEndingRides(endingRides);
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                console.log(error.response.data.message);
             }
-        } catch (error) {
-            console.log(error.response.data.message);
-        }
-    };
+        };
 
-    const getAvgRating = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, `/reviews/average?stationId=${stationId}`, null);
-            if (response.status === 200) {
-                // setStationsData({ ...stationsData, rating: response.data.station_rating });
-                setStationRating(response.data.station_rating);
+        const getAvgRating = async () => {
+            try {
+                const response = await sendRequest(requestMethods.GET, `/reviews/average?stationId=${stationId}`, null);
+                if (response.status === 200) {
+                    // setStationsData({ ...stationsData, rating: response.data.station_rating });
+                    setStationRating(response.data.station_rating);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        };
+        
+        getStations();
+        getRides();
+        getAvgRating();
+    }, [stationId]);
 
     const handleProceed = () => {
         console.log('Proceed', selectedRide);
@@ -92,12 +98,6 @@ export const useStationLogic = () => {
         selectedRide === rideId ? setSelectedRide('') : setSelectedRide(rideId);
     };
 
-    useEffect(() => {
-        getStations();
-        getRides();
-        getAvgRating();
-    }, [stationId]);
-    
     return {
         stations,
         station,

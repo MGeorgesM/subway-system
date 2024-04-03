@@ -102,8 +102,8 @@ const Map = ({
                                 </div>
                             </Popup>
                         </Marker>
-                    ))}
-                ;{userLocation === null && !showUserLocation && <LocationMarker />}
+                    ))};
+                    {userLocation !== null && showUserLocation && <LocationMarker />}
             </MapContainer>
         </>
     );
