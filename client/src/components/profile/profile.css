@@ -82,14 +82,22 @@
   color: #980511;
 }
 
-.user-reviews-wrapper,
-.admin-messages-wrapper {
+.user-reviews-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-bottom: 5%;
   margin-top: 3%;
   height: 60vh;
+}
+
+.admin-messages-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  height: 50vh;
 }
 
 .user-reviews-wrapper h1,
@@ -103,10 +111,30 @@
 }
 
 .reviews-cards-wrapper {
-  display: flex;
-  justify-content: space-between;
-  height: 40vh;
-  width: 80%;
+  height: 20vh;
+  padding: 1%;
+  width: 60%;
+  /* background-color: red; */
+  color: #efefef;
+  position: relative;
+}
+
+.slick-dots {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #efefef;
+  bottom: -24px !important;
+  width: 40% !important;
+  margin-left: 30% !important;
+}
+
+.review-slide {
+  border: 2px solid #ce091b;
+  background-color: #6d6b6c;
+  padding: 2%;
+  height: 15vh; /* Add a border between slides */
 }
 
 .review-card {
@@ -448,9 +476,6 @@
     width: 30%;
     height: 46vh;
   }
-  .reviews-cards-wrapper {
-    width: 95%;
-  }
 
   .button-switcher h1 {
     font-size: 24px;
@@ -467,12 +492,6 @@
     height: 45vh;
   }
 
-  .reviews-cards-wrapper {
-    width: 85%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
   .user-reviews-wrapper {
     height: 100vh;
   }
@@ -483,10 +502,6 @@
 }
 
 @media screen and (max-width: 780px) {
-  .reviews-cards-wrapper {
-    justify-content: center;
-  }
-
   .user-reviews-wrapper {
     height: 130vh;
   }

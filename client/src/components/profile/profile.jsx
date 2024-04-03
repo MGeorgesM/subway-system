@@ -6,7 +6,9 @@ import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { sendRequest } from "../../core/tools/apiRequest";
 import { requestMethods } from "../../core/tools/apiRequestMethods";
-// import test from "../../../public/images/Assets";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Profile() {
   const [user, setUser] = useState("");
@@ -17,10 +19,31 @@ function Profile() {
   const [activeButton, setActiveButton] = useState("userReviews");
   const [isEditing, setIsEditing] = useState(false);
   const [image, setImage] = useState(null);
-  const [reviews, setReviews] = useState("");
+  const [reviews, setReviews] = useState([]);
   const [requstCoins, setRequestCoins] = useState(false);
   const [amount, setAmount] = useState("");
   const [coinsMessage, setCoinsMessage] = useState("");
+
+  const CustomPrevArrow = (props) => (
+    <button {...props} className="slick-prev">
+      Previous
+    </button>
+  );
+
+  const CustomNextArrow = (props) => (
+    <button {...props} className="slick-next">
+      Next
+    </button>
+  );
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    arrows: true,
+  };
 
   useEffect(() => {
     getUserInfo();
@@ -69,9 +92,9 @@ function Profile() {
         );
       }
       const data = response.data;
-      if (data) {
-        setReviews(data);
-        console.log(data);
+      if (data && Array.isArray(data.reviews)) {
+        setReviews(data.reviews);
+        console.log(data.reviews);
       } else {
         console.log("Empty response data");
       }
@@ -104,18 +127,6 @@ function Profile() {
       console.log("Error updating user:", error.message);
     }
   };
-
-  function ReviewCard({ name, stationName, review }) {
-    return (
-      <div className="review-card">
-        <img src={userImage} alt="User" />
-        <p>{name}</p>
-        <p>{stationName}</p>
-        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
-        <p>{review}</p>
-      </div>
-    );
-  }
 
   const userRequestsCoins = async () => {
     try {
@@ -286,30 +297,17 @@ function Profile() {
 
         {displayContent === "user-reviews" && (
           <div className="reviews-cards-wrapper">
-            <ReviewCard
-              name="John Doe"
-              stationName="Station A"
-              review="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-          sed aperiam facilis magnam itaque ea rem tenetur veritatis quidem
-          eligendi! Velit aperiam totam veritatis dignissimos quo! Dignissimos
-          ex asperiores cupiditate."
-            />
-            <ReviewCard
-              name="John Doe"
-              stationName="Station B"
-              review="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-          sed aperiam facilis magnam itaque ea rem tenetur veritatis quidem
-          eligendi! Velit aperiam totam veritatis dignissimos quo! Dignissimos
-          ex asperiores cupiditate."
-            />
-            <ReviewCard
-              name="John Doe"
-              stationName="Station C"
-              review="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-          sed aperiam facilis magnam itaque ea rem tenetur veritatis quidem
-          eligendi! Velit aperiam totam veritatis dignissimos quo! Dignissimos
-          ex asperiores cupiditate."
-            />
+            <Slider {...sliderSettings}>
+              {reviews.map((review, index) => (
+                <div key={index} className="review-slide">
+                  <p>Ride ID: {review.ride_id}</p>
+                  <p>Station ID: {review.station_id}</p>
+                  <p>Rating: {review.rating}</p>
+                  <p>Comment: {review.comment}</p>
+                  {/* Add any other fields you want to display */}
+                </div>
+              ))}
+            </Slider>
           </div>
         )}
         {displayContent === "admin-messages" && (
