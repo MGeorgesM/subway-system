@@ -1,8 +1,6 @@
 import { React, useState, useEffect } from "react";
 import "./profile.css";
 
-import adminImage from "../../assets/admin-image.jpg";
-
 import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { sendRequest } from "../../core/tools/apiRequest";
@@ -319,7 +317,7 @@ function Profile() {
               </div>
 
               <div className="chat-header-right">
-                <img src={adminImage}></img>
+                <img src="./images/assets/mohamadDELETE/admin-image.jpg" alt="admin-image"></img>
                 <p>Admin Name</p>
               </div>
             </div>
