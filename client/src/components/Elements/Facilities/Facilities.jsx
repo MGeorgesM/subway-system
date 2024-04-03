@@ -13,6 +13,8 @@ import {
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
+import './index.css';
+
 const Facilities = ({ stationId }) => {
     const [facilities, setFacilities] = useState([]);
 
@@ -20,7 +22,6 @@ const Facilities = ({ stationId }) => {
         try {
             const response = await sendRequest(requestMethods.GET, `/stationsfacilities/get?id=${stationId}`);
             if (response.status === 200) {
-                console.log('facilities', response.data.stationFacilities[0].facility.name)
                 setFacilities(response.data.stationFacilities);
             } else {
                 throw new Error();
@@ -56,7 +57,7 @@ const Facilities = ({ stationId }) => {
     };
 
     return (
-        <div>
+        <div className="facilities-main">
             {facilities.map((facility, index) => (
                 <span key={index} title={facility.facility.name}>
                     {renderFacilityIcon(facility.facility.name)}
