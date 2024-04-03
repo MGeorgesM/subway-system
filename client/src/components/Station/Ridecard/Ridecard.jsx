@@ -7,9 +7,9 @@ import { formatTime } from '../../../core/tools/formatTime';
 import StarsRating from '../../Elements/StarsRating/StarsRating';
 import Button from '../../Elements/Button/Button';
 
-const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
-    const [startSation, setStartStation] = useState(addRide ? stationName : null);
-    const [endStation, setEndStation] = useState(addRide ? null : stationName);
+const Ridecard = ({ ride, addRide, selectedRide, stationLocation }) => {
+    const [startSation, setStartStation] = useState(addRide ? stationLocation : null);
+    const [endStation, setEndStation] = useState(addRide ? null : stationLocation);
     const [rideRating, setRideRating] = useState(0);
 
     const { id, name, price, start_time, end_time, start_station_id, end_station_id } = ride;
@@ -56,10 +56,10 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
         getAvgRating();
     }, [start_station_id, end_station_id]);
 
-    const LocationDisplay = ({stationName, time}) => {
+    const LocationDisplay = ({ stationLocation, time }) => {
         return (
             <div className="time-location-display flex column center">
-                <h3 className="location">{stationName}</h3>
+                <h3 className="location">{stationLocation}</h3>
                 <h3 className="time">{formatTime(time)}</h3>
             </div>
         );
@@ -81,11 +81,11 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                     </div>
                 )}
                 <div className="destinations flex center">
-                    <LocationDisplay stationName={startSation} time={start_time} />
+                    <LocationDisplay stationLocation={startSation} time={start_time} />
                     <div className="arrow">
                         <img src="./images/assets/arrow.svg" alt="arrow" />
                     </div>
-                    <LocationDisplay stationName={endStation} time={end_time} />
+                    <LocationDisplay stationLocation={endStation} time={end_time} />
                 </div>
                 {addRide ? (
                     <div className="price-select flex space-between">

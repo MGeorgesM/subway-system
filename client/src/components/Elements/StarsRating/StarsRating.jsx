@@ -13,7 +13,7 @@ const StarsRating = ({ rating }) => {
         stars.push(<FontAwesomeIcon key={i} icon={solidStar} color="#FFD700" />);
     }
     if (hasHalfStar) {
-        stars.push(<FontAwesomeIcon icon={faStarHalfStroke} color='#FFD700' />);
+        stars.push(<FontAwesomeIcon key={`half`} icon={faStarHalfStroke} color='#FFD700' />);
     }
     const remainingStars = 5 - stars.length;
     for (let i = 0; i < remainingStars; i++) {
@@ -21,6 +21,6 @@ const StarsRating = ({ rating }) => {
     }
 
     return <>{stars}</>;
-};
+}
 
 export default StarsRating;

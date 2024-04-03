@@ -8,11 +8,9 @@ import { formatTime } from '../../core/tools/formatTime';
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
 import Popup from '../Elements/Popup/Popup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
-import Loading from '../Elements/Loading/Loading';
+// import Loading from '../Elements/Loading/Loading';
 import StarsRating from '../Elements/StarsRating/StarsRating';
 import Facilities from '../Elements/Facilities/Facilities';
 
@@ -61,8 +59,6 @@ const Station = () => {
                 const endingRides = response.data.rides.filter((ride) => ride.end_station_id === stationId);
                 setStartingRides(startingRides);
                 setEndingRides(endingRides);
-                console.log('startingRides', startingRides);
-                console.log('endingRides', endingRides);
             } else {
                 throw new Error();
             }
@@ -75,7 +71,6 @@ const Station = () => {
         try {
             const response = await sendRequest(requestMethods.GET, `/reviews/average?stationId=${stationId}`, null);
             if (response.status === 200) {
-                console.log(response.data.station_rating)
                 setStationRating(response.data.station_rating);
             }
         } catch (error) {
@@ -143,7 +138,7 @@ const Station = () => {
                             ride={ride}
                             addRide={addRide}
                             selectedRide={selectedRide}
-                            stationName={station.name}
+                            stationLocation={station.location}
                         ></Ridecard>
                     ))
                 ) : (
@@ -154,7 +149,7 @@ const Station = () => {
                 </div>
                 {endingRides.length > 0 ? (
                     endingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>
+                        <Ridecard key={ride.id} ride={ride} stationLocation={station.location}></Ridecard>
                     ))
                 ) : (
                     <p>No Rides Currently Available</p>
