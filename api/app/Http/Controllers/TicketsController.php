@@ -38,7 +38,7 @@ class TicketsController extends Controller
         $ride = Ride::where('id', $req->rideId)->first();
         $ticket_price = $ride->price * $req->count;
 
-        if ($user->role_id === 1) {
+        if ($user->coins_balance >= $ticket_price) {
             $ticket = Ticket::create([
                 'user_id' => $user->id,
                 'departure_ride_id' => $req->rideId,
@@ -53,7 +53,7 @@ class TicketsController extends Controller
             return response()->json(['message' => 'Ticket created successfully.', 'ticket' => $ticket], 201);
         }
 
-        return response()->json(['message' => 'Unauthorized. User role: ' . $user->role_id], 401);
+        return response()->json(['message' => 'Not enough coins.'], 400);
     }
 
     public function update_ticket(Request $request, $id)
