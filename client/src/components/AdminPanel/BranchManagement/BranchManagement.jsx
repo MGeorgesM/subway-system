@@ -25,18 +25,18 @@ const BranchManagement = () => {
 
   useEffect(() => {
     document.body.classList.add('display-user-active');
-  return () => {
+    return () => {
       document.body.classList.remove('display-user-active');
     };
   }, []);
 
   const handleActive = async (id) => {
     try {
-      const response = await sendRequest(requestMethods.POST, `/users/${id}/active`);
-      console.log('Branch activate:', response.data.message);
+      const response = await sendRequest(requestMethods.POST, `/users/${id}/activate`);
+      console.log('Branch activated:', response.data.message);
       fetchBranches();
     } catch (error) {
-      console.error('Error activate branch:', error.response.data.message);
+      console.error('Error activating branch:', error.response.data.message);
     }
   };
 
@@ -52,7 +52,7 @@ const BranchManagement = () => {
 
   const handleDelete = async (branchId) => {
     try {
-      const response = await sendRequest(requestMethods.DELETE, `/users/delete/${branchId}`);
+      const response = await sendRequest(requestMethods.DELETE, `/users/${branchId}`);
       console.log('Branch deleted:', response.data.message);
       fetchBranches();
     } catch (error) {
@@ -62,7 +62,7 @@ const BranchManagement = () => {
 
   return (
     <div className='user-list'>
-      <h2>Branche Management</h2>
+      <h2>Branch Management</h2>
       <table className='user-table'>
         <thead>
           <tr>
