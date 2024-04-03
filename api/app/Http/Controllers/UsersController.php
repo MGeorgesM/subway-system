@@ -60,10 +60,11 @@ class UsersController extends Controller
             $image = $request->image_base64;
             $imageData = base64_decode($image);
             $fileName = 'user_' . $user->id . '.png';
-            $filePath = public_path('images/' . $fileName);
-            file_put_contents($filePath, $imageData);
+            $filePath_tosave = public_path('images/' . $fileName);
+            $filePath_todb = './images/' . $fileName;
+            file_put_contents($filePath_tosave, $imageData);
 
-            $user->image_url = $filePath;
+            $user->image_url = $filePath_todb;
         }
 
         if ($request->first_name) {

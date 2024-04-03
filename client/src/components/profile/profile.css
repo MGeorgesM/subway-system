@@ -1,14 +1,7 @@
 .profile-wrapper {
   background-color: #161213;
-  height: 100vh;
-}
-
-.right-header {
-  display: flex;
-  gap: 20px;
-  width: 20%;
-  justify-content: space-around;
-  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .general-btn {
@@ -27,24 +20,13 @@
   background-color: #5c0206;
 }
 
-.left-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .profile-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #efefef;
-  padding-left: 10%;
-  padding-right: 10%;
+  margin-top: 10%;
 }
 
 .user-info-wrapper {
   display: flex;
-  background-color: #f5b573;
+  background-color: #6d6b6c;
   padding-left: 10.5%;
   padding-right: 10%;
   margin-top: 1%;
@@ -61,7 +43,8 @@
 .personal-info {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  width: auto;
+  gap: 30px;
   font-size: 20px;
   align-items: center;
 }
@@ -69,11 +52,15 @@
 .personal-info-right {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 1%;
   font-size: 20px;
   gap: 20px;
-  background-color: rebeccapurple;
   width: 20%;
+}
+
+.personal-info-right button {
+  width: 80%;
 }
 
 .personal-info p:first-child {
@@ -86,10 +73,462 @@
 
 .edit-buttton {
   font-size: 25px;
+  gap: 20px;
   color: #30302f;
 }
 
 .edit-buttton:hover {
   cursor: pointer;
-  color: #6d6b6c;
+  color: #980511;
+}
+
+.user-reviews-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  height: 60vh;
+}
+
+.admin-messages-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5%;
+  margin-top: 3%;
+  height: 50vh;
+}
+
+.user-reviews-wrapper h1,
+.admin-messages-wrapper h1:hover {
+  cursor: pointer;
+}
+
+.user-reviews-wrapper h1,
+.admin-messages-wrapper h1 {
+  color: #efefef;
+}
+
+.reviews-cards-wrapper {
+  height: 20vh;
+  padding: 1%;
+  width: 60%;
+  /* background-color: red; */
+  color: #efefef;
+  position: relative;
+}
+
+.slick-dots {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #efefef;
+  bottom: -24px !important;
+  width: 40% !important;
+  margin-left: 30% !important;
+}
+
+.review-slide {
+  border: 2px solid #ce091b;
+  background-color: #6d6b6c;
+  padding: 2%;
+  height: 15vh; /* Add a border between slides */
+}
+
+.review-card {
+  margin-top: 3%;
+  align-items: center;
+  text-align: center;
+  background-color: #6d6b6c;
+  width: 25%;
+  height: 45vh;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.review-card p {
+  color: #efefef;
+}
+
+.review-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-top: 3%;
+}
+
+.icon {
+  width: 7%;
+  height: 1.2rem;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: #980511;
+}
+
+.button-switcher {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  gap: 20px;
+  font-size: 15px;
+}
+.button-switcher h1 {
+  color: #efefef;
+  width: auto;
+  padding: 1%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.button-switcher h1:hover {
+  color: #980511;
+}
+
+.button-switcher h1.active {
+  color: #efefef;
+  box-shadow: rgba(92, 2, 6.25) 0px 30px 60px -12px inset,
+    rgba(92, 2, 6.3) 0px 18px 36px -18px inset;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: #6d6b6c;
+}
+
+.chat-header-left {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.chat-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20%;
+  padding-left: 5%;
+  width: 80%;
+  background-color: #e8e8e8;
+  color: black;
+  height: 10vh;
+}
+
+.chat-header-right img {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+
+.chat-section {
+  background-color: #6d6b6c;
+  width: 100%;
+  height: 40vh;
+}
+
+.chat {
+  background-color: #6d6b6c;
+  height: 35vh;
+}
+
+.enter-message {
+  background-color: rgb(0, 255, 255);
+  height: 5vh;
+  margin: 0;
+}
+.enter-message input {
+  width: 80%;
+  height: 100%;
+  padding-left: 1%;
+  /* font-size: 18px; */
+}
+
+.enter-message button {
+  width: 20%;
+  height: 100%;
+}
+
+.middle-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.choose-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  text-align: start;
+  gap: 5px;
+  background-color: #6d6b6c;
+  width: 31%;
+}
+
+.choose-chat p {
+  width: 100%;
+  padding: 5%;
+  text-align: center;
+  margin-top: 10%;
+  background-color: #d1d0d1;
+  color: black;
+}
+
+.admin-messages-wrapper {
+  display: flex;
+  width: 40%;
+  color: #efefef;
+}
+
+.send-btn {
+  text-decoration: none;
+  background: none;
+  color: #efefef;
+  background-color: red;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+  background-color: #5c0206;
+}
+
+.blured-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 186, 216);
+  z-index: 99;
+}
+
+.is-editting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 60vh;
+  margin: auto;
+  background-color: #d1d0d1;
+  border-radius: 10px;
+  z-index: 100;
+  padding: 1%;
+}
+
+.blurred {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: rgb(109, 107, 108, 0.7);
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.editting-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height: 2.5rem;
+  margin: auto;
+}
+
+.editting-buttons button {
+  text-decoration: none;
+  background: none;
+  color: #efefef;
+  background-color: red;
+  width: 30%;
+  border-radius: 8px;
+  padding: 5%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.editting-buttons button:hover {
+  background-color: #5c0206;
+}
+
+.is-editting {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.is-requesting-coins {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35%;
+  height: 35vh;
+  margin: auto;
+  background-color: #d1d0d1;
+  border-radius: 10px;
+  z-index: 100;
+  padding: 1%;
+}
+
+.edit-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 80%;
+  margin: auto;
+}
+
+.edit-inputs input {
+  padding: 2%;
+  width: 100%;
+  margin-bottom: 4%;
+}
+
+.edit-inputs img {
+  margin-bottom: 8%;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+}
+
+.request-coins-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  width: 80%;
+  margin-bottom: 1%;
+}
+
+.coins-message {
+  color: #980511;
+  font-weight: 600;
+}
+
+.request-coins-wrapper input {
+  width: 60%;
+  padding: 2%;
+}
+
+@media screen and (min-width: 1500px) {
+  .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  .review-card {
+    height: 50vh;
+  }
+
+  .user-info-wrapper {
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 1201px) {
+  .profile-wrapper {
+    margin: 0 auto;
+  }
+
+  .review-card {
+    width: 30%;
+    height: 50vh;
+  }
+
+  .user-info-wrapper {
+    height: 20vh;
+  }
+
+  .editting-buttons button {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .user-info-wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .personal-info-right {
+    width: 30%;
+  }
+
+  .review-card {
+    width: 30%;
+    height: 46vh;
+  }
+
+  .button-switcher h1 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .person-info-first-name {
+    font-size: 26px;
+  }
+
+  .review-card {
+    width: 325px;
+    height: 45vh;
+  }
+
+  .user-reviews-wrapper {
+    height: 100vh;
+  }
+
+  .editting-buttons button {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .user-reviews-wrapper {
+    height: 130vh;
+  }
+
+  .button-switcher h1 {
+    display: flex;
+    font-size: 19px;
+    height: 2rem;
+    align-items: center;
+  }
+
+  .editting-buttons button {
+    width: 60%;
+  }
+
+  .editting-buttons {
+    width: 80%;
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .general-btn {
+    width: 100%;
+  }
+
+  .user-info img {
+    height: 15vh;
+  }
 }
