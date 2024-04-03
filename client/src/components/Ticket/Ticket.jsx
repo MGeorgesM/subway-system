@@ -112,7 +112,7 @@ const Ticket = () => {
                 </div>
                 <div className="order-body flex center">
                     <div className="order-details">
-                        <h2><strong>{ride.name} - {ride.start_time}</strong></h2>
+                        <h2><strong>{ride.name} - {formatTime((ride.start_time).toString())}</strong></h2>
                     </div>
                 </div>
                 <div className="add-passengers">

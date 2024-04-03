@@ -51,7 +51,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                 <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/browse')}/>
                 <div>
                     <div className="nav-list flex center">
-                        <button className="nav-link white-text no-bg">Welcome</button>
+                        <button className="nav-link white-text no-bg">About Us</button>
                         <button className="nav-login white-text primary-bg box-shadow border-radius regular" onClick={
                             () => {
                                 if (userSignedIn) {
