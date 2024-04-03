@@ -34,6 +34,7 @@ const Station = () => {
                     <Map
                         locationTextInput={station.location}
                         markersInput={stations}
+                        showUserLocation={false}
                         // setIsMapLoading={setIsMapLoading}
                     ></Map>
                 </div>

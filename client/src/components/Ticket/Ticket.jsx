@@ -33,7 +33,7 @@ const Ticket = () => {
                                 <img
                                     src="./images/assets/logo-dark-grey.png"
                                     alt="logo"
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate('/browse')}
                                 ></img>
                             </div>
                             <h1>Order Details</h1>

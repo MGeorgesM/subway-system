@@ -14,9 +14,12 @@ const Map = ({
     markersInput,
     saveLocationCoordinates,
     userLocationProp,
+    updateLocation = false,
     showUserLocation = true,
 }) => {
-    const [userLocation, setUserLocation] = useState(userLocationProp ? userLocationProp : getUserLocation());
+    const [userLocation, setUserLocation] = useState(
+        updateLocation ? null : userLocationProp ? userLocationProp : getUserLocation()
+    );
 
     const navigate = useNavigate();
 
@@ -102,8 +105,8 @@ const Map = ({
                                 </div>
                             </Popup>
                         </Marker>
-                    ))};
-                    {userLocation !== null && showUserLocation && <LocationMarker />}
+                    ))}
+                ;{userLocation !== null && showUserLocation && <LocationMarker />}
             </MapContainer>
         </>
     );
