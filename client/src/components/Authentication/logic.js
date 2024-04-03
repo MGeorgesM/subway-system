@@ -40,7 +40,6 @@ export const useAuthenticationLogic = () => {
                 localStorage.setItem('token', JSON.stringify(response.data.token));
                 const getuser = await sendRequest(requestMethods.GET, '/users/get', null);
                 if (getuser.status === 200) {
-                    console.log(getuser.data);
                     localStorage.setItem(
                         'location',
                         JSON.stringify([parseFloat(getuser.data.user.lat), parseFloat(getuser.data.user.lng)])
@@ -70,5 +69,5 @@ export const useAuthenticationLogic = () => {
             setError(error.response.data.message);
         }
     };
-    return { isLogin, error, formData, setFormData, switchHandler, handleLogin, handleSignup };
+    return { isLogin, error, formData, setFormData, navigate, switchHandler, handleLogin, handleSignup };
 };

@@ -2,9 +2,8 @@ import { React, useState } from 'react';
 
 import '../index.css';
 
-const SignInForm = ({ switchHandler, handleLogin, error }) => {
-    const [formdata, setFormData] = useState({});
-
+const SignInForm = ({ switchHandler, handleLogin, error, setFormData, formdata }) => {
+    
     const handleSubmit = (e) => {
         handleLogin(formdata);
         e.preventDefault();
@@ -20,7 +19,7 @@ const SignInForm = ({ switchHandler, handleLogin, error }) => {
     return (
         <>
             <form className="flex column" onSubmit={handleSubmit}>
-                <div className='field'>
+                <div className="field">
                     <label className="light-text">Email</label>
                     <input
                         type="text"
@@ -31,7 +30,7 @@ const SignInForm = ({ switchHandler, handleLogin, error }) => {
                         required
                     />
                 </div>
-                <div className='field'>
+                <div className="field">
                     <label className="light-text">Password</label>
                     <input
                         type="password"
