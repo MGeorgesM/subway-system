@@ -20,7 +20,6 @@ const Ticket = () => {
 
     const rideId = parseInt(searchParams.get('rideid'));
     const stationId = parseInt(searchParams.get('stationid'));
-    console.log(stationId);
 
     useEffect(() => {
         const getRide = async () => {
@@ -99,7 +98,7 @@ const Ticket = () => {
                     <div className="ride-details-container flex column center border-radius box-shadow">
                         <div className="ride-details-title dark-text flex center column">
                             <div className="logo-order">
-                                <img src="./images/assets/logo-dark-grey.png" alt="logo"></img>
+                                <img src="./images/assets/logo-dark-grey.png" alt="logo" onClick={() => navigate('/')}></img>
                             </div>
                             <h1>Order Details</h1>
                             <p>{user.first_name + ' ' + user.last_name}</p>
