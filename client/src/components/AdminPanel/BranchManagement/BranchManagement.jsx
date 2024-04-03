@@ -3,8 +3,8 @@ import './index.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 const BranchManagement = () => {
   const [branches, setBranches] = useState([]);
@@ -21,6 +21,13 @@ const BranchManagement = () => {
 
   useEffect(() => {
     fetchBranches();
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.add('display-user-active');
+  return () => {
+      document.body.classList.remove('display-user-active');
+    };
   }, []);
 
   const handleActive = async (id) => {
