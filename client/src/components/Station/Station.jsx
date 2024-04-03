@@ -1,103 +1,31 @@
-import { useState, useEffect } from 'react';
-
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { formatTime } from '../../core/tools/formatTime';
+import { useStationLogic } from './logic';
 
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
 import Popup from '../Elements/Popup/Popup';
-
-import './index.css';
-// import Loading from '../Elements/Loading/Loading';
 import StarsRating from '../Elements/StarsRating/StarsRating';
 import Facilities from '../Elements/Facilities/Facilities';
 
+import './index.css';
+
+
 const Station = () => {
-    const [stations, setStations] = useState([]);
-    const [station, setStation] = useState(null);
-    const [stationRating, setStationRating] = useState(0);
-    const [stationFacilities, setStationFacilities] = useState([])
-    const [startingRides, setStartingRides] = useState([]);
-    const [endingRides, setEndingRides] = useState([]);
-    const [searchParams] = useSearchParams();
-    const [selectedRide, setSelectedRide] = useState('');
 
-    const [showPopup, setShowPopup] = useState(false);
-    const [popupMessage, setPopupMessage] = useState('');
-
-    // const [isLoading, setIsLoading] = useState(true);
-    const [isMapLoading, setIsMapLoading] = useState(true);
-
-    const stationId = parseInt(searchParams.get('id'));
-
-    const navigate = useNavigate();
-
-    const getStations = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, `/stations/getAll`, null);
-            if (response.status === 200) {
-                const station = response.data.stations.find((station) => station.id === stationId);
-                console.log('station', station);
-                setStations(response.data);
-                setStation(station);
-                // setIsLoading(false);
-            } else {
-                throw new Error();
-            }
-        } catch (error) {
-            console.log(error.response.data.message);
-        }
-    };
-
-    const getRides = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
-            if (response.status === 200) {
-                const startingRides = response.data.rides.filter((ride) => ride.start_station_id === stationId);
-                const endingRides = response.data.rides.filter((ride) => ride.end_station_id === stationId);
-                setStartingRides(startingRides);
-                setEndingRides(endingRides);
-            } else {
-                throw new Error();
-            }
-        } catch (error) {
-            console.log(error.response.data.message);
-        }
-    };
-
-    const getAvgRating = async () => {
-        try {
-            const response = await sendRequest(requestMethods.GET, `/reviews/average?stationId=${stationId}`, null);
-            if (response.status === 200) {
-                setStationRating(response.data.station_rating);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getStations();
-        getRides();
-        getAvgRating();
-    }, [stationId]);
-
-    const addRide = (rideId) => {
-        selectedRide === rideId ? setSelectedRide('') : setSelectedRide(rideId);
-    };
-
-    const handleProceed = () => {
-        console.log('Proceed', selectedRide);
-        if (!selectedRide) {
-            setPopupMessage('Please select a ride to proceed');
-            setShowPopup(true);
-            return;
-        }
-        const token = localStorage.getItem('token');
-        token ? navigate(`/ticket?stationid=${stationId}&rideid=${selectedRide}`) : navigate('/auth');
-    };
+    const {
+        station,
+        stations,
+        stationRating,
+        stationId,
+        startingRides,
+        endingRides,
+        selectedRide,
+        showPopup,
+        popupMessage,
+        setShowPopup,
+        handleProceed,
+        addRide,
+    } = useStationLogic();
 
     if (station)
         return (
@@ -106,7 +34,7 @@ const Station = () => {
                     <Map
                         locationTextInput={station.location}
                         markersInput={stations}
-                        setIsMapLoading={setIsMapLoading}
+                        // setIsMapLoading={setIsMapLoading}
                         showUserLocation={false}
                     ></Map>
                 </div>

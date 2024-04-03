@@ -13,7 +13,6 @@ const Map = ({
     locationTextInput,
     markersInput,
     saveLocationCoordinates,
-    setIsMapLoading,
     userLocationProp,
     showUserLocation = true,
 }) => {
@@ -86,7 +85,7 @@ const Map = ({
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}
-                whenReady={() => setIsMapLoading(false)}
+                // whenReady={() => setIsMapLoading(false)}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&

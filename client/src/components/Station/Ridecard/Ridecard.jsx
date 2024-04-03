@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { formatTime } from '../../../core/tools/formatTime';
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
-import { formatTime } from '../../../core/tools/formatTime';
 
 import StarsRating from '../../Elements/StarsRating/StarsRating';
 import Button from '../../Elements/Button/Button';
@@ -12,7 +12,7 @@ const Ridecard = ({ ride, addRide, selectedRide, stationLocation }) => {
     const [endStation, setEndStation] = useState(addRide ? null : stationLocation);
     const [rideRating, setRideRating] = useState(0);
 
-    const { id, name, price, start_time, end_time, start_station_id, end_station_id } = ride;
+    const { id, name, start_station_id, end_station_id, start_time, end_time, price } = ride;
 
     const getStartStation = async () => {
         try {
@@ -50,20 +50,21 @@ const Ridecard = ({ ride, addRide, selectedRide, stationLocation }) => {
         }
     };
 
-    useEffect(() => {
-        !startSation && getStartStation();
-        !endStation && getEndStation();
-        getAvgRating();
-    }, [start_station_id, end_station_id]);
-
     const LocationDisplay = ({ stationLocation, time }) => {
         return (
             <div className="time-location-display flex column center">
                 <h3 className="location">{stationLocation}</h3>
-                <h3 className="time">{formatTime(time)}</h3>
+                <h3 className="time">{time && formatTime(time)}</h3>
             </div>
         );
     };
+
+    useEffect(() => {
+        !startSation && getStartStation();
+        !endStation && getEndStation();
+        getAvgRating();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [start_station_id, end_station_id]);
 
     return (
         <div className="rides-container flex column">
