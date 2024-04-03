@@ -15,7 +15,7 @@ class CoinsRequest extends Model
         'status'
     ];
 
-    public function user() {
+    public function users() {
         return $this->belongsTo(User::class);
     }
 }

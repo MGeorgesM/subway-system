@@ -1,6 +1,5 @@
 import React from "react";
 import "./profile.css";
-import userImage from "../../assets/user-image.jpeg";
 import { MdEdit } from "react-icons/md";
 
 function Profile() {
@@ -19,7 +18,7 @@ function Profile() {
       </div>
 
       <div className="user-info-wrapper">
-        <img src={userImage}></img>
+        <img src="./images/assets/mohamadDelete/user-image.jpeg" alt="user-profile"></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>

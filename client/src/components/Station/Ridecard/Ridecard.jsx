@@ -4,6 +4,9 @@ import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
 import { formatTime } from '../../../core/tools/formatTime';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
     const [startSation, setStartStation] = useState(null);
     const [endStation, setEndStation] = useState(null);
@@ -46,10 +49,11 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                     <div className="name-rating flex space-between">
                         <h3>{name}</h3>
                         <div className="rating flex center">
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                         </div>
                     </div>
                 ) : (
@@ -85,10 +89,11 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                 ) : (
                     <div className="name-rating flex center">
                         <div className="rating flex center">
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                         </div>
                     </div>
                 )}

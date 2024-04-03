@@ -8,9 +8,10 @@ import { formatTime } from '../../core/tools/formatTime';
 import Map from '../Map/Map';
 import Ridecard from './Ridecard/Ridecard';
 import Popup from '../Elements/Popup/Popup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
-
 
 const Station = () => {
     const [stations, setStations] = useState([]);
@@ -96,20 +97,17 @@ const Station = () => {
                     </div>
                     <div className="header-icons flex column center">
                         <div className="rating">
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                         </div>
                         <div className="facilities">
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
-                            <i className="fa-regular fa-star"></i>
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
                         </div>
                     </div>
                 </div>
@@ -118,7 +116,13 @@ const Station = () => {
                 </div>
                 {startingRides.length > 0 ? (
                     startingRides.map((ride) => (
-                        <Ridecard key={ride.id} ride={ride} addRide={addRide} selectedRide={selectedRide} stationName={station.name}></Ridecard>
+                        <Ridecard
+                            key={ride.id}
+                            ride={ride}
+                            addRide={addRide}
+                            selectedRide={selectedRide}
+                            stationName={station.name}
+                        ></Ridecard>
                     ))
                 ) : (
                     <p>No rides found</p>
@@ -127,13 +131,17 @@ const Station = () => {
                     <h2 className="bold">Incoming Rides</h2>
                 </div>
                 {endingRides.length > 0 ? (
-                    endingRides.map((ride) => <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>)
+                    endingRides.map((ride) => (
+                        <Ridecard key={ride.id} ride={ride} stationName={station.name}></Ridecard>
+                    ))
                 ) : (
                     <p>No rides found</p>
                 )}
                 <div className="proceed">
                     <div className="proceed-btn-container flex center ">
-                        <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>Book Now</button>
+                        <button className="proceed-btn primary-bg white-text bold" onClick={handleProceed}>
+                            Book Now
+                        </button>
                     </div>
                 </div>
                 {showPopup && <Popup message={popupMessage} handleContinue={() => setShowPopup(false)}></Popup>}

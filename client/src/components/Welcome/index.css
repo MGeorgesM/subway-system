@@ -1,10 +1,6 @@
-:root {
-    --header-height: 120px;
-    --footer-height: 220px;
-}
 
 .main-welcome {
-    height: calc(100vh - var(--header-height));
+    height: calc(100vh - var(--header-height) - var(--footer-height));
     width: 100%;
     margin-top: var(--header-height);
     background-image: linear-gradient(rgba(255, 255, 255, 0.75),
@@ -13,8 +9,6 @@
     background-size: cover;
     background-position: center;
 }
-
-
 
 .welcome-text h1 {
     font-size: 48px;

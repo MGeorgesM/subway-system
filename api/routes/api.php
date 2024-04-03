@@ -21,28 +21,27 @@ Route::post('auth/login', [AuthController::class, 'login']);
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::post('auth/logout', [AuthController::class, 'logout']);
 
-Route::get('users/get/{id?}', [UsersController::class, 'getUsers']);
+Route::get('users/get', [UsersController::class, 'getUser']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
-Route::post('users/{id}/shutdown', [UsersController::class, 'shutDownBranch']);
-Route::post('users/{id}/active', [UsersController::class, 'activateBranch']);
-Route::delete('users/delete/{id}', [UsersController::class, 'deleteBranch']);
 
 Route::get('passes/get/{id?}', [PassController::class, 'get']);
 Route::post('passes/add', [PassController::class, 'add']);
 Route::post('passes/update', [PassController::class, 'update']);
 
-Route::post('/coins-requests', [CoinRequestController::class, 'requestCoin']);
-Route::get('/coins-requests', [CoinRequestController::class, 'viewRequests']);
-Route::post('/coins-requests/{id}/accept', [CoinRequestController::class, 'acceptRequest']);
-Route::post('/coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
-Route::get('/user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
+Route::post('coins-requests', [CoinRequestController::class, 'requestCoin']);
+Route::get('coins-requests', [CoinRequestController::class, 'viewRequests']);
+Route::post('coins-requests/{id}/accept', [CoinRequestController::class, 'acceptRequest']);
+Route::post('coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
+Route::get('user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
 
-Route::post('/reviews/add', [ReviewsController::class, 'addReviews']);
-Route::get('/reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+Route::post('reviews/add', [ReviewsController::class, 'addReviews']);
+Route::get('reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+Route::get('reviews/average', [ReviewsController::class, 'getAverageRating']);
+Route::get('reviews/topstation', [ReviewsController::class, 'getHighestRatedStation']);
 
-Route::post('/send-message', [ChatsController::class, 'sendMessage']);
-Route::get('/users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
-Route::get('/users/{userId}/received-chats', [ChatsController::class, 'getReceivedChats']);
+Route::post('send-message', [ChatsController::class, 'sendMessage']);
+Route::get('users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
+Route::get('users/{userId}/received-chats', [ChatsController::class, 'getReceivedChats']);
 
 Route::get('stations/getAll', [StationController::class, 'get_all_stations']);
 Route::get('stations/get/{id}', [StationController::class, 'get_stations']);

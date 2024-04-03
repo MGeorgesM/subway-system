@@ -9,16 +9,7 @@ import Home from './components/Home/Home';
 import Station from './components/Station/Station';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
-import Profile from './components/profile/profile';
-import CoinRequest from './components/AdminCoinRequest/CoinRequest';
-import BranchInvitationForm from './components/BranchInvitation/BranchInvitationForm';
-import DisplayUser from './components/DisplayUser/DisplayUser';
-import DisplayBranch from './components/DisplayBranch/DisplayBranch';
-import DisplayRide from './components/DisplayRide/DisplayRide';
 import Ticket from './components/Ticket/Ticket';
-import DisplayStation from './components/DisplayStation/DisplayStation';
-import BranchManagement from './components/BranchManagement/BranchManagement';
-import Sidebar from './components/Sidebar/Sidebar';
 
 import './App.css';
 import './styles/colors.css';
@@ -53,26 +44,20 @@ const App = () => {
     return (
         <>
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
-            <div className="app">
-                <Routes>
-                    <Route path="/" element={<Welcome />} />
-                    <Route path="/browse" element={<Home />} />
-                    <Route path="/auth" element={<Authentication />} />
-                    <Route path="/location" element={<LocationForm />} />
-                    <Route path="/station" element={<Station />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/ticket" element={<Ticket />} />
-                    <Route path="/admin-panel" element={<Sidebar />} />
-                    <Route path="*" element={<Welcome />} />
-                </Routes>
-                {isNavbarVisible && <Footer />}
-            </div>
+
             <Routes>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/browse" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/station" element={<Station />} />
+                {/* <Route path="/profile" element={<Profile />} /> */}
+                <Route path="/ticket" element={<Ticket />} />
+                {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
+                <Route path="*" element={<Welcome />} />
             </Routes>
-            <div className="content">
+            {isNavbarVisible && <Footer />}
+            {/* <div className="content">
                 <Routes>
                     <Route
                         path="/coin-request"
@@ -138,7 +123,7 @@ const App = () => {
                         }
                     />
                 </Routes>
-            </div>
+            </div> */}
         </>
     );
 };

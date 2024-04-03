@@ -8,14 +8,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
         handleSignup(formData);
     };
     return (
-<<<<<<< HEAD
-        <div className="container box-shadow light-gray-bg border-radius flex center column">
-            <div className="logo">
-                <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
-            </div>
-=======
         <>
->>>>>>> cd14d38e6885fdd82036dcba1a93b7f0c9778788
             <form className="flex column center" onSubmit={handleSubmit}>
                 <div className="field">
                     <label className="light-text">First Name</label>
