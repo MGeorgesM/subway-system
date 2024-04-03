@@ -1,9 +1,7 @@
-import { React, useState } from 'react';
-
 import '../index.css';
 
 const SignInForm = ({ switchHandler, handleLogin, error, setFormData, formdata }) => {
-    
+
     const handleSubmit = (e) => {
         handleLogin(formdata);
         e.preventDefault();

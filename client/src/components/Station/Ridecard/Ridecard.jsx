@@ -4,13 +4,12 @@ import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
 import { formatTime } from '../../../core/tools/formatTime';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import StarsRating from '../../Elements/StarsRating/StarsRating';
+import Button from '../../Elements/Button/Button';
 
 const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
-    const [startSation, setStartStation] = useState(null);
-    const [endStation, setEndStation] = useState(null);
+    const [startSation, setStartStation] = useState(addRide ? stationName : null);
+    const [endStation, setEndStation] = useState(addRide ? null : stationName);
     const [rideRating, setRideRating] = useState(0);
 
     const { id, name, price, start_time, end_time, start_station_id, end_station_id } = ride;
@@ -52,10 +51,19 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
     };
 
     useEffect(() => {
-        getStartStation();
-        getEndStation();
+        !startSation && getStartStation();
+        !endStation && getEndStation();
         getAvgRating();
     }, [start_station_id, end_station_id]);
+
+    const LocationDisplay = ({stationName, time}) => {
+        return (
+            <div className="time-location-display flex column center">
+                <h3 className="location">{stationName}</h3>
+                <h3 className="time">{formatTime(time)}</h3>
+            </div>
+        );
+    };
 
     return (
         <div className="rides-container flex column">
@@ -73,29 +81,21 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                     </div>
                 )}
                 <div className="destinations flex center">
-                    <div className="time-location-display flex column center">
-                        <h3 className="location">{startSation}</h3>
-                        <h3 className="time">{formatTime(start_time)}</h3>
-                    </div>
+                    <LocationDisplay stationName={startSation} time={start_time} />
                     <div className="arrow">
                         <img src="./images/assets/arrow.svg" alt="arrow" />
                     </div>
-                    <div className="time-location-display flex column center">
-                        <h3 className="location">{endStation}</h3>
-                        <h3 className="time">{formatTime(end_time)}</h3>
-                    </div>
+                    <LocationDisplay stationName={endStation} time={end_time} />
                 </div>
                 {addRide ? (
                     <div className="price-select flex space-between">
                         <p>${price}</p>
-                        <button
-                            className={`select-btn border-radius-m box-shadow ${
-                                selectedRide === id ? 'clicked' : 'primary-bg white-text'
-                            } `}
-                            onClick={() => addRide(id)}
-                        >
-                            {selectedRide === id ? 'Remove' : 'Select'}
-                        </button>
+                        <Button
+                            clickHandler={() => addRide(id)}
+                            type={selectedRide === id ? 'secondary-btn' : 'primary-btn'}
+                            size={'btn-s'}
+                            text={selectedRide === id ? 'Remove' : 'Select'}
+                        />
                     </div>
                 ) : (
                     <div className="name-rating flex center">
