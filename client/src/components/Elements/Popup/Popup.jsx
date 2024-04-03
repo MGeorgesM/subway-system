@@ -14,7 +14,7 @@ const Popup = ({message, handleContinue}) => {
                         </p>
                     </div>
                 </div>
-                <button className="popupmain-btn primary-btn border-radius border" onClick={handleContinue} >
+                <button className="popupmain-btn primary-btn border-radius-m border" onClick={handleContinue} >
                     Continue
                 </button>
             </div>

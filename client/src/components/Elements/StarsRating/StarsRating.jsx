@@ -1,15 +1,10 @@
-// import React from 'react';
+import React from 'react';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-// const StarsRating = () => {
-//     return (
-//         <div>
-//             <FontAwesomeIcon icon="fa-solid fa-star-half-stroke" />
-//             <FontAwesomeIcon icon="fa-regular fa-star" />
-//             <FontAwesomeIcon icon="fa-solid fa-star" />
-//         </div>
-//     );
-// };
+const StarsRating = ({rating}) => {
+    return <FontAwesomeIcon icon={faStar} color="#6D6B6C" />;
+};
 
-// export default StarsRating;
+export default StarsRating;

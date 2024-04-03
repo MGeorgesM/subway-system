@@ -7,10 +7,12 @@ import Welcome from "./components/Welcome/Welcome";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import Station from "./components/Station/Station";
+import Profile from "./components/profile/profile";
 import Authentication from "./components/Authentication/Authentication";
 import LocationForm from "./components/Authentication/Forms/LocationForm";
 import Ticket from "./components/Ticket/Ticket";
-import Profile from "./components/profile/profile";
+import DisplayStations from "./components/BranchPanel/DisplayStations/DisplayStations";
+import PassengerRoutes from "./components/ProtectedRoutes/PassengerRoutes";
 
 import "./App.css";
 import "./styles/colors.css";
@@ -45,6 +47,26 @@ const App = () => {
   return (
     <>
       {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/browse" element={<Home />} />
+        <Route path="/auth" element={<Authentication />} />
+        <Route path="/location" element={<LocationForm />} />
+        <Route path="/station" element={<Station />} />
+        <Route path="*" element={<Welcome />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/ticket" element={<Ticket />} />
+      </Routes>
+      {isNavbarVisible && <Footer />}
+
+      <Routes>
+        <Route path="/GetAllStations" element={<DisplayStations />}></Route>
+      </Routes>
+      {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
+      {/* <div className="content">
+  return (
+    <>
+      {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
 
       <Routes>
         <Route path="/" element={<Welcome />} />
@@ -55,9 +77,9 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/ticket" element={<Ticket />} />
         {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
-        <Route path="*" element={<Welcome />} />
-      </Routes>
-      {isNavbarVisible && <Footer />}
+      {/* <Route path="*" element={<Welcome />} />
+      </Routes> */}
+      {/* {isNavbarVisible && <Footer />} */}
       {/* <div className="content">
                 <Routes>
                     <Route

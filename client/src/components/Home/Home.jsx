@@ -8,15 +8,12 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { findNearestStation } from '../../core/tools/calculateDistance';
 
+import { getUserLocation } from '../../core/tools/getUserLocation';
+
 import './index.css';
 
 const Home = () => {
     const [nearestStation, setNearestStation] = useState(null);
-    // const [userLocation, setUserLocation] = useState(
-    //     JSON.parse(localStorage.getItem('location')).length > 0
-    //         ? JSON.parse(localStorage.getItem('location'))
-    //         : [33.88863, 35.49548]
-    // );
     const [topStation, setTopStation] = useState(null);
     const [location, setLocation] = useState([]);
     const [stations, setStations] = useState([]);
@@ -83,7 +80,7 @@ const Home = () => {
         getTopStation();
         // getRides();
         setLocation(userLocation);
-        console.log('isLoading', isMapLoading);
+        console.log('isMapLoading', isMapLoading);
     }, []);
 
     return (
@@ -101,6 +98,8 @@ const Home = () => {
                             saveLocationCoordinates={setLocation}
                             markersInput={stations}
                             setIsMapLoading={setIsMapLoading}
+                            userLocationProp={location}
+                            showUserLocation={true}
                         ></Map>
                         <div className="home-search">
                             <input

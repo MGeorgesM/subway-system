@@ -5,7 +5,7 @@ import './index.css'
 const Loading = () => {
   return (
     <div className="loading-main flex center column">
-        <div className="loading-text dark-text">
+        <div className="loading-text white-text">
             <p>Loading...</p>
         </div>
     </div>

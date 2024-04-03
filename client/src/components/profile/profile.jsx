@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import "./profile.css";
+import "./index.css";
 
 import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";

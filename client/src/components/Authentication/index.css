@@ -1,7 +1,3 @@
-/* .root {
-    background-color: #980511;
-} */
-
 .form-component {
   height: 100vh;
   width: 100%;
@@ -45,7 +41,7 @@
   min-height: 600px;
   min-width: 440px;
   padding: 24px;
-  background-color: #efefef;
+  background-color: #f7f7f7;
 }
 
 .container p {
@@ -75,6 +71,10 @@ form > div {
 
 .input-container {
   position: relative;
+}
+
+.logo-form > img {
+  cursor: pointer;
 }
 
 .field input {
