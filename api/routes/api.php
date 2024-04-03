@@ -10,6 +10,7 @@ use App\Http\Controllers\RidesController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\BranchInvitationController;
+use App\Http\Controllers\StationsFacilityController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\HelloMail;
 use App\Http\Controllers\PassController;
@@ -34,12 +35,10 @@ Route::post('coins-requests/{id}/accept', [CoinRequestController::class, 'accept
 Route::post('coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
 Route::get('user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
 
-
 Route::post('/reviews/add', [ReviewsController::class, 'addReviews']);
 Route::get('/reviews/user', [ReviewsController::class, 'getPassengerReviews']);
 Route::get('reviews/average', [ReviewsController::class, 'getAverageRating']);
 Route::get('reviews/topstation', [ReviewsController::class, 'getHighestRatedStation']);
-
 
 Route::post('send-message', [ChatsController::class, 'sendMessage']);
 Route::get('users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
@@ -66,6 +65,6 @@ Route::get('facilities/getAll', [FacilitiesController::class, 'get_all_facilitie
 Route::get('facilities/get/{id}', [FacilitiesController::class, 'get_facilities']);
 Route::post('facilities/update/{id}', [FacilitiesController::class, 'update_facilities']);
 
-
+Route::get('stationsfacilities/get', [StationsFacilityController::class, 'getByStationId']);
 
 Route::post('/send-email', [BranchInvitationController::class, 'invite']);

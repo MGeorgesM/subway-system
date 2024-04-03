@@ -14,11 +14,13 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 import Loading from '../Elements/Loading/Loading';
 import StarsRating from '../Elements/StarsRating/StarsRating';
+import Facilities from '../Elements/Facilities/Facilities';
 
 const Station = () => {
     const [stations, setStations] = useState([]);
     const [station, setStation] = useState(null);
     const [stationRating, setStationRating] = useState(0);
+    const [stationFacilities, setStationFacilities] = useState([])
     const [startingRides, setStartingRides] = useState([]);
     const [endingRides, setEndingRides] = useState([]);
     const [searchParams] = useSearchParams();
@@ -127,11 +129,7 @@ const Station = () => {
                             <StarsRating rating={parseFloat(stationRating)} />
                         </div>
                         <div className="facilities">
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <Facilities stationId={stationId} />
                         </div>
                     </div>
                 </div>
