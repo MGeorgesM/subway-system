@@ -6,40 +6,55 @@ import { formatTime } from '../../../core/tools/formatTime';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import StarsRating from '../../Elements/StarsRating/StarsRating';
 
 const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
     const [startSation, setStartStation] = useState(null);
     const [endStation, setEndStation] = useState(null);
+    const [rideRating, setRideRating] = useState(0);
 
     const { id, name, price, start_time, end_time, start_station_id, end_station_id } = ride;
 
+    const getStartStation = async () => {
+        try {
+            const response = await sendRequest(requestMethods.GET, `/stations/get/${start_station_id}`, null);
+            if (response.status === 200) {
+                setStartStation(response.data.station.location);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+    };
+    const getEndStation = async () => {
+        try {
+            const response = await sendRequest(requestMethods.GET, `/stations/get/${end_station_id}`, null);
+            if (response.status === 200) {
+                setEndStation(response.data.station.location);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+    };
+
+    const getAvgRating = async () => {
+        try {
+            const response = await sendRequest(requestMethods.GET, `/reviews/average?rideId=${id}`, null);
+            if (response.status === 200) {
+                setRideRating(response.data.ride_rating);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     useEffect(() => {
-        const getStartStation = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, `/stations/get/${start_station_id}`, null);
-                if (response.status === 200) {
-                    setStartStation(response.data.station.location);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-        const getEndStation = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, `/stations/get/${end_station_id}`, null);
-                if (response.status === 200) {
-                    setEndStation(response.data.station.location);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
         getStartStation();
         getEndStation();
+        getAvgRating();
     }, [start_station_id, end_station_id]);
 
     return (
@@ -49,11 +64,7 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                     <div className="name-rating flex space-between">
                         <h3>{name}</h3>
                         <div className="rating flex center">
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <StarsRating rating={rideRating} />
                         </div>
                     </div>
                 ) : (
@@ -89,11 +100,7 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                 ) : (
                     <div className="name-rating flex center">
                         <div className="rating flex center">
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
-                            <FontAwesomeIcon icon={faStar} color="#6D6B6C" />
+                            <StarsRating rating={rideRating} />
                         </div>
                     </div>
                 )}
