@@ -1,29 +1,33 @@
-.root {
-  background-color: #980511;
-}
+/* .root {
+    background-color: #980511;
+} */
 
 .form-component {
-  height: 100vh;
-  background-color: #980511;
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(41, 41, 41, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url(../../../public/images/assets/hero-2.jpg);
+    background-size: cover;
 }
 
 .location-form {
-  height: 720px;
-  width: 880px;
-  margin: 0 auto;
+    height: 720px;
+    width: 880px;
+    margin: 0 auto;
 }
 
-.location-form > .input-container {
-  width: 50%;
+.location-form>.input-container {
+    width: 50%;
 }
 
 .map-container {
-  max-width: 50%;
+    max-width: 50%;
 }
 
 .leaflet-container {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 /* .input-container {
@@ -32,71 +36,100 @@
     margin-bottom: 16px;
 } */
 
-.logo img {
-  height: 40px;
-  margin: 48px;
+.logo-form img {
+    height: 40px;
+    margin: 48px;
 }
 
 .container {
-  max-width: 30%;
-  min-height: 600px;
-  min-width: 440px;
-  padding: 24px;
+    max-width: 30%;
+    min-height: 600px;
+    min-width: 440px;
+    padding: 24px;
+    background-color: #EFEFEF;
 }
 
 .container p {
-  font-size: 16px;
-  text-align: center;
-  margin-top: 16px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 16px;
 }
 
 .validation-display {
-  height: 48px;
-  color: #f03e3eed;
+    height: 48px;
+    color: #980511;
 }
 
-.validation-display > p {
-  font-size: 16px;
+.validation-display>p {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    font-size: 16px;
 }
 
 form {
-  width: 80%;
+    width: 80%;
 }
 
-form > div {
-  width: 100%;
+form>div {
+    width: 100%;
 }
 
-.container input {
-  font-size: 18px;
-  padding: 0 24px;
-  margin-bottom: 24px;
-  margin-top: 4px;
+.input-container {
+    position: relative;
+}
+
+.field input {
+    font-size: 18px;
+    padding: 0 24px;
+    margin-bottom: 24px;
+    margin-top: 4px;
+    color: #6D6B6C;
+}
+
+/* .field label {
+    padding: 0 24px;
+} */
+
+.getlocation-btn {
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    right: 17.5%;
+    transform: translate(0, -25%);
 }
 
 /* div > input:last-child {
     margin-bottom: 0px;
 } */
 
-.location-form > .input-container > input {
-  margin: 16px;
+.location-form {
+    background-color: #EFEFEF;
+}
+
+.location-form>.input-container>input {
+    margin: 16px;
 }
 
 .login-btn,
 .register-btn,
 .location-btn {
-  cursor: pointer;
-  font-size: 20px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .login-btn:hover,
 .register-btn:hover,
 .location-btn:hover {
-  background-color: #980511;
+    background-color: #980511;
 }
 
 .register-link:hover,
 .login-link:hover {
-  color: #5c0206;
-  cursor: pointer;
+    color: #5C0206;
+    cursor: pointer;
 }
+
+/* .skip-prompt {
+    font-size: 16px;
+    margin-top: 16px;
+} */

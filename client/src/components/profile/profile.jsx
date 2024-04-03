@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import "./profile.css";
-import userImage from "../../assets/user-image.jpeg";
+
 import adminImage from "../../assets/admin-image.jpg";
+
 import { MdEdit } from "react-icons/md";
 import { FaStar, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { sendRequest } from "../../core/tools/apiRequest";
@@ -251,7 +252,7 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src={`${image}`} alt="User" />
+        <img src="./images/assets/mohamadDelete/user-image.jpeg" alt="user-profile"></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>

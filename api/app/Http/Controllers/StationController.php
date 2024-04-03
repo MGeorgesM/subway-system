@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Station;
 use App\Models\User;
-use App\Models\Review;
 
 class StationController extends Controller
 {
@@ -24,13 +23,8 @@ class StationController extends Controller
         if (!$station) {
             return response()->json(['message' => 'Station not found'], 404);
         }
-        
-        $stationRating =  Review::where('station_id', $id)->avg('rating');
 
-        return response()->json([
-            'station' => $station,
-            'rating' => $stationRating
-        ], 200);
+        return response()->json(['station' => $station], 200);
     }
 
     // Create a station

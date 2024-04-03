@@ -1,5 +1,4 @@
 const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData }) => {
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -9,15 +8,12 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
         handleSignup(formData);
     };
     return (
-        <div className="container box-shadow light-gray-bg border-radius flex center column">
-            <div className="logo-form">
-                <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
-            </div>
+        <>
             <form className="flex column center" onSubmit={handleSubmit}>
-                <div>
-                    <label className="light-text">First Name:</label>
+                <div className="field">
+                    <label className="light-text">First Name</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="first_name"
                         placeholder="first name"
@@ -25,10 +21,10 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label className="light-text">Last Name:</label>
+                <div className="field">
+                    <label className="light-text">Last Name</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="last_name"
                         placeholder="last name"
@@ -36,10 +32,10 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label className="light-text">Email:</label>
+                <div className="field">
+                    <label className="light-text">Email</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="text"
                         name="email"
                         placeholder="user@mail.com"
@@ -47,10 +43,10 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label className="light-text">Password:</label>
                     <input
-                        className="light-gray-bg input-btn-lg border-radius-l border"
+                        className="off-white-bg input-btn-lg border-radius-l border"
                         type="password"
                         name="password"
                         placeholder="password"
@@ -72,7 +68,7 @@ const SignupForm = ({ switchHandler, handleSignup, error, formData, setFormData 
                     Sign In
                 </span>
             </p>
-        </div>
+        </>
     );
 };
 

@@ -39,64 +39,61 @@ const Authentication = () => {
     const data = new FormData();
     data.append("email", formData.email);
     data.append("password", formData.password);
+    
+        try {
+            const response = await sendRequest(requestMethods.POST, '/auth/login', data);
+            if (response.status === 200) {
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+                const getuser = await sendRequest(requestMethods.GET, '/users/get', null);
+                if (getuser.status === 200) {
+                    console.log(getuser.data)
+                    localStorage.setItem('location', JSON.stringify([parseFloat(getuser.data.user.lat), parseFloat(getuser.data.user.lng)]));
+                }
+                navigate('/browse');
+                return;
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            setError('Wrong email or password');
+        }
+    };
 
-    try {
-      const response = await sendRequest(
-        requestMethods.POST,
-        "/auth/login",
-        data
-      );
-      if (response.status === 200) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        navigate("/profile");
-        return;
-      } else {
-        throw new Error("Wrong email or password");
-      }
-    } catch (error) {
-      console.log(error.message);
-      setError([error.message]);
-    }
-  };
+    const handleSignup = async (formData) => {
+        try {
+            const response = await sendRequest(requestMethods.POST, '/auth/register', formData);
+            if (response.status === 201) {
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+                navigate('/location');
+                return;
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            setError(error.response.data.message);
+        }
+    };
 
-  const handleSignup = async (formData) => {
-    try {
-      const response = await sendRequest(
-        requestMethods.POST,
-        "/auth/register",
-        formData
-      );
-      if (response.status === 201) {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        navigate("/location");
-        return;
-      } else {
-        throw new Error();
-      }
-    } catch (error) {
-      setError([error.response.data.message]);
-    }
-  };
-
-  return (
-    <section className="form-component flex center">
-      {isLogin ? (
-        <SignInForm
-          switchHandler={switchHandler}
-          handleLogin={handleLogin}
-          error={error}
-        />
-      ) : (
-        <SignUpForm
-          switchHandler={switchHandler}
-          handleSignup={handleSignup}
-          setFormData={setFormData}
-          formData={formData}
-          error={error}
-        />
-      )}
-    </section>
-  );
+    return (
+        <div className="form-component flex center">
+            <div className="container box-shadow border-radius flex center column">
+                <div className="logo-form">
+                    <img src="./images/Assets/logo-dark-grey.png" alt="logo" />
+                </div>
+                {isLogin ? (
+                    <SignInForm switchHandler={switchHandler} handleLogin={handleLogin} error={error} />
+                ) : (
+                    <SignUpForm
+                        switchHandler={switchHandler}
+                        handleSignup={handleSignup}
+                        setFormData={setFormData}
+                        formData={formData}
+                        error={error}
+                    />
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default Authentication;

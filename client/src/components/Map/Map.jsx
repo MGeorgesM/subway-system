@@ -8,18 +8,24 @@ import { formatTime } from '../../core/tools/formatTime';
 import './index.css';
 import 'leaflet/dist/leaflet.css';
 
+const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMapLoading }) => {
+    // const [userLocation, setUserLocation] = useState(
+    //     JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
+    // );
+    const storedLocation = JSON.parse(localStorage.getItem('location'));
+    const defaultLocation = [33.88863, 35.49548];
 
-const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     const [userLocation, setUserLocation] = useState(
-        JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
+        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
     );
+
     const navigate = useNavigate();
 
     useEffect(() => {
         if (locationTextInput) {
             handleInput();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationTextInput, markersInput]);
 
     const LocationMarker = () => {
@@ -63,13 +69,13 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
     };
 
     const customUserIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png',
-        iconSize: [50, 50],
+        iconUrl: './images/assets/user-marker.svg',
+        iconSize: [20, 20],
     });
 
     const customMarkIcon = new Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/6571/6571498.png',
-        iconSize: [32, 32],
+        iconUrl: './images/assets/station-marker.svg',
+        iconSize: [30, 30],
     });
 
     return (
@@ -79,23 +85,25 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates }) => {
                 <button onClick={handelInput}>Search</button>
             </div> */}
             <MapContainer
-                center={userLocation ? userLocation : [33.88863, 35.49548]}
+                center={userLocation ? userLocation : defaultLocation}
                 scrollWheelZoom={false}
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}
+                // whenReady={() => setIsMapLoading(false)}
             >
-                <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
+                <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN"/>
                 {markersInput &&
                     markersInput.stations &&
                     markersInput.stations.map((station) => (
                         <Marker key={station.id} position={[station.lat, station.lng]} icon={customMarkIcon}>
                             <Popup>
-                                <div className='popup-text'>
-                                    <h3>{station.name}</h3>
+                                <div className="popup-text">
+                                    <h3 onClick={() => navigate(`/station?id=${station.id}`)}>{station.name}</h3>
                                     <p>{station.location}</p>
-                                    <p>Open from {formatTime(station.opening_time)} til {formatTime(station.closing_time)}</p>
-                                    <p onClick={() => navigate(`/station?id=${station.id}`)}>More Info</p>
+                                    <p>
+                                        {formatTime(station.opening_time)} till {formatTime(station.closing_time)}
+                                    </p>
                                 </div>
                             </Popup>
                         </Marker>
