@@ -108,6 +108,7 @@ export const useStationLogic = () => {
         selectedRide,
         showPopup,
         popupMessage,
+        setShowPopup,
         // isMapLoading,
         handleProceed,
         addRide,
