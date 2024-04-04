@@ -3,7 +3,7 @@
     width: 100%;
     background-image: linear-gradient(rgba(255, 255, 255, 0.50),
             rgba(255, 255, 255, 0.5)),
-        url(../../../public/images/assets/hero-track.jpg);
+        url(../../../public/images/Assets/hero-track.jpg);
     background-size: cover;
     background-position: center;
 }

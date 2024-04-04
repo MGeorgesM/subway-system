@@ -7,7 +7,7 @@ import Welcome from './components/Welcome/Welcome';
 import Footer from './components/Elements/Footer/Footer';
 import Home from './components/Home/Home';
 import Station from './components/Station/Station';
-import Profile from './components/Profile/Profile';
+import Profile from './components/profile/Profile';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
