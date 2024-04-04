@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 
-
 import { useTicketLogic } from './logic';
 
 import Popup from '../Elements/Popup/Popup';
@@ -21,7 +20,7 @@ const Ticket = () => {
     //     count,
     //     popupMessage,
     //     showPopup,
-    //     passSelelected,
+    //     passSelected,
     //     navigate,
     //     handleCancel,
     //     handleChange,
@@ -32,6 +31,8 @@ const Ticket = () => {
     //     handlePassSelection,
     // } = useTicketLogic();
 
+    const navigate = useNavigate();
+
     const [count, setCount] = useState(1);
     const [ride, setRide] = useState({});
     const [user, setUser] = useState({});
@@ -40,7 +41,7 @@ const Ticket = () => {
     const [showPopup, setShowPopup] = useState(false);
 
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const [passSelected, setPassSelected] = useState(false);
 
     const rideId = parseInt(searchParams.get('rideid'));
     const stationId = parseInt(searchParams.get('stationid'));
@@ -92,8 +93,13 @@ const Ticket = () => {
     };
 
     const handleCheckout = async () => {
+        let response = null;
         try {
-            const response = await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
+            if (passSelected) {
+                response = await sendRequest(requestMethods.POST, '/passes/add', null);
+            } else {
+                response = await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
+            }
             if (response.status === 201) {
                 setShowPopup(true);
                 setPopupMessage('Your Purchase was successfull');
@@ -115,8 +121,8 @@ const Ticket = () => {
     };
 
     const handlePassSelection = () => {
-        
-
+        setPassSelected(!passSelected);
+    };
 
     if (user && ride)
         return (
@@ -138,21 +144,25 @@ const Ticket = () => {
                         <div className="order-body flex center">
                             <div className="order-details">
                                 <h2>
-                                    {ride.name} - {ride.start_time && formatTime(ride.start_time)}
+                                    {passSelected
+                                        ? 'Multi-Ride Pass - 5 Rides'
+                                        : `${ride.name} - ${ride.start_time && formatTime(ride.start_time)}`}
                                 </h2>
                             </div>
                         </div>
-                        <div className="add-passengers">
-                            <h2>Passengers</h2>
-                            <div className="passenger-counter flex center">
-                                <button onClick={handleDecrement}>-</button>
-                                <input type="text" value={count} onChange={handleChange} />
-                                <button onClick={handleIncrement}>+</button>
+                        {!passSelected && (
+                            <div className="add-passengers">
+                                <h2>Passengers</h2>
+                                <div className="passenger-counter flex center">
+                                    <button onClick={handleDecrement}>-</button>
+                                    <input type="text" value={count} onChange={handleChange} />
+                                    <button onClick={handleIncrement}>+</button>
+                                </div>
                             </div>
-                        </div>
+                        )}
                         <div className="total">
                             <h1>
-                                Due now: $<span>{ride.price && ride.price * count}</span>
+                                Due now: $<span>{passSelected ? '100' : ride.price && ride.price * count}</span>
                             </h1>
                             <h2>
                                 Available Coins: $<span>{user.coins_balance}</span>
@@ -168,12 +178,15 @@ const Ticket = () => {
                             <Button text={'Cancel'} type={'secondary-btn'} size={'btn-s'} clickHandler={handleCancel} />
                         </div>
                         <div className="pass-prompt bold secondary-text">
-                           <p onClick={handlePassSelection}>Get a Multi-Ride Pass and Start Saving!</p>
+                            <p onClick={handlePassSelection}>
+                                {passSelected
+                                    ? "I'll get a ticket for now..."
+                                    : 'Get a Multi-Ride Pass and Start Saving!'}
+                            </p>
                         </div>
                     </div>
                 </div>
                 {showPopup && <Popup message={popupMessage} handleContinue={handleProceed} />}
-                {/* </div> */}
             </>
         );
 };
