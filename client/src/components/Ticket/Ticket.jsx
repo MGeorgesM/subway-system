@@ -117,6 +117,7 @@ const Ticket = () => {
     };
 
     const handleProceed = () => {
+        navigate('/browse');
         setShowPopup(false);
     };
 
