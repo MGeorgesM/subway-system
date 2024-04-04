@@ -271,7 +271,7 @@ function Profile() {
             <p>
               <b>{user.coins_balance}</b>
             </p>
-            <button className="general-btn" onClick={openRequestCoins}>
+            <button className="primary-btn btn-s border-radius" onClick={openRequestCoins}>
               Request Coins
             </button>
           </div>
@@ -281,13 +281,13 @@ function Profile() {
       <div className="user-reviews-wrapper">
         <div className="button-switcher">
           <h1
-            className={activeButton === "userReviews" ? "active" : ""}
+            className={activeButton === "userReviews" ? "black-text" : "light-text"}
             onClick={() => handleClick("userReviews")}
           >
             User Reviews
           </h1>
           <h1
-            className={activeButton === "adminMessages" ? "active" : ""}
+            className={activeButton === "adminMessages" ? "black-text" : "light-text"}
             onClick={() => handleClick("adminMessages")}
           >
             Admin Messages
@@ -318,7 +318,7 @@ function Profile() {
 
               <div className="chat-header-right">
                 <img src="./images/assets/mohamadDELETE/admin-image.jpg" alt="admin-image"></img>
-                <p>Admin Name</p>
+                <p>Manager Name</p>
               </div>
             </div>
 
