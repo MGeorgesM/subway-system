@@ -69,7 +69,7 @@ const DisplayStations = () => {
       {isEditing && <div className="blurred-background"></div>}
       {isEditing && (
         <div className="branch-editting">
-          <div className="form-group">
+          <div className="input-group">
             <label>ID:</label>
             <input
               type="text"
@@ -79,7 +79,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Name:</label>
             <input
               type="text"
@@ -89,7 +89,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Location:</label>
             <input
               type="text"
@@ -99,7 +99,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Latitude:</label>
             <input
               type="text"
@@ -109,7 +109,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Longitude:</label>
             <input
               type="text"
@@ -119,7 +119,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Opening Time:</label>
             <input
               type="text"
@@ -136,7 +136,7 @@ const DisplayStations = () => {
               }
             />
           </div>
-          <div className="form-group">
+          <div className="input-group">
             <label>Closing Time:</label>
             <input
               type="text"
@@ -154,12 +154,8 @@ const DisplayStations = () => {
             />
           </div>
           <div className="branched-buttons">
-            <button onClick={confirmEdit} className="activate-btn">
-              Confirm
-            </button>
-            <button onClick={closeEdit} className="shutdown-btn">
-              Close
-            </button>
+            <button onClick={confirmEdit}>Confirm</button>
+            <button onClick={closeEdit}>Close</button>
           </div>
         </div>
       )}
