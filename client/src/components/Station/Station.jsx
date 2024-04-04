@@ -39,7 +39,7 @@ const Station = () => {
                     ></Map>
                 </div>
                 <div className="section-header flex space-between">
-                    <div className="header-text">
+                    <div className="header-text black-text">
                         <h1>{station.name}</h1>
                         <h3>
                             {`${station.location}, Lebanon`} - {station.active ? 'Active' : 'Inactive'}

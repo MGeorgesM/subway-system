@@ -60,7 +60,7 @@ const App = () => {
     }, [location.pathname]);
 
     const getNavbarBgColor = () => {
-        if (location.pathname === '/' || location.pathname === '/ticket') {
+        if (location.pathname === '/' || location.pathname === '/ticket' || location.pathname === '/profile') {
             return 'black-bg';
         }
     };

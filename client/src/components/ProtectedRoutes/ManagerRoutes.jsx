@@ -13,7 +13,7 @@ const ManagerRoutes = ({ children }) => {
                 console.log('User is Manager');
                 return;
             } else {
-                navigate('/');
+                navigate('/browse');
             }
         } catch (error) {
             console.log(error);

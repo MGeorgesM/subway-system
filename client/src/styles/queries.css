@@ -71,13 +71,36 @@
     .navbar {
         padding: 32px;
     }
+
     .nav-link {
         display: none;
     }
 
-    .search input {
+    .welcome-home h2 {
+        font-size: 24px;
+    }
+
+    .welcome-home h1 {
+        font-size: 36px;
+    }
+
+    .home-search input {
         width: 90%;
     }
+
+    .section-header {
+        padding: 32px;
+    }
+
+    .header-text h1 {
+        font-size: 28px;
+    }
+
+
+    .header-text h3 {
+        font-size: 16px;
+    }
+
 
     .ride-card h3,
     .ride-card p {
@@ -92,15 +115,34 @@
         padding: 64px 12px;
         text-align: center;
     }
+
     .ad {
         flex-direction: column;
         height: auto;
     }
+
     .ad-text {
         margin-bottom: 12px;
     }
 
     .ad img {
-      margin-top: 12px;
+        margin-top: 12px;
+    }
+
+    .welcome-text h1 {
+        font-size: 36px;
+    }
+
+    .welcome-text p {
+        font-size: 20px;
+    }
+
+    .welcome-btns {
+        flex-direction: column;
+    }
+
+    .footer {
+        padding: 16px;
+        gap: 16px;
     }
 }
