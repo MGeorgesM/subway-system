@@ -32,6 +32,7 @@ import './styles/utilities.css';
 import './styles/queries.css';
 import AuthenticatedRoutes from './components/ProtectedRoutes/PassengerRoutes';
 import ManagerRoutes from './components/ProtectedRoutes/ManagerRoutes';
+import GuestRoutes from './components/ProtectedRoutes/GuestRoutes';
 
 const App = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -77,11 +78,16 @@ const App = () => {
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
             <Routes>
                 <Route path="/" element={<Welcome />} />
-                <Route path="/auth" element={<Authentication />} />
                 <Route path="/browse" element={<Home />} />
-                <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
             </Routes>
+
+            <GuestRoutes>
+                <Routes>
+                    <Route path="/auth" element={<Authentication />} />
+                    <Route path="/location" element={<LocationForm />} />
+                </Routes>
+            </GuestRoutes>
 
             <AuthenticatedRoutes>
                 <Routes>

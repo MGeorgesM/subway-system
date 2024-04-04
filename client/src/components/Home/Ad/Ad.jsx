@@ -21,7 +21,7 @@ const Ad = ({ type, avgRating, name, stationId }) => {
                 >
                     {name}
                 </h2>
-                <div className='rating-ad'> {<StarsRating rating={avgRating}/>}</div>
+                <div className="rating-ad"> {<StarsRating rating={avgRating} />}</div>
                 <p>
                     {type === 1
                         ? 'Conveniently located amidst bustling streets and vibrant neighborhoods, our nearest station offers unparalleled accessibility to commuters on the go. Situated just steps away from type landmarks and popular destinations, it serves as a gateway to the pulse of the city.'

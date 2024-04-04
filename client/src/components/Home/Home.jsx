@@ -1,69 +1,13 @@
-import { useEffect, useState } from 'react';
-
 import Map from '../Map/Map';
 import Ad from './Ad/Ad';
 import Loading from '../Elements/Loading/Loading';
-
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
-import { findNearestStation } from '../../core/tools/calculateDistance';
-
-import { getUserLocation } from '../../core/tools/getUserLocation';
+import { useHomeLogic } from './logic';
 
 import './index.css';
 
 const Home = () => {
-    // const [location, setLocation] = useState([]);
-
-    const [showWelcome, setShowWelcome] = useState(true);
-
-    const [stations, setStations] = useState([]);
-    const [nearestStation, setNearestStation] = useState(null);
-    const [topStation, setTopStation] = useState(null);
-
-    const [search, setSearch] = useState('');
-
-    const [userLocation, setUserLocation] = useState(getUserLocation);
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [isMapLoading, setIsMapLoading] = useState(true);
-
-    useEffect(() => {
-        const getStations = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, '/stations/getAll', null);
-                if (response.status === 200) {
-                    let nearestStation = findNearestStation(response.data.stations, userLocation[0], userLocation[1]);
-                    const nearestStationRatingRequest = await sendRequest(
-                        requestMethods.GET,
-                        `/reviews/average?stationId=${nearestStation.id}`,
-                        null
-                    );
-                    nearestStation = { ...nearestStation, rating: nearestStationRatingRequest.data.station_rating };
-                    setNearestStation(nearestStation);
-                    setStations(response.data);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-        const getTopStation = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, '/reviews/topstation', null);
-                if (response.status === 200) {
-                    setTopStation(response.data);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-        getStations();
-        getTopStation();
-        // setLocation(userLocation);
-    }, []);
+    const { nearestStation, topStation, showWelcome, search, stations, userLocation, setShowWelcome, setSearch } =
+        useHomeLogic();
 
     return (
         <>
@@ -79,7 +23,6 @@ const Home = () => {
                         )}
                         <Map
                             locationTextInput={search}
-                            // saveLocationCoordinates={setLocation}
                             markersInput={stations}
                             userLocationProp={userLocation}
                             setShowWelcome={setShowWelcome}
