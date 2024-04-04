@@ -1,6 +1,6 @@
-import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import AdminRoutes from './components/ProtectedRoutes/AdminRoutes';
 import Navbar from './components/Elements/Navbar/Navbar';
@@ -13,18 +13,18 @@ import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
 
-import CoinRequest from "./components/AdminPanel/AdminCoinRequest/CoinRequest";
-import BranchInvitationForm from "./components/AdminPanel/BranchInvitation/BranchInvitationForm";
-import DisplayUser from "./components/AdminPanel/DisplayUser/DisplayUser";
-import DisplayBranch from "./components/AdminPanel/DisplayBranch/DisplayBranch";
-import DisplayRide from "./components/AdminPanel/DisplayRide/DisplayRide";
-import DisplayStation from "./components/AdminPanel/DisplayStation/DisplayStation";
-import BranchManagement from "./components/AdminPanel/BranchManagement/BranchManagement";
-import DisplayStations from "./components/BranchPanel/DisplayStations/DisplayStations";
-import Facilities from "./components/BranchPanel/Facilities/Facilities";
-import Rides from "./components/BranchPanel/Rides/Rides";
-import Sidebar from "./components/AdminPanel/Sidebar/Sidebar";
-import BranchSidebar from "./components/BranchPanel/BranchSidebar/BranchSidebar";
+import CoinRequest from './components/AdminPanel/AdminCoinRequest/CoinRequest';
+import BranchInvitationForm from './components/AdminPanel/BranchInvitation/BranchInvitationForm';
+import DisplayUser from './components/AdminPanel/DisplayUser/DisplayUser';
+import DisplayBranch from './components/AdminPanel/DisplayBranch/DisplayBranch';
+import DisplayRide from './components/AdminPanel/DisplayRide/DisplayRide';
+import DisplayStation from './components/AdminPanel/DisplayStation/DisplayStation';
+import BranchManagement from './components/AdminPanel/BranchManagement/BranchManagement';
+import DisplayStations from './components/BranchPanel/DisplayStations/DisplayStations';
+import Facilities from './components/BranchPanel/Facilities/Facilities';
+import Rides from './components/BranchPanel/Rides/Rides';
+import Sidebar from './components/AdminPanel/Sidebar/Sidebar';
+import BranchSidebar from './components/BranchPanel/BranchSidebar/BranchSidebar';
 
 import './App.css';
 import './styles/colors.css';
@@ -34,39 +34,39 @@ import AuthenticatedRoutes from './components/ProtectedRoutes/PassengerRoutes';
 import ManagerRoutes from './components/ProtectedRoutes/ManagerRoutes';
 
 const App = () => {
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const location = useLocation();
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+    const location = useLocation();
 
-  const hiddenRoutes = [
-    "/auth",
-    "/location",
-    "/admin-panel",
-    "/display-users",
-    "/display-branches",
-    "/display-stations",
-    "/display-rides",
-    "/coin-request",
-    "/branch-management",
-    "/branch-invitation",
-    "/branch-panel",
-    "/facilities-panel",
-    "/Rides",
-  ];
+    const hiddenRoutes = [
+        '/auth',
+        '/location',
+        '/admin-panel',
+        '/display-users',
+        '/display-branches',
+        '/display-stations',
+        '/display-rides',
+        '/coin-request',
+        '/branch-management',
+        '/branch-invitation',
+        '/branch-panel',
+        '/facilities-panel',
+        '/Rides',
+    ];
 
-  const isRouteHidden = () => {
-    return hiddenRoutes.includes(location.pathname);
-  };
+    const isRouteHidden = () => {
+        return hiddenRoutes.includes(location.pathname);
+    };
 
-  const updateNavbarVisibility = () => {
-    setIsNavbarVisible(!isRouteHidden());
-  };
+    const updateNavbarVisibility = () => {
+        setIsNavbarVisible(!isRouteHidden());
+    };
 
-  useEffect(() => {
-    updateNavbarVisibility();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+    useEffect(() => {
+        updateNavbarVisibility();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location.pathname]);
 
-  const getNavbarBgColor = () => {
+    const getNavbarBgColor = () => {
         if (location.pathname === '/' || location.pathname === '/ticket' || location.pathname === '/profile') {
             return 'black-bg';
         }
@@ -91,33 +91,33 @@ const App = () => {
             </AuthenticatedRoutes>
 
             <ManagerRoutes>
-                         <Route
-          path="/facilities-panel"
-          element={
-            <>
-              <BranchSidebar /> <Facilities />
-            </>
-          }
-        ></Route>
-        <Route
-          path="/rides"
-          element={
-            <>
-              <BranchSidebar /> <Rides />
-            </>
-          }
-        ></Route>
-        <Route
-          path="/branch-panel"
-          element={
-            <>
-              <DisplayStations />
-              <BranchSidebar />
-            </>
-          }
-        />
-                
-
+                <Routes>
+                    <Route
+                        path="/facilities-panel"
+                        element={
+                            <>
+                                <BranchSidebar /> <Facilities />
+                            </>
+                        }
+                    ></Route>
+                    <Route
+                        path="/rides"
+                        element={
+                            <>
+                                <BranchSidebar /> <Rides />
+                            </>
+                        }
+                    ></Route>
+                    <Route
+                        path="/branch-panel"
+                        element={
+                            <>
+                                <DisplayStations />
+                                <BranchSidebar />
+                            </>
+                        }
+                    />
+                </Routes>
             </ManagerRoutes>
 
             <AdminRoutes>
