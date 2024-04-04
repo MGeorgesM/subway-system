@@ -1,6 +1,6 @@
 .profile-wrapper {
   width: 100%;
-  height: calc(100vh - var(--header-height));
+  min-height: calc(100vh - var(--header-height));
 }
 
 .general-btn {
@@ -149,7 +149,7 @@
 }
 
 .stars-ratings {
-  color: yellow;
+  color: #ED941B;
 }
 
 .review-card {

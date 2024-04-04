@@ -257,7 +257,7 @@ function Profile() {
               <b>Balance:</b>
             </p>
             <p>
-              <b>{user.coins_balance}</b>
+              <b>$ {user.coins_balance}</b>
             </p>
             <button className="primary-btn btn-s border-radius" onClick={openRequestCoins}>
               Request Coins
@@ -269,13 +269,13 @@ function Profile() {
       <div className="user-reviews-wrapper">
         <div className="button-switcher">
           <h1
-            className={activeButton === "userReviews" ? "black-text" : "light-text"}
+            className={activeButton === "userReviews" ? "primary-text" : "light-text"}
             onClick={() => handleClick("userReviews")}
           >
             User Reviews
           </h1>
           <h1
-            className={activeButton === "adminMessages" ? "black-text" : "light-text"}
+            className={activeButton === "adminMessages" ? "primary-text" : "light-text"}
             onClick={() => handleClick("adminMessages")}
           >
             Admin Messages
