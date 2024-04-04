@@ -10,6 +10,6 @@
     <p>You have been invited to register your account as a branch.</p>
     <p>Please follow the below link to register.</p>
     <p>Regards,</p>
-    <p>Subway Surfers</p>
+    <p>Onwards</p>
 </body>
 </html>

@@ -22,7 +22,8 @@
 }
 
 .name-rating {
-    width: 15%;
+    width: 18%;
+    gap: 16px;
 }
 
 .name-rating h3 {

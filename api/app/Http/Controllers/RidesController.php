@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Ride;
-use App\Models\Review;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class RidesController extends Controller
 {
     public function get_all_rides()
     {
-        $rides = Ride::all();
+        $rides = Ride::with('startStation', 'endStation')->get();
+
+        // $rides = Ride::all();
         return response()->json(['rides' => $rides], 200);
     }
 
@@ -23,7 +26,6 @@ class RidesController extends Controller
             return response()->json(['message' => 'Ride does not exist'], 404);
         }
 
-        $rideRating = Review::where('ride_id', $id)->avg('rating');
 
         return response()->json(['rides' => $rides], 200);
     }

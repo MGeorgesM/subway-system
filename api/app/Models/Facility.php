@@ -14,4 +14,10 @@ class Facility extends Model
     ];
 
     public $timestamps = false;
+
+
+    public function stations()
+    {
+        return $this->belongsToMany(Station::class, 'stations_facilities');
+    }
 }

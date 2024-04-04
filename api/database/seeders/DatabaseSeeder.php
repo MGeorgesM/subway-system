@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             FacilitiesTableSeeder::class,
             TicketsTableSeeder::class,
             ReviewsTableSeeder::class,
+            StationsFacilitiesSeeder::class,
         ]);
     }
 }
