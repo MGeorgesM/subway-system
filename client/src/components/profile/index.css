@@ -1,6 +1,6 @@
 .profile-wrapper {
   width: 100%;
-  height: auto;
+  height: calc(100vh - var(--header-height));
 }
 
 .general-btn {
@@ -90,7 +90,6 @@
   flex-direction: column;
   margin-bottom: 5%;
   margin-top: 128px;
-  height: 60vh;
 }
 
 .admin-messages-wrapper {
