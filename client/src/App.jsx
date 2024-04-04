@@ -27,6 +27,7 @@ import './styles/colors.css';
 import './styles/utilities.css';
 import './styles/queries.css';
 import AuthenticatedRoutes from './components/ProtectedRoutes/PassengerRoutes';
+import ManagerRoutes from './components/ProtectedRoutes/ManagerRoutes';
 
 const App = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -70,16 +71,23 @@ const App = () => {
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
             <Routes>
                 <Route path="/" element={<Welcome />} />
-                <Route path="/browse" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
+                <Route path="/browse" element={<Home />} />
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
             </Routes>
 
             <AuthenticatedRoutes>
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/ticket" element={<Ticket />} />
+                <Routes>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/ticket" element={<Ticket />} />
+                </Routes>
             </AuthenticatedRoutes>
+
+            <ManagerRoutes>
+                
+
+            </ManagerRoutes>
 
             <AdminRoutes>
                 <Routes>
@@ -149,12 +157,6 @@ const App = () => {
                     />
                 </Routes>
             </AdminRoutes>
-
-            {/* <ManagerRoutes>
-
-
-
-            </ManagerRoutes> */}
             {isNavbarVisible && <Footer />}
         </>
     );
