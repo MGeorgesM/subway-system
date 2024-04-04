@@ -3,17 +3,17 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { useEffect } from 'react';
 
-const AdminRoutes = ({ children }) => {
+const ManagerRoutes = ({ children }) => {
     const navigate = useNavigate();
 
     const validate = async () => {
         try {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
-            if (response.data.role === 3) {
-                console.log('User is an Admin');
+            if (response.data.role === 2) {
+                console.log('User is Manager');
                 return;
             } else {
-                // navigate('/browse');
+                navigate('/browse');
             }
         } catch (error) {
             console.log(error);
@@ -29,4 +29,4 @@ const AdminRoutes = ({ children }) => {
     return children;
 };
 
-export default AdminRoutes;
+export default ManagerRoutes;

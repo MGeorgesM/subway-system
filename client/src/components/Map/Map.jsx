@@ -8,6 +8,7 @@ import { getUserLocation, defaultLocation } from '../../core/tools/getUserLocati
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
+import StarsRating from '../Elements/StarsRating/StarsRating';
 
 const Map = ({
     locationCoordinatesInput,
@@ -15,6 +16,7 @@ const Map = ({
     markersInput,
     saveLocationCoordinates,
     userLocationProp,
+    setShowWelcome,
     updateLocation = false,
     showUserLocation = true,
 }) => {
@@ -37,6 +39,8 @@ const Map = ({
                 click(e) {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
+
+                    setShowWelcome && setShowWelcome(false);
                     setUserLocation([lat, lng]);
                     saveLocationCoordinates && saveLocationCoordinates([lat, lng]);
                 },
@@ -54,7 +58,7 @@ const Map = ({
     const handleInput = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
 
-        if (locationCoordinatesInput.length > 0) {
+        if (locationCoordinatesInput && locationCoordinatesInput.length > 0) {
             // saveLocationCoordinates && saveLocationCoordinates([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
             setUserLocation([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
             return;
@@ -65,7 +69,6 @@ const Map = ({
             const data = await response.json();
 
             if (data.length > 0) {
-                console.log('data', data[0]);
                 const { lat, lon } = data[0];
                 saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
@@ -92,7 +95,7 @@ const Map = ({
             <MapContainer
                 center={userLocation ? userLocation : defaultLocation}
                 scrollWheelZoom={false}
-                zoom={13}
+                zoom={14}
                 zoomControl={false}
                 attributionControl={false}
                 // whenReady={() => setIsMapLoading(false)}
@@ -109,6 +112,10 @@ const Map = ({
                                     <p>
                                         {formatTime(station.opening_time)} till {formatTime(station.closing_time)}
                                     </p>
+                                    <p>{station.active === 1 ? 'Active' : 'Closed' }</p>
+                                    <div className="rating-pop">
+                                    <StarsRating rating={station.rating}/>        
+                                    </div>
                                 </div>
                             </Popup>
                         </Marker>
