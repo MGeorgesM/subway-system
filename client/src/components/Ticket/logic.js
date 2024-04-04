@@ -5,6 +5,8 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 
 export const useTicketLogic = () => {
+    const navigate = useNavigate();
+
     const [count, setCount] = useState(1);
     const [ride, setRide] = useState({});
     const [user, setUser] = useState({});
@@ -13,7 +15,7 @@ export const useTicketLogic = () => {
     const [showPopup, setShowPopup] = useState(false);
 
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const [passSelected, setPassSelected] = useState(false);
 
     const rideId = parseInt(searchParams.get('rideid'));
     const stationId = parseInt(searchParams.get('stationid'));
@@ -65,8 +67,13 @@ export const useTicketLogic = () => {
     };
 
     const handleCheckout = async () => {
+        let response = null;
         try {
-            const response = await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
+            if (passSelected) {
+                response = await sendRequest(requestMethods.POST, '/passes/add', null);
+            } else {
+                response = await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
+            }
             if (response.status === 201) {
                 setShowPopup(true);
                 setPopupMessage('Your Purchase was successfull');
@@ -84,7 +91,12 @@ export const useTicketLogic = () => {
     };
 
     const handleProceed = () => {
+        navigate('/browse');
         setShowPopup(false);
+    };
+
+    const handlePassSelection = () => {
+        setPassSelected(!passSelected);
     };
 
     return {
@@ -93,6 +105,7 @@ export const useTicketLogic = () => {
         user,
         popupMessage,
         showPopup,
+        passSelected,
         navigate,
         handleIncrement,
         handleDecrement,
@@ -100,5 +113,6 @@ export const useTicketLogic = () => {
         handleCheckout,
         handleCancel,
         handleProceed,
+        handlePassSelection,
     };
 };
