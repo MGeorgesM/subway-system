@@ -82,7 +82,7 @@ const LocationForm = () => {
                     </div> */}
                 </div>
                 <div className="map-container">
-                    <Map locationTextInput={submittedLocation} saveLocationCoordinates={saveLocationCoordinates}></Map>
+                    <Map locationTextInput={submittedLocation} saveLocationCoordinates={saveLocationCoordinates} updateLocation={true}></Map>
                 </div>
             </div>
         </div>

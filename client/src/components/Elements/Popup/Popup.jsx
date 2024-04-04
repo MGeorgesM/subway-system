@@ -1,22 +1,19 @@
 import React from 'react';
 
 import './index.css';
+import Button from '../Button/Button';
 
-const Popup = ({message, handleContinue}) => {
+const Popup = ({ message, handleContinue }) => {
     return (
         <div className="popupmain flex column center black-bg-trsp">
             <div className="popupmain-inner white-bg flex column space-evenly box-shadow border-radius">
                 <div className="popupmain-text black-text">
                     <h1>Notice</h1>
                     <div>
-                        <p className="notice-text">
-                            {message}
-                        </p>
+                        <p className="notice-text">{message}</p>
                     </div>
                 </div>
-                <button className="popupmain-btn primary-btn border-radius-m border" onClick={handleContinue} >
-                    Continue
-                </button>
+                <Button text={'Continue'} type={'primary-btn'} size={'btn-s'} clickHandler={handleContinue} />
             </div>
         </div>
     );

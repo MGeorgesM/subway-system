@@ -13,11 +13,13 @@ const Map = ({
     locationTextInput,
     markersInput,
     saveLocationCoordinates,
-    setIsMapLoading,
     userLocationProp,
+    updateLocation = false,
     showUserLocation = true,
 }) => {
-    const [userLocation, setUserLocation] = useState(userLocationProp ? userLocationProp : getUserLocation());
+    const [userLocation, setUserLocation] = useState(
+        updateLocation ? null : userLocationProp ? userLocationProp : getUserLocation()
+    );
 
     const navigate = useNavigate();
 
@@ -86,7 +88,7 @@ const Map = ({
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}
-                whenReady={() => setIsMapLoading(false)}
+                // whenReady={() => setIsMapLoading(false)}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&
@@ -104,7 +106,7 @@ const Map = ({
                             </Popup>
                         </Marker>
                     ))}
-                ;{userLocation === null && !showUserLocation && <LocationMarker />}
+                ;{userLocation !== null && showUserLocation && <LocationMarker />}
             </MapContainer>
         </>
     );

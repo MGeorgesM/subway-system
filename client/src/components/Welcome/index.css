@@ -12,7 +12,7 @@
 
 .welcome-text h1 {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -26,16 +26,4 @@
 .welcome-btns {
     margin-top: 16px;
     gap: 8px;
-}
-
-.welcome-btns button {
-    height: 50px;
-    width: 150px;
-    font-size: 20px;
-}
-
-.secondary {
-    height: 40px;
-    width: 120px;
-    font-size: 16px;
 }

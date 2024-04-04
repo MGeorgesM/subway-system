@@ -1,96 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useTicketLogic } from './logic';
 
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import Popup from '../Elements/Popup/Popup';
+import Button from '../Elements/Button/Button';
+
 import { formatTime } from '../../core/tools/formatTime';
 
 import './index.css';
-import Popup from '../Elements/Popup/Popup';
 
 const Ticket = () => {
-    const [count, setCount] = useState(1);
-    const [searchParams] = useSearchParams();
-    const [ride, setRide] = useState({});
-    const [user, setUser] = useState({});
-    const [popupMessage, setPopupMessage] = useState('');
-    const [showPopup, setShowPopup] = useState(false);
-
-    const navigate = useNavigate();
-
-    const rideId = parseInt(searchParams.get('rideid'));
-    const stationId = parseInt(searchParams.get('stationid'));
-    console.log(stationId);
-
-    useEffect(() => {
-        const getRide = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, `rides/get/${rideId}`, null);
-                if (response.status === 200) {
-                    setRide(response.data.rides);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-
-        const getUser = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, '/users/get', null);
-                if (response.status === 200) {
-                    setUser(response.data.user);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-        getUser();
-        getRide();
-    }, [rideId]);
-
-    const handleIncrement = () => {
-        setCount(count + 1);
-    };
-
-    const handleDecrement = () => {
-        if (count > 1) {
-            setCount(count - 1);
-        }
-    };
-
-    const handleChange = (e) => {
-        const value = parseInt(e.target.value);
-        if (!isNaN(value) && value >= 1) {
-            setCount(value);
-        }
-    };
-
-    const handleCheckout = async () => {
-        try {
-            const response = await sendRequest(requestMethods.POST, 'tickets/create', { rideId, count });
-            if (response.status === 201) {
-                setShowPopup(true);
-                setPopupMessage('Your Purchase was successfull');
-            } else {
-                throw new Error();
-            }
-        } catch (error) {
-            setShowPopup(true);
-            setPopupMessage(`${error.response.data.message}`);
-        }
-    };
-
-    const handleCancel = () => {
-        navigate(`/station?id=${stationId}`);
-    };
-
-    const handleProceed = () => {
-        setShowPopup(false);
-    };
+    const {
+        user,
+        ride,
+        navigate,
+        count,
+        popupMessage,
+        showPopup,
+        handleCancel,
+        handleChange,
+        handleCheckout,
+        handleDecrement,
+        handleIncrement,
+        handleProceed,
+    } = useTicketLogic();
 
     if (user && ride)
         return (
@@ -99,7 +30,11 @@ const Ticket = () => {
                     <div className="ride-details-container flex column center border-radius box-shadow">
                         <div className="ride-details-title dark-text flex center column">
                             <div className="logo-order">
-                                <img src="./images/assets/logo-dark-grey.png" alt="logo"></img>
+                                <img
+                                    src="./images/assets/logo-dark-grey.png"
+                                    alt="logo"
+                                    onClick={() => navigate('/browse')}
+                                ></img>
                             </div>
                             <h1>Order Details</h1>
                             <p>{user.first_name + ' ' + user.last_name}</p>
@@ -128,20 +63,13 @@ const Ticket = () => {
                             </h2>
                         </div>
                         <div className="checkout flex center">
-                            <button
-                                className="checkout-btn primary-btn box-shadow border-radius-m bold"
-                                id="checkout-btn"
-                                onClick={handleCheckout}
-                            >
-                                Checkout
-                            </button>
-                            <button
-                                className="cancel-btn clicked box-shadow border-red border-radius-m bold"
-                                id="cancel-btn"
-                                onClick={handleCancel}
-                            >
-                                Cancel
-                            </button>
+                            <Button
+                                text={'Checkout'}
+                                type={'primary-btn'}
+                                size={'btn-s'}
+                                clickHandler={handleCheckout}
+                            />
+                            <Button text={'Cancel'} type={'secondary-btn'} size={'btn-s'} clickHandler={handleCancel} />
                         </div>
                     </div>
                 </div>

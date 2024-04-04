@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 
+import { formatTime } from '../../../core/tools/formatTime';
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
-import { formatTime } from '../../../core/tools/formatTime';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 import StarsRating from '../../Elements/StarsRating/StarsRating';
+import Button from '../../Elements/Button/Button';
 
-const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
-    const [startSation, setStartStation] = useState(null);
-    const [endStation, setEndStation] = useState(null);
+const Ridecard = ({ ride, addRide, selectedRide, stationLocation }) => {
+    const [startSation, setStartStation] = useState(addRide ? stationLocation : null);
+    const [endStation, setEndStation] = useState(addRide ? null : stationLocation);
     const [rideRating, setRideRating] = useState(0);
 
-    const { id, name, price, start_time, end_time, start_station_id, end_station_id } = ride;
+    const { id, name, start_station_id, end_station_id, start_time, end_time, price } = ride;
 
     const getStartStation = async () => {
         try {
@@ -51,10 +50,20 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
         }
     };
 
+    const LocationDisplay = ({ stationLocation, time }) => {
+        return (
+            <div className="time-location-display flex column center">
+                <h3 className="location">{stationLocation}</h3>
+                <h3 className="time">{time && formatTime(time)}</h3>
+            </div>
+        );
+    };
+
     useEffect(() => {
-        getStartStation();
-        getEndStation();
+        !startSation && getStartStation();
+        !endStation && getEndStation();
         getAvgRating();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [start_station_id, end_station_id]);
 
     return (
@@ -73,29 +82,21 @@ const Ridecard = ({ ride, addRide, selectedRide, stationId, stationName }) => {
                     </div>
                 )}
                 <div className="destinations flex center">
-                    <div className="time-location-display flex column center">
-                        <h3 className="location">{startSation}</h3>
-                        <h3 className="time">{formatTime(start_time)}</h3>
-                    </div>
+                    <LocationDisplay stationLocation={startSation} time={start_time} />
                     <div className="arrow">
                         <img src="./images/assets/arrow.svg" alt="arrow" />
                     </div>
-                    <div className="time-location-display flex column center">
-                        <h3 className="location">{endStation}</h3>
-                        <h3 className="time">{formatTime(end_time)}</h3>
-                    </div>
+                    <LocationDisplay stationLocation={endStation} time={end_time} />
                 </div>
                 {addRide ? (
                     <div className="price-select flex space-between">
                         <p>${price}</p>
-                        <button
-                            className={`select-btn border-radius-m box-shadow ${
-                                selectedRide === id ? 'clicked' : 'primary-bg white-text'
-                            } `}
-                            onClick={() => addRide(id)}
-                        >
-                            {selectedRide === id ? 'Remove' : 'Select'}
-                        </button>
+                        <Button
+                            clickHandler={() => addRide(id)}
+                            type={selectedRide === id ? 'secondary-btn' : 'primary-btn'}
+                            size={'btn-s'}
+                            text={selectedRide === id ? 'Remove' : 'Select'}
+                        />
                     </div>
                 ) : (
                     <div className="name-rating flex center">
