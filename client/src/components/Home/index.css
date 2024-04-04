@@ -27,6 +27,20 @@
     border-bottom-right-radius: unset;
 }
 
+.leaflet-popup-content-wrapper {
+    background-color: white50;
+    color: #161213;
+    border-radius: 8px!important;
+}
+.leaflet-popup-content {
+    margin: 0;
+}
+
+.rating-pop {
+    font-size: 16px;
+    margin: 4px 0;
+}
+
 .home-search>input {
     width: 600px;
     position: absolute;

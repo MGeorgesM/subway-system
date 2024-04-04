@@ -16,6 +16,10 @@
     gap: 16px;
 }
 
+.rating {
+    font-size: 20px;
+}
+
 .ride-container {
     max-width: 100%;
     height: auto;
@@ -35,7 +39,8 @@
     gap: 16px;
 }
 
-.location, .time {
+.location,
+.time {
     text-align: center;
 }
 
@@ -43,7 +48,10 @@
     font-size: 16px;
 }
 
-
+.leaflet-container {
+    border-top-right-radius: unset!important;
+    border-bottom-right-radius: unset!important;;
+}
 
 .ride-card {
     width: 1200px;

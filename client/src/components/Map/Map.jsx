@@ -8,6 +8,7 @@ import { getUserLocation, defaultLocation } from '../../core/tools/getUserLocati
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
+import StarsRating from '../Elements/StarsRating/StarsRating';
 
 const Map = ({
     locationCoordinatesInput,
@@ -68,7 +69,6 @@ const Map = ({
             const data = await response.json();
 
             if (data.length > 0) {
-                console.log('data', data[0]);
                 const { lat, lon } = data[0];
                 saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
@@ -112,6 +112,10 @@ const Map = ({
                                     <p>
                                         {formatTime(station.opening_time)} till {formatTime(station.closing_time)}
                                     </p>
+                                    <p>{station.active === 1 ? 'Active' : 'Closed' }</p>
+                                    <div className="rating-pop">
+                                    <StarsRating rating={station.rating}/>        
+                                    </div>
                                 </div>
                             </Popup>
                         </Marker>
