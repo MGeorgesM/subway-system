@@ -48,7 +48,7 @@ const App = () => {
     "/branch-invitation",
     "/branch-panel",
     "/facilities-panel",
-    "/Rides",
+    "/rides",
   ];
 
   const isRouteHidden = () => {
