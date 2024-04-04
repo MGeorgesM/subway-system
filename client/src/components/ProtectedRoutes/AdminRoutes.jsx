@@ -11,7 +11,6 @@ const AdminRoutes = ({ children }) => {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
             if (response.data.role === 3) {
                 console.log('User is an Admin');
-                return children;
             } else {
                 navigate('/');
             }
@@ -25,6 +24,7 @@ const AdminRoutes = ({ children }) => {
         validate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    return children;
 };
 
 export default AdminRoutes;
