@@ -27,7 +27,7 @@ const Station = () => {
         addRide,
     } = useStationLogic();
 
-    if (station)
+    if (station && stationId)
         return (
             <>
                 <div className="main-station white-bg flex column">

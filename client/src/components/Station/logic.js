@@ -26,7 +26,7 @@ export const useStationLogic = () => {
     const [popupMessage, setPopupMessage] = useState('');
 
     // const [isLoading, setIsLoading] = useState(true);
-    const [isMapLoading, setIsMapLoading] = useState(true);
+    // const [isMapLoading, setIsMapLoading] = useState(true);
 
     const stationId = parseInt(searchParams.get('id'));
 
@@ -101,13 +101,14 @@ export const useStationLogic = () => {
     return {
         stations,
         station,
+        stationId,
         stationRating,
         startingRides,
         endingRides,
         selectedRide,
         showPopup,
         popupMessage,
-        isMapLoading,
+        // isMapLoading,
         handleProceed,
         addRide,
     };
