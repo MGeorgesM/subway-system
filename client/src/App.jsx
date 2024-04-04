@@ -30,7 +30,19 @@ const App = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
     const location = useLocation();
 
-    const hiddenRoutes = ['/auth', '/ticket', '/location', '/admin-panel', '/display-users', '/display-branches', '/display-stations', '/display-rides', '/coin-request', '/branch-management', '/branch-invitation'];
+    const hiddenRoutes = [
+        '/auth',
+        '/ticket',
+        '/location',
+        '/admin-panel',
+        '/display-users',
+        '/display-branches',
+        '/display-stations',
+        '/display-rides',
+        '/coin-request',
+        '/branch-management',
+        '/branch-invitation',
+    ];
 
     const isRouteHidden = () => {
         return hiddenRoutes.includes(location.pathname);
@@ -62,73 +74,73 @@ const App = () => {
                 <Route path="/station" element={<Station />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ticket" element={<Ticket />} />
-            {isNavbarVisible && <Footer />}
+
                 <Route path="/admin-panel" element={<Sidebar />} />
-                    <Route
-                        path="/coin-request"
-                        element={
-                            <>
-                                <Sidebar />
-                                <CoinRequest />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/branch-invitation"
-                        element={
-                            <>
-                                <Sidebar />
-                                <BranchInvitationForm />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/display-users"
-                        element={
-                            <>
-                                <Sidebar />
-                                <DisplayUser />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/display-branches"
-                        element={
-                            <>
-                                <Sidebar />
-                                <DisplayBranch />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/display-rides"
-                        element={
-                            <>
-                                <Sidebar />
-                                <DisplayRide />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/display-stations"
-                        element={
-                            <>
-                                <Sidebar />
-                                <DisplayStation />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/branch-management"
-                        element={
-                            <>
-                                <Sidebar />
-                                <BranchManagement />
-                            </>
-                        }
-                    />
-                </Routes>
-            </div>
+                <Route
+                    path="/coin-request"
+                    element={
+                        <>
+                            <Sidebar />
+                            <CoinRequest />
+                        </>
+                    }
+                />
+                <Route
+                    path="/branch-invitation"
+                    element={
+                        <>
+                            <Sidebar />
+                            <BranchInvitationForm />
+                        </>
+                    }
+                />
+                <Route
+                    path="/display-users"
+                    element={
+                        <>
+                            <Sidebar />
+                            <DisplayUser />
+                        </>
+                    }
+                />
+                <Route
+                    path="/display-branches"
+                    element={
+                        <>
+                            <Sidebar />
+                            <DisplayBranch />
+                        </>
+                    }
+                />
+                <Route
+                    path="/display-rides"
+                    element={
+                        <>
+                            <Sidebar />
+                            <DisplayRide />
+                        </>
+                    }
+                />
+                <Route
+                    path="/display-stations"
+                    element={
+                        <>
+                            <Sidebar />
+                            <DisplayStation />
+                        </>
+                    }
+                />
+                <Route
+                    path="/branch-management"
+                    element={
+                        <>
+                            <Sidebar />
+                            <BranchManagement />
+                        </>
+                    }
+                />
+            </Routes>
+            {isNavbarVisible && <Footer />}
         </>
     );
 };

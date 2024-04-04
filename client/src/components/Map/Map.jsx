@@ -10,6 +10,7 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 
 const Map = ({
+    locationCoordinatesInput,
     locationTextInput,
     markersInput,
     saveLocationCoordinates,
@@ -24,11 +25,11 @@ const Map = ({
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (locationTextInput) {
+        if (locationTextInput || locationCoordinatesInput) {
             handleInput();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [locationTextInput, markersInput]);
+    }, [locationTextInput, locationCoordinatesInput, markersInput]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
@@ -52,6 +53,12 @@ const Map = ({
 
     const handleInput = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
+
+        if (locationCoordinatesInput.length > 0) {
+            // saveLocationCoordinates && saveLocationCoordinates([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
+            setUserLocation([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
+            return;
+        }
 
         try {
             const response = await fetch(`https://geocode.maps.co/search?q=${locationTextInput}&api_key=${apiKey}`);
