@@ -14,6 +14,7 @@ const Ticket = () => {
         count,
         popupMessage,
         showPopup,
+        passSelected,
         navigate,
         handleCancel,
         handleChange,
@@ -21,11 +22,13 @@ const Ticket = () => {
         handleCheckout,
         handleDecrement,
         handleIncrement,
+        handlePassSelection,
     } = useTicketLogic();
 
     if (user && ride)
         return (
             <>
+                {/* <div className='flex center'> */}
                 <div className="ticket-main flex center">
                     <div className="ride-details-container flex column center border-radius box-shadow">
                         <div className="ride-details-title dark-text flex center column">
@@ -42,21 +45,25 @@ const Ticket = () => {
                         <div className="order-body flex center">
                             <div className="order-details">
                                 <h2>
-                                    {ride.name} - {ride.start_time && formatTime(ride.start_time)}
+                                    {passSelected
+                                        ? 'Multi-Ride Pass - 8 Rides'
+                                        : `${ride.name} - ${ride.start_time && formatTime(ride.start_time)}`}
                                 </h2>
                             </div>
                         </div>
-                        <div className="add-passengers">
-                            <h2>Passengers</h2>
-                            <div className="passenger-counter flex center">
-                                <button onClick={handleDecrement}>-</button>
-                                <input type="text" value={count} onChange={handleChange} />
-                                <button onClick={handleIncrement}>+</button>
+                        {!passSelected && (
+                            <div className="add-passengers">
+                                <h2>Passengers</h2>
+                                <div className="passenger-counter flex center">
+                                    <button onClick={handleDecrement}>-</button>
+                                    <input type="text" value={count} onChange={handleChange} />
+                                    <button onClick={handleIncrement}>+</button>
+                                </div>
                             </div>
-                        </div>
+                        )}
                         <div className="total">
                             <h1>
-                                Due now: $<span>{ride.price && ride.price * count}</span>
+                                Due now: $<span>{passSelected ? '200' : ride.price && ride.price * count}</span>
                             </h1>
                             <h2>
                                 Available Coins: $<span>{user.coins_balance}</span>
@@ -70,6 +77,13 @@ const Ticket = () => {
                                 clickHandler={handleCheckout}
                             />
                             <Button text={'Cancel'} type={'secondary-btn'} size={'btn-s'} clickHandler={handleCancel} />
+                        </div>
+                        <div className="pass-prompt bold secondary-text">
+                            <p onClick={handlePassSelection}>
+                                {passSelected
+                                    ? "I'll get a ticket for now..."
+                                    : 'Get a Multi-Ride Pass and Start Saving!'}
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,6 @@ const App = () => {
 
     const hiddenRoutes = [
         '/auth',
-        '/ticket',
         '/location',
         '/admin-panel',
         '/display-users',
@@ -61,7 +60,7 @@ const App = () => {
     }, [location.pathname]);
 
     const getNavbarBgColor = () => {
-        if (location.pathname === '/') {
+        if (location.pathname === '/' || location.pathname === '/ticket') {
             return 'black-bg';
         }
     };
