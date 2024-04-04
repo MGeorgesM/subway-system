@@ -26,6 +26,22 @@ const BranchSidebar = () => {
             Display Stations
           </Link>
         </li>
+
+        <li className={activeLink === "display-users" ? "active" : ""}>
+          <Link to="/Rides" onClick={() => handleSetActive("display-users")}>
+            Rides
+          </Link>
+        </li>
+
+        <li className={activeLink === "display-users" ? "active" : ""}>
+          <Link
+            to="/facilities-panel"
+            onClick={() => handleSetActive("display-users")}
+          >
+            Facilities
+          </Link>
+        </li>
+
         <li className={activeLink === "display-branches" ? "active" : ""}>
           <Link
             to="/branch-panel"

@@ -37,7 +37,7 @@ class StationController extends Controller
             'lng' => 'required',
             'opening_time' => 'required|date_format:H:i',
             'closing_time' => 'required|date_format:H:i|after:opening_time',
-            'active' => 'required|required|in:0,1'
+            'active' => 'required|in:0,1'
         ]);
 
         if (!auth()->check()) {

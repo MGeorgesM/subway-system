@@ -20,6 +20,8 @@ import DisplayRide from "./components/AdminPanel/DisplayRide/DisplayRide";
 import DisplayStation from "./components/AdminPanel/DisplayStation/DisplayStation";
 import BranchManagement from "./components/AdminPanel/BranchManagement/BranchManagement";
 import DisplayStations from "./components/BranchPanel/DisplayStations/DisplayStations";
+import Facilities from "./components/BranchPanel/Facilities/Facilities";
+import Rides from "./components/BranchPanel/Rides/Rides";
 import Sidebar from "./components/AdminPanel/Sidebar/Sidebar";
 import BranchSidebar from "./components/BranchPanel/BranchSidebar/BranchSidebar";
 
@@ -45,6 +47,8 @@ const App = () => {
     "/branch-management",
     "/branch-invitation",
     "/branch-panel",
+    "/facilities-panel",
+    "/Rides",
   ];
 
   const isRouteHidden = () => {
@@ -77,6 +81,22 @@ const App = () => {
         <Route path="/station" element={<Station />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/ticket" element={<Ticket />} />
+        <Route
+          path="/facilities-panel"
+          element={
+            <>
+              <BranchSidebar /> <Facilities />
+            </>
+          }
+        ></Route>
+        <Route
+          path="/rides"
+          element={
+            <>
+              <BranchSidebar /> <Rides />
+            </>
+          }
+        ></Route>
         <Route
           path="/branch-panel"
           element={
