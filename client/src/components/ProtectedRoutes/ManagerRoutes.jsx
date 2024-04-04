@@ -11,7 +11,9 @@ const ManagerRoutes = ({ children }) => {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
             if (response.data.role === 2) {
                 console.log('User is Manager');
-                return;
+                return children;
+            } else {
+                navigate('/');
             }
         } catch (error) {
             console.log(error);
