@@ -12,6 +12,15 @@ import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
 
+import CoinRequest from './components/AdminPanel/AdminCoinRequest/CoinRequest';
+import BranchInvitationForm from './components/AdminPanel/BranchInvitation/BranchInvitationForm';
+import DisplayUser from './components/AdminPanel/DisplayUser/DisplayUser';
+import DisplayBranch from './components/AdminPanel/DisplayBranch/DisplayBranch';
+import DisplayRide from './components/AdminPanel/DisplayRide/DisplayRide';
+import DisplayStation from './components/AdminPanel/DisplayStation/DisplayStation';
+import BranchManagement from './components/AdminPanel/BranchManagement/BranchManagement';
+import Sidebar from './components/AdminPanel/Sidebar/Sidebar';
+
 import './App.css';
 import './styles/colors.css';
 import './styles/utilities.css';
@@ -21,7 +30,7 @@ const App = () => {
     const [isNavbarVisible, setIsNavbarVisible] = useState(true);
     const location = useLocation();
 
-    const hiddenRoutes = ['/auth', '/ticket', '/location'];
+    const hiddenRoutes = ['/auth', '/ticket', '/location', '/admin-panel', '/display-users', '/display-branches', '/display-stations', '/display-rides', '/coin-request', '/branch-management', '/branch-invitation'];
 
     const isRouteHidden = () => {
         return hiddenRoutes.includes(location.pathname);
@@ -51,14 +60,10 @@ const App = () => {
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
-                <Route path="*" element={<Welcome />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ticket" element={<Ticket />} />
-            </Routes>
             {isNavbarVisible && <Footer />}
-            {/* <Route path="/admin-panel" element={<Sidebar />} /> */}
-            {/* <div className="content">
-                <Routes>
+                <Route path="/admin-panel" element={<Sidebar />} />
                     <Route
                         path="/coin-request"
                         element={
@@ -123,7 +128,7 @@ const App = () => {
                         }
                     />
                 </Routes>
-            </div> */}
+            </div>
         </>
     );
 };

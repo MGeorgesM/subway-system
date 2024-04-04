@@ -25,6 +25,9 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::get('users/get', [UsersController::class, 'getUser']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
+Route::post('users/{id}/shutdown', [UsersController::class, 'shutDownBranch']);
+Route::post('users/{id}/activate', [UsersController::class, 'activateBranch']);
+Route::delete('users/{id}', [UsersController::class, 'deleteBranch']);
 
 Route::get('passes/get/{id?}', [PassController::class, 'get']);
 Route::post('passes/add', [PassController::class, 'add']);
