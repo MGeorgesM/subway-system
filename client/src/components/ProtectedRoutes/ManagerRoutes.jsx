@@ -12,8 +12,6 @@ const ManagerRoutes = ({ children }) => {
             if (response.data.role === 2) {
                 console.log('User is Manager');
                 return;
-            } else {
-                navigate('/browse');
             }
         } catch (error) {
             console.log(error);

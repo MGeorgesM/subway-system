@@ -12,8 +12,6 @@ const AdminRoutes = ({ children }) => {
             if (response.data.role === 3) {
                 console.log('User is an Admin');
                 return;
-            } else {
-                // navigate('/browse');
             }
         } catch (error) {
             console.log(error);
