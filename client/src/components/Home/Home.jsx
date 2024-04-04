@@ -8,28 +8,22 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { findNearestStation } from '../../core/tools/calculateDistance';
 
+import { getUserLocation } from '../../core/tools/getUserLocation';
+
 import './index.css';
 
 const Home = () => {
-    const [nearestStation, setNearestStation] = useState(null);
-    // const [userLocation, setUserLocation] = useState(
-    //     JSON.parse(localStorage.getItem('location')).length > 0
-    //         ? JSON.parse(localStorage.getItem('location'))
-    //         : [33.88863, 35.49548]
-    // );
-    const [topStation, setTopStation] = useState(null);
-    const [location, setLocation] = useState([]);
+    // const [location, setLocation] = useState([]);
+
     const [stations, setStations] = useState([]);
+    const [nearestStation, setNearestStation] = useState(null);
+    const [topStation, setTopStation] = useState(null);
+
     const [search, setSearch] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [isMapLoading, setIsMapLoading] = useState(true);
 
-    const storedLocation = JSON.parse(localStorage.getItem('location'));
-    const defaultLocation = [33.88863, 35.49548];
-
-    const [userLocation, setUserLocation] = useState(
-        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
-    );
+    const [userLocation, setUserLocation] = useState(getUserLocation);
+    // const [isLoading, setIsLoading] = useState(true);
+    // const [isMapLoading, setIsMapLoading] = useState(true);
 
     useEffect(() => {
         const getStations = async () => {
@@ -45,7 +39,6 @@ const Home = () => {
                     nearestStation = { ...nearestStation, rating: nearestStationRatingRequest.data.station_rating };
                     setNearestStation(nearestStation);
                     setStations(response.data);
-                    console.log('nearestStation', nearestStation);
                 } else {
                     throw new Error();
                 }
@@ -58,8 +51,6 @@ const Home = () => {
                 const response = await sendRequest(requestMethods.GET, '/reviews/topstation', null);
                 if (response.status === 200) {
                     setTopStation(response.data);
-                    console.log('topStation', response.data);
-                    setIsLoading(false);
                 } else {
                     throw new Error();
                 }
@@ -67,23 +58,9 @@ const Home = () => {
                 console.log(error.response.data.message);
             }
         };
-        // const getRides = async () => {
-        //     try {
-        //         const response = await sendRequest(requestMethods.GET, '/rides/getAll', null);
-        //         if (response.status === 200) {
-        //             console.log('rides', response.data.rides);
-        //         } else {
-        //             throw new Error();
-        //         }
-        //     } catch (error) {
-        //         console.log(error.response.data.message);
-        //     }
-        // };
         getStations();
         getTopStation();
-        // getRides();
-        setLocation(userLocation);
-        console.log('isLoading', isMapLoading);
+        // setLocation(userLocation);
     }, []);
 
     return (
@@ -98,9 +75,9 @@ const Home = () => {
                         </div>
                         <Map
                             locationTextInput={search}
-                            saveLocationCoordinates={setLocation}
+                            // saveLocationCoordinates={setLocation}
                             markersInput={stations}
-                            setIsMapLoading={setIsMapLoading}
+                            userLocationProp={userLocation}
                         ></Map>
                         <div className="home-search">
                             <input
@@ -120,15 +97,13 @@ const Home = () => {
                     <div className="stations flex center"></div>
                     <div className="ads flex column center white-bg">
                         <Ad
-                            count={1}
-                            adTypeName={'Your Nearest Station'}
+                            type={1}
                             avgRating={nearestStation.rating}
                             name={nearestStation.name}
                             stationId={nearestStation.id}
                         />
                         <Ad
-                            count={2}
-                            adTypeName={'Our Most Popular'}
+                            type={0}
                             avgRating={topStation.rating}
                             name={topStation.name}
                             stationId={topStation.id}

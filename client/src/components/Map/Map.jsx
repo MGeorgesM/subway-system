@@ -4,19 +4,21 @@ import { useNavigate } from 'react-router-dom';
 
 import { Icon } from 'leaflet';
 import { formatTime } from '../../core/tools/formatTime';
+import { getUserLocation, defaultLocation } from '../../core/tools/getUserLocation';
 
 import './index.css';
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMapLoading }) => {
-    // const [userLocation, setUserLocation] = useState(
-    //     JSON.parse(localStorage.getItem('location')).length > 0 ? JSON.parse(localStorage.getItem('location')) : null
-    // );
-    const storedLocation = JSON.parse(localStorage.getItem('location'));
-    const defaultLocation = [33.88863, 35.49548];
-
+const Map = ({
+    locationTextInput,
+    markersInput,
+    saveLocationCoordinates,
+    userLocationProp,
+    updateLocation = false,
+    showUserLocation = true,
+}) => {
     const [userLocation, setUserLocation] = useState(
-        storedLocation && storedLocation.length > 0 ? storedLocation : defaultLocation
+        updateLocation ? null : userLocationProp ? userLocationProp : getUserLocation()
     );
 
     const navigate = useNavigate();
@@ -45,7 +47,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMa
             map.flyTo(userLocation, map.getZoom());
         }
 
-        return userLocation === null ? null : <Marker position={userLocation} icon={customUserIcon}></Marker>;
+        return <Marker position={userLocation} icon={customUserIcon}></Marker>;
     };
 
     const handleInput = async () => {
@@ -80,10 +82,6 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMa
 
     return (
         <>
-            {/* <div className="searh=container">
-                <input type="text" value={searchQuery} onChange={handleInputChange} placeholder="Enter your city" />
-                <button onClick={handelInput}>Search</button>
-            </div> */}
             <MapContainer
                 center={userLocation ? userLocation : defaultLocation}
                 scrollWheelZoom={false}
@@ -92,7 +90,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMa
                 attributionControl={false}
                 // whenReady={() => setIsMapLoading(false)}
             >
-                <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN"/>
+                <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&
                     markersInput.stations &&
                     markersInput.stations.map((station) => (
@@ -108,8 +106,7 @@ const Map = ({ locationTextInput, markersInput, saveLocationCoordinates, setIsMa
                             </Popup>
                         </Marker>
                     ))}
-                ;
-                <LocationMarker />
+                ;{userLocation !== null && showUserLocation && <LocationMarker />}
             </MapContainer>
         </>
     );

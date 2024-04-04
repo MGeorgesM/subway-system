@@ -38,4 +38,9 @@
     color: #161213;
     border-radius: 8px !important;
     padding: 16px !important;
+    z-index: 9000;
 }
+
+/* .leaflet-control-zoom-in, .leaflet-control-zoom-out{
+    background-color: transparent !important;
+} */

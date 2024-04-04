@@ -13,9 +13,9 @@ export const sendRequest = async (method, route, body) => {
     },
   });
 
-  if (response.status === 401) {
-    localStorage.clear();
-  }
+  // if (response.status === 401) {
+  //   localStorage.clear();
+  // }
 
   return response;
 };

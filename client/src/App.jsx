@@ -2,11 +2,12 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Elements/Navbar/Navbar';
 import Welcome from './components/Welcome/Welcome';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Elements/Footer/Footer';
 import Home from './components/Home/Home';
 import Station from './components/Station/Station';
+import Profile from './components/Profile/Profile';
 import Authentication from './components/Authentication/Authentication';
 import LocationForm from './components/Authentication/Forms/LocationForm';
 import Ticket from './components/Ticket/Ticket';
@@ -53,20 +54,15 @@ const App = () => {
     return (
         <>
             {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
-
             <Routes>
                 <Route path="/" element={<Welcome />} />
                 <Route path="/browse" element={<Home />} />
                 <Route path="/auth" element={<Authentication />} />
                 <Route path="/location" element={<LocationForm />} />
                 <Route path="/station" element={<Station />} />
-                {/* <Route path="/profile" element={<Profile />} /> */}
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/ticket" element={<Ticket />} />
-                {/* <Route path="*" element={<Welcome />} /> */}
-            </Routes>
             {isNavbarVisible && <Footer />}
-            <div className="content">
-                <Routes>
                 <Route path="/admin-panel" element={<Sidebar />} />
                     <Route
                         path="/coin-request"

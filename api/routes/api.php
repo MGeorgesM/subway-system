@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatsController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\RidesController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\BranchInvitationController;
+use App\Http\Controllers\StationsFacilityController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\HelloMail;
 use App\Http\Controllers\PassController;
@@ -37,8 +39,8 @@ Route::post('coins-requests/{id}/accept', [CoinRequestController::class, 'accept
 Route::post('coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
 Route::get('user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
 
-Route::post('reviews/add', [ReviewsController::class, 'addReviews']);
-Route::get('reviews/user/{userId}', [ReviewsController::class, 'getPassengerReviews']);
+Route::post('/reviews/add', [ReviewsController::class, 'addReviews']);
+Route::get('/reviews/user', [ReviewsController::class, 'getPassengerReviews']);
 Route::get('reviews/average', [ReviewsController::class, 'getAverageRating']);
 Route::get('reviews/topstation', [ReviewsController::class, 'getHighestRatedStation']);
 
@@ -67,4 +69,36 @@ Route::get('facilities/getAll', [FacilitiesController::class, 'get_all_facilitie
 Route::get('facilities/get/{id}', [FacilitiesController::class, 'get_facilities']);
 Route::post('facilities/update/{id}', [FacilitiesController::class, 'update_facilities']);
 
+Route::get('stationsfacilities/get', [StationsFacilityController::class, 'getByStationId']);
+
 Route::post('/send-email', [BranchInvitationController::class, 'invite']);
+
+
+// Route::group(['middleware' => "admin.middleware"], function () {
+//     Route::get('coins-requests', [CoinRequestController::class, 'viewRequests']);
+//     Route::post('coins-requests/{id}/accept', [CoinRequestController::class, 'acceptRequest']);
+//     Route::post('coins-requests/{id}/discard', [CoinRequestController::class, 'discardRequest']);
+//     Route::get('user/{userId}/coins-requests', [CoinRequestController::class, 'userRequests']);
+
+//     Route::get('tickets/getAll', [TicketsController::class, 'get_all_tickets']);
+//     Route::post('rides/create', [RidesController::class, 'create_rides']);
+//     Route::delete('rides/delete/{id}', [RidesController::class, 'delete_rides']);
+
+//     Route::get('tickets/getAll', [TicketsController::class, 'get_all_tickets']);
+
+//     Route::get('facilities/getAll', [FacilitiesController::class, 'get_all_facilities']);
+// });
+
+// Route::group(['middleware' => "manager.middleware"], function () {
+//     Route::post('tickets/update/{id}', [TicketsController::class, 'update_ticket']);
+
+//     Route::post('facilities/update/{id}', [FacilitiesController::class, 'update_facilities']);
+// });
+
+// Route::group(["middleware" => "user.middleware"], function () {
+//     Route::group(['middleware' => 'auth:api'], function () {
+//         // auth routes
+//     });
+
+//     // other users routes
+// });

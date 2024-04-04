@@ -26,7 +26,6 @@ class BranchInvitationController extends Controller
         $invitation = BranchInvitation::create([
             'branch_email' => $request->branch_email,
             'expires_at' => $expires_at,
-            'expires_at' => now()->addDays(7),
         ]);
 
         if ($this->sendInvitationEmail($invitation->branch_email, $expires_at)) {

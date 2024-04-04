@@ -2,3 +2,7 @@
     cursor: pointer;
     color: #980511;
 }
+
+.ad-text h2 {
+    margin-bottom: 4px !important;
+}

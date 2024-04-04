@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\Ticket;
 use App\Models\Station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
@@ -45,11 +46,18 @@ class ReviewsController extends Controller
         ]);
     }
 
-    public function getPassengerReviews($userId)
+    public function getPassengerReviews()
     {
-        $reviews = Review::where('user_id', $userId)->get();
+        $user = Auth::user();
+        if ($user) {
 
-        return response()->json(['reviews' => $reviews], 200);
+            $reviews = $user->reviews()->get();
+    
+            return response()->json(['reviews' => $reviews], 200);
+            
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
     }
 
     public function getAverageRating(Request $request)

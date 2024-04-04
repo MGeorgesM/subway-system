@@ -1,14 +1,11 @@
-/* .root {
-    background-color: #980511;
-} */
-
 .form-component {
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(41, 41, 41, 0.5),
-            rgba(0, 0, 0, 0.5)),
-        url(../../../public/images/Assets/hero-2.jpg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.50),
+            rgba(255, 255, 255, 0.5)),
+        url(../../../public/images/assets/hero-track.jpg);
     background-size: cover;
+    background-position: center;
 }
 
 .location-form {
@@ -46,7 +43,7 @@
     min-height: 600px;
     min-width: 440px;
     padding: 24px;
-    background-color: #EFEFEF;
+    background-color: #f7f7f7;
 }
 
 .container p {
@@ -76,6 +73,10 @@ form>div {
 
 .input-container {
     position: relative;
+}
+
+.logo-form > img {
+    cursor: pointer;
 }
 
 .field input {
