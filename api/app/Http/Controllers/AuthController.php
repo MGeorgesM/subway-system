@@ -34,6 +34,10 @@ class AuthController extends Controller
 
         $user = auth()->user();
 
+        if ($user->active === 0) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         return response()->json([
             'token' => $token,
         ]);

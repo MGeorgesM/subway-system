@@ -92,6 +92,18 @@ class UsersController extends Controller
         ]);
     }
 
+    public function getUserRole() {
+        if (!auth()->check()) {
+            return response()->json(['role' => 0]);
+        }
+
+        $user_role = auth()->user()->role_id;
+
+        return response()->json([
+            'role' => $user_role
+        ]);
+    }
+
     public function activateBranch($id)
     {
         $user = User::find($id);

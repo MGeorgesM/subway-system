@@ -54,7 +54,7 @@ const Map = ({
     const handleInput = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
 
-        if (locationCoordinatesInput.length > 0) {
+        if (locationCoordinatesInput && locationCoordinatesInput.length > 0) {
             // saveLocationCoordinates && saveLocationCoordinates([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
             setUserLocation([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
             return;
