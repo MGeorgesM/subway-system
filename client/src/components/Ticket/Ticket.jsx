@@ -1,9 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
-
 import { useTicketLogic } from './logic';
 
 import Popup from '../Elements/Popup/Popup';
