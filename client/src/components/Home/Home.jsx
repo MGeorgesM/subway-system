@@ -15,6 +15,8 @@ import './index.css';
 const Home = () => {
     // const [location, setLocation] = useState([]);
 
+    const [showWelcome, setShowWelcome] = useState(true);
+
     const [stations, setStations] = useState([]);
     const [nearestStation, setNearestStation] = useState(null);
     const [topStation, setTopStation] = useState(null);
@@ -69,15 +71,18 @@ const Home = () => {
             {nearestStation && topStation && (
                 <>
                     <div className="main white-bg flex column">
-                        <div className="welcome-home">
-                            <h2>Step Into</h2>
-                            <h1>The World of Onwards</h1>
-                        </div>
+                        {showWelcome && (
+                            <div className="welcome-home">
+                                <h2>Step Into</h2>
+                                <h1>The World of Onwards</h1>
+                            </div>
+                        )}
                         <Map
                             locationTextInput={search}
                             // saveLocationCoordinates={setLocation}
                             markersInput={stations}
                             userLocationProp={userLocation}
+                            setShowWelcome={setShowWelcome}
                         ></Map>
                         <div className="home-search">
                             <input
@@ -102,12 +107,7 @@ const Home = () => {
                             name={nearestStation.name}
                             stationId={nearestStation.id}
                         />
-                        <Ad
-                            type={0}
-                            avgRating={topStation.rating}
-                            name={topStation.name}
-                            stationId={topStation.id}
-                        />
+                        <Ad type={0} avgRating={topStation.rating} name={topStation.name} stationId={topStation.id} />
                     </div>
                 </>
             )}

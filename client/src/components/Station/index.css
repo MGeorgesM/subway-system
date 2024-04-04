@@ -5,15 +5,21 @@
 
 .section-header {
     width: 100%;
-    padding: 64px;
+    width: 1200px;
+    padding: 64px 0px;
 }
 
 .section-header h3 {
     margin-bottom: 4px;
 }
 
+
 .header-icons {
     gap: 16px;
+}
+
+.rating {
+    font-size: 20px;
 }
 
 .ride-container {
@@ -35,7 +41,8 @@
     gap: 16px;
 }
 
-.location, .time {
+.location,
+.time {
     text-align: center;
 }
 
@@ -43,7 +50,10 @@
     font-size: 16px;
 }
 
-
+.leaflet-container {
+    border-top-right-radius: unset!important;
+    border-bottom-right-radius: unset!important;;
+}
 
 .ride-card {
     width: 1200px;

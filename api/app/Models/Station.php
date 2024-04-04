@@ -14,6 +14,8 @@ class Station extends Model
         'branch_id',
         'name',
         'location',
+        'lat',
+        'lng',
         'opening_time',
         'closing_time',
         'active'

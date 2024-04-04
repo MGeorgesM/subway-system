@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './index.css';
 
@@ -20,6 +20,13 @@ const BranchInvitationForm = () => {
 
     setLoading(false);
   };
+
+  useEffect(() => {
+    document.body.classList.add('display-user-active');
+  return () => {
+      document.body.classList.remove('display-user-active');
+    };
+  }, []);
 
   return (
     <div className='branch-invitation-main'>

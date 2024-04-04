@@ -8,7 +8,7 @@
     top: 25%;
     left: 10%;
     color: #ED941B;
-    z-index: 999;
+    z-index: 500;
 }
 
 .welcome-home h1 {
@@ -22,10 +22,23 @@
     font-weight: 700;
 }
 
-
 .leaflet-container {
     border-top-right-radius: unset;
     border-bottom-right-radius: unset;
+}
+
+.leaflet-popup-content-wrapper {
+    background-color: white50;
+    color: #161213;
+    border-radius: 8px!important;
+}
+.leaflet-popup-content {
+    margin: 0;
+}
+
+.rating-pop {
+    font-size: 16px;
+    margin: 4px 0;
 }
 
 .home-search>input {
@@ -48,11 +61,12 @@
 
 .recommendations {
     width: 100%;
-    padding: 96px 96px 48px 96px;
+    padding: 96px 0
 }
 
+
 .text {
-    max-width: 1050px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
@@ -70,14 +84,19 @@
     object-fit: cover;
 }
 
+.rating-ad {
+    font-size: 20px;
+    margin: 4px 0;
+}
+
 .ad {
-    height: 400px;
-    max-width: 1050px;
+    max-width: 1140px;
     gap: 24px;
+    margin-bottom: 96px;
 }
 
 .ad-text {
-    max-width: 700px;
+    max-width: 800px;
     padding: 24px 16px;
 }
 

@@ -1,27 +1,29 @@
-import { useNavigate } from "react-router-dom";
-
-import { sendRequest } from "../../core/tools/apiRequest";
-import { requestMethods } from "../../core/tools/apiRequestMethods";
-import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { sendRequest } from '../../core/tools/apiRequest';
+import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { useEffect } from 'react';
 
 const AdminRoutes = ({ children }) => {
     const navigate = useNavigate();
 
     const validate = async () => {
         try {
-            const response = await sendRequest(requestMethods.GET, '/users/get');
-            if (response.data.user.role_id === 3) {
-                navigate('/admin-panel');
+            const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
+            if (response.data.role === 3) {
+                console.log('User is an Admin');
+                return;
             }
         } catch (error) {
-            console.error('Error validating user:', error.response.data.message);
+            console.log(error);
+            navigate('/');
         }
-    }
-    
+    };
+
     useEffect(() => {
         validate();
-    });
-    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return children;
 };
 

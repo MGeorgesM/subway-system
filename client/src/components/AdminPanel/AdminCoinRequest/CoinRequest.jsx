@@ -8,6 +8,13 @@ const CoinRequest = () => {
   useEffect(() => {
     fetchCoinRequests();
   }, []);
+  
+  useEffect(() => {
+    document.body.classList.add('display-user-active');
+  return () => {
+      document.body.classList.remove('display-user-active');
+    };
+  }, []);
 
   const fetchCoinRequests = async () => {
     try {

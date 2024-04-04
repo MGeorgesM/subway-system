@@ -3,14 +3,14 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { useEffect } from 'react';
 
-const AuthenticatedRoutes = ({ children }) => {
+const ManagerRoutes = ({ children }) => {
     const navigate = useNavigate();
 
     const validate = async () => {
         try {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
-            if (response.data.role !== 0) {
-                console.log('User is Logged In');
+            if (response.data.role === 2) {
+                console.log('User is Manager');
                 return;
             }
         } catch (error) {
@@ -27,4 +27,4 @@ const AuthenticatedRoutes = ({ children }) => {
     return children;
 };
 
-export default AuthenticatedRoutes;
+export default ManagerRoutes;

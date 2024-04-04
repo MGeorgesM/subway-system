@@ -21,30 +21,27 @@ class PassController extends Controller
         return response()->json($pass);
     }
 
-    public function add(Request $request)
+    public function add()
     {
         if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $token_user_id = auth()->user()->id;
-        $user = User::find($token_user_id);
+        $user = auth()->user();
 
-        if ($user) {
-
-            if ($user->coins_balance < 100) {
-                return response()->json(['message' => 'Insufficient coins'], 403);
-            }
-
-            $user->coins_balance = $user->coins_balance - 100;
-            $pass = Pass::create([
-                'user_id' => $user->id,
-            ]);
-
-            return response()->json($pass);
+        if ($user->coins_balance < 100) {
+            return response()->json(['message' => 'Insufficient coins'], 403);
         }
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+        $user_db = User::find($user->id);
+        $user_db->coins_balance = $user_db->coins_balance - 100;
+        $user_db->save();
+
+        $pass = Pass::create([
+            'user_id' => $user->id,
+        ]);
+
+        return response()->json($pass, 201);
     }
 
     public function update(Request $request)

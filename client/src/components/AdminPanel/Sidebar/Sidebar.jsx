@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
     const [activeLink, setActiveLink] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSetActive = (link) => {
         setActiveLink(link);
     };
 
     return (
-        <div className='sidebar'>
-            <div className='sidebar-header'>
+        <div className="sidebar">
+            <div className="sidebar-header">
                 <div className="sidebar-logo">
-                    <img src="./images/Assets/logo.png" alt="logo" />
+                    <img src="./images/Assets/logo.png" alt="logo" onClick={() => navigate('/browse')} />
                 </div>
                 Admin Panel
             </div>
-            <ul className='sidebar-menu'>
+            <ul className="sidebar-menu">
                 <li className={activeLink === 'display-users' ? 'active' : ''}>
                     <Link to="/display-users" onClick={() => handleSetActive('display-users')}>
                         Display Users
@@ -55,7 +57,7 @@ const Sidebar = () => {
                 </li>
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default Sidebar;

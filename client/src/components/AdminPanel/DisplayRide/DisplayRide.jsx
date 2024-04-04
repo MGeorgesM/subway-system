@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 const DisplayRide = () => {
   const [rides, setRides] = useState([]);
@@ -18,6 +18,13 @@ const DisplayRide = () => {
 
   useEffect(() => {
     fetchRides();
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.add('display-user-active');
+  return () => {
+      document.body.classList.remove('display-user-active');
+    };
   }, []);
 
   return (

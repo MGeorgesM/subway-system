@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Map from '../../../components/Map/Map';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
@@ -38,19 +42,19 @@ const LocationForm = () => {
         }
     };
 
-    const saveLocationCoordinates = (coordinates) => {
-        setLocationCoordinates(coordinates);
-    };
+    // const saveLocationCoordinates = (coordinates) => {
+    //     setLocationCoordinates(coordinates);
+    // };
 
     const handleLocationRetrieval = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                console.log(position);
                 const { latitude, longitude } = position.coords;
                 setLocationCoordinates([latitude, longitude]);
+
             });
         } else {
-            console.log('Geolocation is not supported by this browser.');
+            return;
         }
     };
 
@@ -67,10 +71,15 @@ const LocationForm = () => {
                         onChange={(e) => setLocation(e.target.value)}
                         required
                     />
-                    <i
+                    <FontAwesomeIcon
+                        icon={faLocationCrosshairs}
+                        className="getlocation-btn light-text"
+                        onClick={handleLocationRetrieval}
+                    />
+                    {/* <i
                         className="light-text getlocation-btn fa-solid fa-location-crosshairs"
                         onClick={handleLocationRetrieval}
-                    ></i>
+                    ></i> */}
                     <button
                         className="location-btn primary-bg white-text box-shadow border-radius-l input-btn-lg"
                         onClick={handleLocationSubmit}
@@ -82,7 +91,12 @@ const LocationForm = () => {
                     </div> */}
                 </div>
                 <div className="map-container">
-                    <Map locationTextInput={submittedLocation} saveLocationCoordinates={saveLocationCoordinates} updateLocation={true}></Map>
+                    <Map
+                        locationCoordinatesInput = {locationCoordinates}
+                        locationTextInput={submittedLocation}
+                        saveLocationCoordinates={setLocationCoordinates}
+                        updateLocation={true}
+                    ></Map>
                 </div>
             </div>
         </div>
