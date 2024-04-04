@@ -14,6 +14,8 @@ class Station extends Model
         'branch_id',
         'name',
         'location',
+        'lat',
+        'lng',
         'opening_time',
         'closing_time',
         'active'
@@ -29,5 +31,9 @@ class Station extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+    public function facilities()
+    {
+        return $this->belongsToMany(Facility::class, 'stations_facilities');
     }
 }

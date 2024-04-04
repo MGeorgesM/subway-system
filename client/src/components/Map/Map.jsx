@@ -10,23 +10,26 @@ import './index.css';
 import 'leaflet/dist/leaflet.css';
 
 const Map = ({
+    locationCoordinatesInput,
     locationTextInput,
     markersInput,
     saveLocationCoordinates,
-    setIsMapLoading,
     userLocationProp,
+    updateLocation = false,
     showUserLocation = true,
 }) => {
-    const [userLocation, setUserLocation] = useState(userLocationProp ? userLocationProp : getUserLocation());
+    const [userLocation, setUserLocation] = useState(
+        updateLocation ? null : userLocationProp ? userLocationProp : getUserLocation()
+    );
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (locationTextInput) {
+        if (locationTextInput || locationCoordinatesInput) {
             handleInput();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [locationTextInput, markersInput]);
+    }, [locationTextInput, locationCoordinatesInput, markersInput]);
 
     const LocationMarker = () => {
         const map = useMapEvents(
@@ -50,6 +53,12 @@ const Map = ({
 
     const handleInput = async () => {
         const apiKey = '660737a1376dd241495384iohcb525f';
+
+        if (locationCoordinatesInput.length > 0) {
+            // saveLocationCoordinates && saveLocationCoordinates([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
+            setUserLocation([locationCoordinatesInput[0], locationCoordinatesInput[1]]);
+            return;
+        }
 
         try {
             const response = await fetch(`https://geocode.maps.co/search?q=${locationTextInput}&api_key=${apiKey}`);
@@ -86,7 +95,7 @@ const Map = ({
                 zoom={13}
                 zoomControl={false}
                 attributionControl={false}
-                whenReady={() => setIsMapLoading(false)}
+                // whenReady={() => setIsMapLoading(false)}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&
@@ -104,7 +113,7 @@ const Map = ({
                             </Popup>
                         </Marker>
                     ))}
-                ;{userLocation === null && !showUserLocation && <LocationMarker />}
+                ;{userLocation !== null && showUserLocation && <LocationMarker />}
             </MapContainer>
         </>
     );

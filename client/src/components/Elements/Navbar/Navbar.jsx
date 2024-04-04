@@ -1,48 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { useNavBarLogic } from './logic';
 
 import './index.css';
 
 const Navbar = ({ bg = 'no-bg' }) => {
-    const [scrolled, setScrolled] = useState(false);
-    const [userRoleId, setUserRoleId] = useState('');
-
-    const navigate = useNavigate();
-
+    const { scrolled, signOut, navigate, userRoleId } = useNavBarLogic();
+    
     const navBg = scrolled ? 'black-bg-trsp' : bg;
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
-
-        const getUserRole = async () => {
-            try {
-                const response = await sendRequest(requestMethods.GET, '/users/get', null);
-                if (response.status === 200) {
-                    setUserRoleId(response.data.user.role_id);
-                } else {
-                    throw new Error();
-                }
-            } catch (error) {
-                console.log(error.response.data.message);
-            }
-        };
-
-        getUserRole();
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
 
     return (
         <div className={`navbar ${navBg}`}>
@@ -59,7 +22,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                                     ? navigate('/branch-panel')
                                     : userRoleId === 1
                                     ? navigate('/profile')
-                                    : navigate('/welcome');
+                                    : navigate('/');
                             }}
                         >
                             {userRoleId === 3
@@ -74,8 +37,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                             className="nav-login white-text primary-bg box-shadow border-radius regular"
                             onClick={() => {
                                 if (userRoleId) {
-                                    navigate('/');
-                                    localStorage.clear();
+                                    signOut();
                                 } else {
                                     navigate('/auth');
                                 }

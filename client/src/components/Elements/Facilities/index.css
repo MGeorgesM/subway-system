@@ -1,0 +1,8 @@
+.facilities-main {
+    display: flex;
+    justify-content: center;
+}
+
+.facilities-main span {
+    margin: 0 8px;
+}

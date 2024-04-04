@@ -33,8 +33,11 @@ class StationController extends Controller
         $req->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
+            'lat' => 'required',
+            'lng' => 'required',
             'opening_time' => 'required|date_format:H:i',
             'closing_time' => 'required|date_format:H:i|after:opening_time',
+            'active' => 'required|required|in:0,1'
         ]);
 
         if (!auth()->check()) {
@@ -49,8 +52,11 @@ class StationController extends Controller
                 'branch_id' => $token_user_id,
                 'name' => $req->name,
                 'location' => $req->location,
+                'lat' => $req->lat,
+                'lng' => $req->lng,
                 'opening_time' => $req->opening_time,
                 'closing_time' => $req->closing_time,
+                'active' => $req->active
             ]);
             return response()->json(['station' => $station], 201);
         }
