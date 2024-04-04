@@ -11,16 +11,16 @@ const Ticket = () => {
     const {
         user,
         ride,
-        navigate,
         count,
         popupMessage,
         showPopup,
+        navigate,
         handleCancel,
         handleChange,
+        handleProceed,
         handleCheckout,
         handleDecrement,
         handleIncrement,
-        handleProceed,
     } = useTicketLogic();
 
     if (user && ride)
