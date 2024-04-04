@@ -56,7 +56,7 @@ const Ticket = () => {
                                 <h2>Passengers</h2>
                                 <div className="passenger-counter flex center">
                                     <button onClick={handleDecrement}>-</button>
-                                    <input type="text" value={count} onChange={handleChange}/>
+                                    <input type="text" value={count} onChange={handleChange} />
                                     <button onClick={handleIncrement}>+</button>
                                 </div>
                             </div>
