@@ -31,6 +31,9 @@
   height: 25vh;
   gap: 40px;
 }
+.user-info-wrapper img {
+  object-fit: cover;
+}
 
 .personal-info-wrapper {
   display: flex;
@@ -86,7 +89,7 @@
   align-items: center;
   flex-direction: column;
   margin-bottom: 5%;
-  margin-top: 3%;
+  margin-top: 128px;
   height: 60vh;
 }
 
@@ -131,10 +134,8 @@
 }
 
 .review-slide {
-  border: 2px solid #ce091b;
-  background-color: #6d6b6c;
   padding: 2%;
-  height: 15vh; /* Add a border between slides */
+  height: 20vh; /* Add a border between slides */
 }
 
 .review-card {

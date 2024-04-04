@@ -182,7 +182,7 @@ function Profile() {
     <div className="profile-wrapper">
       {isEditing && <div className="blurred"></div>}
       {isEditing && (
-        <div className="is-editting">
+        <div className="is-editting light-gray-bg">
           <div className="edit-inputs">
             {image && <img src={`${image}`} alt="User" />}
             <input
@@ -220,12 +220,12 @@ function Profile() {
 
       {requstCoins && <div className="blurred"></div>}
       {requstCoins && (
-        <div className="is-requesting-coins">
+        <div className="is-requesting-coins light-gray-bg">
           <div>
             <h1>Request Coins</h1>
           </div>
 
-          <div className="request-coins-wrapper">
+          <div className="request-coins-wrapper ">
             <input
               placeholder="Amout"
               onChange={(e) => {
@@ -250,7 +250,7 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src="./images/assets/mohamadDelete/user-image.jpeg" alt="user-profile"></img>
+        <img src="./images/assets/avatar.png" alt="user-profile"></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>
@@ -298,7 +298,7 @@ function Profile() {
           <div className="reviews-cards-wrapper">
             <Slider {...sliderSettings}>
               {reviews.map((review, index) => (
-                <div key={index} className="review-slide">
+                <div key={index} className="review-slide light-gray-bg dark-text flex column center border">
                   <p>Ride ID: {review.ride_id}</p>
                   <p>Station ID: {review.station_id}</p>
                   <p>Rating: {review.rating}</p>
