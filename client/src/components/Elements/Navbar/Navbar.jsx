@@ -22,7 +22,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                                     ? navigate('/branch-panel')
                                     : userRoleId === 1
                                     ? navigate('/profile')
-                                    : navigate('/welcome');
+                                    : navigate('/');
                             }}
                         >
                             {userRoleId === 3
