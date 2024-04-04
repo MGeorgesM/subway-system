@@ -11,8 +11,9 @@ const Home = () => {
 
     return (
         <>
-            {!nearestStation && !topStation && <Loading />}
-            {nearestStation && topStation && (
+            {!nearestStation ? (
+                <Loading />
+            ) : (
                 <>
                     <div className="main white-bg flex column">
                         {showWelcome && (

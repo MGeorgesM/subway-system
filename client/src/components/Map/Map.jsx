@@ -98,7 +98,6 @@ const Map = ({
                 zoom={14}
                 zoomControl={false}
                 attributionControl={false}
-                // whenReady={() => setIsMapLoading(false)}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&

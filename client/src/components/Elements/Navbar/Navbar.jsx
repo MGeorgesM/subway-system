@@ -10,7 +10,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
     return (
         <div className={`navbar ${navBg}`}>
             <nav className="nav-elements flex space-between light">
-                <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/browse')} />
+                <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/')} />
                 <div>
                     <div className="nav-list flex center">
                         <button

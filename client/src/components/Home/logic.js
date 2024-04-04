@@ -6,14 +6,12 @@ import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { findNearestStation } from '../../core/tools/calculateDistance';
 
 export const useHomeLogic = () => {
+    
     const [showWelcome, setShowWelcome] = useState(true);
-
     const [stations, setStations] = useState([]);
     const [nearestStation, setNearestStation] = useState(null);
     const [topStation, setTopStation] = useState(null);
-
     const [search, setSearch] = useState('');
-
     const [userLocation, setUserLocation] = useState(getUserLocation);
 
     useEffect(() => {
