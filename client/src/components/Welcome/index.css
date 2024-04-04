@@ -7,7 +7,6 @@
       rgba(255, 255, 255, 0.5)
     ),
     url(../../../public/images/Assets/hero.jpg);
-
   background-size: cover;
   background-position: center;
 }

@@ -23,6 +23,9 @@ Route::post('auth/logout', [AuthController::class, 'logout']);
 
 Route::get('users/get', [UsersController::class, 'getUser']);
 Route::post('users/update', [UsersController::class, 'updateUser']);
+Route::post('users/{id}/shutdown', [UsersController::class, 'shutDownBranch']);
+Route::post('users/{id}/activate', [UsersController::class, 'activateBranch']);
+Route::delete('users/{id}', [UsersController::class, 'deleteBranch']);
 
 Route::get('passes/get/{id?}', [PassController::class, 'get']);
 Route::post('passes/add', [PassController::class, 'add']);
@@ -65,7 +68,5 @@ Route::post('tickets/update/{id}', [TicketsController::class, 'update_ticket']);
 Route::get('facilities/getAll', [FacilitiesController::class, 'get_all_facilities']);
 Route::get('facilities/get/{id}', [FacilitiesController::class, 'get_facilities']);
 Route::post('facilities/update/{id}', [FacilitiesController::class, 'update_facilities']);
-
-
 
 Route::post('/send-email', [BranchInvitationController::class, 'invite']);

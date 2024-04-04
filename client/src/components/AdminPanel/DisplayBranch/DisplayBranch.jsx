@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { sendRequest } from '../../core/tools/apiRequest';
-import { requestMethods } from '../../core/tools/apiRequestMethods';
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 const DisplayBranch = () => {
   const [branches, setBranches] = useState([]);
@@ -20,9 +20,16 @@ const DisplayBranch = () => {
     fetchBranches();
   }, []);
 
+  useEffect(() => {
+    document.body.classList.add('display-user-active');
+  return () => {
+      document.body.classList.remove('display-user-active');
+    };
+  }, []);
+
   return (
     <div className='user-list'>
-      <h2>Display Branhces</h2>
+      <h2>Display Branches</h2>
       <table className='user-table'>
         <thead>
           <tr>

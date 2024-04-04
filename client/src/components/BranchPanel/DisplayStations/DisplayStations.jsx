@@ -69,108 +69,147 @@ const DisplayStations = () => {
       {isEditing && <div className="blurred-background"></div>}
       {isEditing && (
         <div className="branch-editting">
-          <input
-            type="text"
-            value={editedStation.id}
-            onChange={(e) =>
-              setEditedStation({ ...editedStation, id: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.name}
-            onChange={(e) =>
-              setEditedStation({ ...editedStation, name: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.location}
-            onChange={(e) =>
-              setEditedStation({ ...editedStation, location: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.lat}
-            onChange={(e) =>
-              setEditedStation({ ...editedStation, lat: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.lng}
-            onChange={(e) =>
-              setEditedStation({ ...editedStation, lng: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.opening_time}
-            onChange={(e) =>
-              setEditedStation({
-                ...editedStation,
-                opening_time: e.target.value,
-              })
-            }
-          />
-          <input
-            type="text"
-            value={editedStation.closing_time}
-            onChange={(e) =>
-              setEditedStation({
-                ...editedStation,
-                closing_time: e.target.value,
-              })
-            }
-          />
-
+          <div className="form-group">
+            <label>ID:</label>
+            <input
+              type="text"
+              value={editedStation.id}
+              onChange={(e) =>
+                setEditedStation({ ...editedStation, id: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Name:</label>
+            <input
+              type="text"
+              value={editedStation.name}
+              onChange={(e) =>
+                setEditedStation({ ...editedStation, name: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Location:</label>
+            <input
+              type="text"
+              value={editedStation.location}
+              onChange={(e) =>
+                setEditedStation({ ...editedStation, location: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Latitude:</label>
+            <input
+              type="text"
+              value={editedStation.lat}
+              onChange={(e) =>
+                setEditedStation({ ...editedStation, lat: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Longitude:</label>
+            <input
+              type="text"
+              value={editedStation.lng}
+              onChange={(e) =>
+                setEditedStation({ ...editedStation, lng: e.target.value })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Opening Time:</label>
+            <input
+              type="text"
+              value={
+                editedStation.opening_time
+                  ? editedStation.opening_time.substring(0, 5)
+                  : ""
+              }
+              onChange={(e) =>
+                setEditedStation({
+                  ...editedStation,
+                  opening_time: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="form-group">
+            <label>Closing Time:</label>
+            <input
+              type="text"
+              value={
+                editedStation.closing_time
+                  ? editedStation.closing_time.substring(0, 5)
+                  : ""
+              }
+              onChange={(e) =>
+                setEditedStation({
+                  ...editedStation,
+                  closing_time: e.target.value,
+                })
+              }
+            />
+          </div>
           <div className="branched-buttons">
-            <button onClick={confirmEdit}>Confirm</button>
-            <button onClick={closeEdit}>Close</button>
+            <button onClick={confirmEdit} className="activate-btn">
+              Confirm
+            </button>
+            <button onClick={closeEdit} className="shutdown-btn">
+              Close
+            </button>
           </div>
         </div>
       )}
 
-      <h2>Display Stations</h2>
-      <table className="station-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Opening Time</th>
-            <th>Closing Time</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stationData.map((station) => (
-            <tr key={station.id}>
-              <td>{station.id}</td>
-              <td>{station.name}</td>
-              <td>{station.location}</td>
-              <td>{station.lat}</td>
-              <td>{station.lng}</td>
-              <td>{station.opening_time}</td>
-              <td>{station.closing_time}</td>
-              <td>
-                {station.active === 1 ? (
-                  <span>Active</span>
-                ) : (
-                  <span>Not Active</span>
-                )}
-              </td>
-              <td>
-                <button onClick={() => handleEdit(station.id)}>Edit</button>
-              </td>
+      <div className="user-list">
+        <h2>Display Stations</h2>
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Opening Time</th>
+              <th>Closing Time</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {stationData.map((station) => (
+              <tr key={station.id}>
+                <td>{station.id}</td>
+                <td>{station.name}</td>
+                <td>{station.location}</td>
+                <td>{station.lat}</td>
+                <td>{station.lng}</td>
+                <td>{station.opening_time}</td>
+                <td>{station.closing_time}</td>
+                <td>
+                  {station.active === 1 ? (
+                    <span>Active</span>
+                  ) : (
+                    <span>Not Active</span>
+                  )}
+                </td>
+                <td>
+                  <button
+                    className="activate-btn"
+                    onClick={() => handleEdit(station.id)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

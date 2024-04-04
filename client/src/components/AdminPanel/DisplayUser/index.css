@@ -1,4 +1,7 @@
-/* CSS for User Table */
+.display-user-active {
+  background-color: #980511;
+}
+
 .user-list {
   margin: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
