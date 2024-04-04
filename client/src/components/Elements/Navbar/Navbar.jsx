@@ -3,8 +3,8 @@ import { useNavBarLogic } from './logic';
 import './index.css';
 
 const Navbar = ({ bg = 'no-bg' }) => {
-    const { scrolled, signOut, navigate, userRoleId } = useNavBarLogic();
-    
+    const { scrolled, token, signOut, navigate, userRoleId } = useNavBarLogic();
+
     const navBg = scrolled ? 'black-bg-trsp' : bg;
 
     return (
@@ -34,7 +34,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                                 : 'About'}
                         </button>
                         <button
-                            className="nav-login white-text primary-bg box-shadow border-radius regular"
+                            className={`nav-login ${token ? 'secondary-btn' : 'primary-btn'} box-shadow border-radius`}
                             onClick={() => {
                                 if (userRoleId) {
                                     signOut();
