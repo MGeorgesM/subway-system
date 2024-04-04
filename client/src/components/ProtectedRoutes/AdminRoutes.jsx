@@ -13,7 +13,7 @@ const AdminRoutes = ({ children }) => {
                 console.log('User is an Admin');
                 return;
             } else {
-                navigate('/');
+                navigate('/browse');
             }
         } catch (error) {
             console.log(error);

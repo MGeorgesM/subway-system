@@ -15,6 +15,7 @@ const Map = ({
     markersInput,
     saveLocationCoordinates,
     userLocationProp,
+    setShowWelcome,
     updateLocation = false,
     showUserLocation = true,
 }) => {
@@ -37,6 +38,8 @@ const Map = ({
                 click(e) {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
+
+                    setShowWelcome && setShowWelcome(false);
                     setUserLocation([lat, lng]);
                     saveLocationCoordinates && saveLocationCoordinates([lat, lng]);
                 },
@@ -92,7 +95,7 @@ const Map = ({
             <MapContainer
                 center={userLocation ? userLocation : defaultLocation}
                 scrollWheelZoom={false}
-                zoom={13}
+                zoom={14}
                 zoomControl={false}
                 attributionControl={false}
                 // whenReady={() => setIsMapLoading(false)}

@@ -74,8 +74,15 @@
     .nav-link {
         display: none;
     }
+    .welcome-home  h2{
+        font-size: 24px;
+    }
 
-    .search input {
+    .welcome-home h1 {
+        font-size: 36px;
+    }
+
+    .home-search input {
         width: 90%;
     }
 
@@ -87,6 +94,7 @@
     .ride-card {
         padding: 12px;
     }
+    
 
     .recommendations {
         padding: 64px 12px;
@@ -102,5 +110,22 @@
 
     .ad img {
       margin-top: 12px;
+    }
+
+    .welcome-text h1 {
+        font-size: 36px;
+    }
+
+    .welcome-text p {
+        font-size: 20px;
+    }
+
+    .welcome-btns {
+        flex-direction: column;
+    }
+
+    .footer {
+        padding: 16px;
+        gap: 16px;
     }
 }
