@@ -70,7 +70,7 @@ const Map = ({
 
             if (data.length > 0) {
                 const { lat, lon } = data[0];
-                // saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
+                saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
             } else {
                 console.log('No data found');
