@@ -4,6 +4,7 @@ import ChatInput from './ChatInput';
 import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import './index.css';
+import axios from 'axios';
 
 const Chat = () => {
     const [senderId, setSenderId] = useState(null);
@@ -34,21 +35,31 @@ const Chat = () => {
         getUserInfo();
     }, []);
 
-    const handleSendMessage = async (message) => {
+    const handleSendMessage = async (message, selectedOption) => {
         try {
-            let receiverIdToSend = senderId !== 4 ? 4 : senderId;
-            
+          const receiverIdToSend = parseInt(selectedOption);
+      
+          if (!isNaN(receiverIdToSend) && receiverIdToSend >= 1 && receiverIdToSend <= 5) {
             console.log("Receiver ID to Send:", receiverIdToSend);
-
-            setReceiverId(receiverIdToSend);
-
             console.log("Sending message:", message);
-
+      
+            await axios.post('/send-message', {
+              sender_id: senderId,
+              receiver_id: receiverIdToSend,
+              message: message,
+              rating: selectedOption
+            });
+      
+            console.log("Message sent!");
+      
+          } else {
+            console.error('Invalid selected option:', selectedOption);
+          }
         } catch (error) {
-            console.error('Error sending message:', error);
+          console.error('Error sending message:', error);
         }
-    };
-
+      };
+      
     return (
         <div className="chat">
             <div className="chat-list-container">
