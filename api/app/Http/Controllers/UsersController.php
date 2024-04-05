@@ -36,59 +36,80 @@ class UsersController extends Controller
     public function updateUser(Request $request)
     {
         $request->validate([
-            'image_base64' => 'string',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'first_name' => 'string',
             'last_name' => 'string',
             'email' => 'string|email',
-            'lat' => 'numeric',
-            'lng' => 'numeric',
         ]);
-
+    
         if (!auth()->check()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-
+    
         $user_id = auth()->user()->id;
-
+    
         $user = User::find($user_id);
-
+    
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-
-        if ($request->image_base64) {
-            $image = $request->image_base64;
-            $imageData = base64_decode($image);
-            $fileName = 'user_' . $user->id . '.png';
-            $filePath_tosave = public_path('images/' . $fileName);
-            $filePath_todb = './images/' . $fileName;
-            file_put_contents($filePath_tosave, $imageData);
-
-            $user->image_url = $filePath_todb;
+        
+    
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move(public_path('/profile_pictures/'), $filename);
+    
+            // Remove existing profile picture if it exists
+            if ($user->profile_picture && File::exists(public_path('/profile_pictures/') . $user->profile_picture)) {
+                File::delete(public_path('/profile_pictures/') . $user->profile_picture);
+            }
+    
+            // Save the new profile picture filename to the user model
+            $user->profile_picture = $filename;
         }
-
-        if ($request->first_name) {
-            $user->first_name = $request->first_name;
+    
+        // Update other user fields
+        if ($request->filled('first_name')) {
+            $user->first_name = $request->input('first_name');
         }
-
-        if ($request->last_name) {
-            $user->last_name = $request->last_name;
+    
+        if ($request->filled('last_name')) {
+            $user->last_name = $request->input('last_name');
         }
-
-        if ($request->email) {
-            $user->email = $request->email;
+    
+        if ($request->filled('email')) {
+            $user->email = $request->input('email');
         }
-
-        if ($request->lat) {
-            $user->lat = $request->lat;
-            $user->lng = $request->lng;
+    
+        if ($request->filled('lat')) {
+            $user->lat = $request->input('lat');
         }
-
+    
+        if ($request->filled('lng')) {
+            $user->lng = $request->input('lng');
+        }
+    
+        // Save the user model
         $user->save();
-
+    
         return response()->json([
             'message' => 'User updated successfully',
-            'user' => $user
+            'user' => $user,
+        ]);
+    }
+    
+
+    public function getUserRole() {
+        if (!auth()->check()) {
+            return response()->json(['role' => 0]);
+        }
+
+        $user_role = auth()->user()->role_id;
+
+        return response()->json([
+            'role' => $user_role
         ]);
     }
 
