@@ -41,6 +41,7 @@
   padding: 12px 20px;
   border-bottom: 1px solid #404040;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .sidebar-menu li:last-child {
@@ -63,6 +64,12 @@
 
 .sidebar-menu li.active a {
   color: #ffffff;
+}
+
+.sidebar-menu.sidebar-bottom {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
 }
 
 .content {

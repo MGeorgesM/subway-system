@@ -2,29 +2,30 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import AdminRoutes from "./components/ProtectedRoutes/AdminRoutes";
-import Navbar from "./components/Elements/Navbar/Navbar";
-import Welcome from "./components/Welcome/Welcome";
-import Footer from "./components/Elements/Footer/Footer";
-import Home from "./components/Home/Home";
-import Station from "./components/Station/Station";
-import Profile from "./components/profile/profile";
-import Authentication from "./components/Authentication/Authentication";
-import LocationForm from "./components/Authentication/Forms/LocationForm";
-import Ticket from "./components/Ticket/Ticket";
+import AdminRoutes from './components/ProtectedRoutes/AdminRoutes';
+import Navbar from './components/Elements/Navbar/Navbar';
+import Welcome from './components/Welcome/Welcome';
+import Footer from './components/Elements/Footer/Footer';
+import Home from './components/Home/Home';
+import Station from './components/Station/Station';
+import Profile from './components/profile/Profile';
+import Authentication from './components/Authentication/Authentication';
+import LocationForm from './components/Authentication/Forms/LocationForm';
+import Ticket from './components/Ticket/Ticket';
 
-import CoinRequest from "./components/AdminPanel/AdminCoinRequest/CoinRequest";
-import BranchInvitationForm from "./components/AdminPanel/BranchInvitation/BranchInvitationForm";
-import DisplayUser from "./components/AdminPanel/DisplayUser/DisplayUser";
-import DisplayBranch from "./components/AdminPanel/DisplayBranch/DisplayBranch";
-import DisplayRide from "./components/AdminPanel/DisplayRide/DisplayRide";
-import DisplayStation from "./components/AdminPanel/DisplayStation/DisplayStation";
-import BranchManagement from "./components/AdminPanel/BranchManagement/BranchManagement";
-import DisplayStations from "./components/BranchPanel/DisplayStations/DisplayStations";
-import Facilities from "./components/BranchPanel/Facilities/Facilities";
-import Rides from "./components/BranchPanel/Rides/Rides";
-import Sidebar from "./components/AdminPanel/Sidebar/Sidebar";
-import BranchSidebar from "./components/BranchPanel/BranchSidebar/BranchSidebar";
+import CoinRequest from './components/AdminPanel/AdminCoinRequest/CoinRequest';
+import BranchInvitationForm from './components/AdminPanel/BranchInvitation/BranchInvitationForm';
+import DisplayUser from './components/AdminPanel/DisplayUser/DisplayUser';
+import DisplayBranch from './components/AdminPanel/DisplayBranch/DisplayBranch';
+import DisplayRide from './components/AdminPanel/DisplayRide/DisplayRide';
+import DisplayStation from './components/AdminPanel/DisplayStation/DisplayStation';
+import BranchManagement from './components/AdminPanel/BranchManagement/BranchManagement';
+import DisplayStations from './components/BranchPanel/DisplayStations/DisplayStations';
+import Facilities from './components/BranchPanel/Facilities/Facilities';
+import Rides from './components/BranchPanel/Rides/Rides';
+import Sidebar from './components/AdminPanel/Sidebar/Sidebar';
+import BranchSidebar from './components/BranchPanel/BranchSidebar/BranchSidebar';
+import Chat from './components/Chat/Chat';
 
 import "./App.css";
 import "./styles/colors.css";
@@ -38,22 +39,23 @@ const App = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const location = useLocation();
 
-  const hiddenRoutes = [
-    "/auth",
-    "/ticket",
-    "/location",
-    "/admin-panel",
-    "/display-users",
-    "/display-branches",
-    "/display-stations",
-    "/display-rides",
-    "/coin-request",
-    "/branch-management",
-    "/branch-invitation",
-    "/branch-panel",
-    "/facilities-panel",
-    "/rides",
-  ];
+    const hiddenRoutes = [
+        '/auth',
+        '/location',
+        '/admin-panel',
+        '/display-users',
+        '/display-branches',
+        '/display-stations',
+        '/display-rides',
+        '/coin-request',
+        '/branch-management',
+        '/branch-invitation',
+        '/branch-panel',
+        '/facilities-panel',
+        '/Rides',
+        '/chat',
+    ];
+
 
   const isRouteHidden = () => {
     return hiddenRoutes.includes(location.pathname);
@@ -78,14 +80,15 @@ const App = () => {
     }
   };
 
-  return (
-    <>
-      {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/browse" element={<Home />} />
-        <Route path="/station" element={<Station />} />
-      </Routes>
+    return (
+        <>
+            {isNavbarVisible && <Navbar bg={getNavbarBgColor()} />}
+            <Routes>
+                <Route path="/" element={<Welcome />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/browse" element={<Home />} />
+                <Route path="/station" element={<Station />} />
+            </Routes>
 
       <GuestRoutes>
         <Routes>
