@@ -3,14 +3,14 @@ import { useNavBarLogic } from './logic';
 import './index.css';
 
 const Navbar = ({ bg = 'no-bg' }) => {
-    const { scrolled, signOut, navigate, userRoleId } = useNavBarLogic();
-    
+    const { scrolled, token, signOut, navigate, userRoleId } = useNavBarLogic();
+
     const navBg = scrolled ? 'black-bg-trsp' : bg;
 
     return (
         <div className={`navbar ${navBg}`}>
             <nav className="nav-elements flex space-between light">
-                <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/browse')} />
+                <img className="logo" alt="logo" src="./images/Assets/logo.png" onClick={() => navigate('/')} />
                 <div>
                     <div className="nav-list flex center">
                         <button
@@ -34,7 +34,7 @@ const Navbar = ({ bg = 'no-bg' }) => {
                                 : 'About'}
                         </button>
                         <button
-                            className="nav-login white-text primary-bg box-shadow border-radius regular"
+                            className={`nav-login ${token ? 'secondary-btn' : 'primary-btn'} box-shadow border-radius`}
                             onClick={() => {
                                 if (userRoleId) {
                                     signOut();

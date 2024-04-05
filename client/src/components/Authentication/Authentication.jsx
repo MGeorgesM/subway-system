@@ -13,7 +13,7 @@ const Authentication = () => {
         <div className="form-component flex center">
             <div className="container box-shadow border-radius flex center column">
                 <div className="logo-form">
-                    <img src="./images/assets/logo-dark-grey.png" alt="logo" onClick={() => navigate('/browse')} />
+                    <img src="./images/assets/logo-dark-grey.png" alt="logo" onClick={() => navigate('/')} />
                 </div>
                 {isLogin ? (
                     <SignInForm

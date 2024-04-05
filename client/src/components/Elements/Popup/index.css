@@ -39,10 +39,3 @@
     text-align: center;
     width: 400px;
 }
-
-
-.popupmain-btn:hover {
-    background-color: #52796F;
-    color: #f8f9fa;
-    cursor: pointer;
-}

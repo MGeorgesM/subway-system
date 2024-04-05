@@ -24,6 +24,7 @@ export const useNavBarLogic = () => {
             console.log(error.response.data.message);
         }
     };
+
     const handleScroll = () => {
         if (window.scrollY > 50) {
             setScrolled(true);
@@ -55,5 +56,5 @@ export const useNavBarLogic = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return { scrolled, signOut, navigate, userRoleId };
+    return { scrolled, token, signOut, navigate, userRoleId };
 };
