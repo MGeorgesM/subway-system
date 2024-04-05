@@ -46,6 +46,7 @@ Route::get('reviews/average', [ReviewsController::class, 'getAverageRating']);
 Route::get('reviews/topstation', [ReviewsController::class, 'getHighestRatedStation']);
 
 Route::post('send-message', [ChatsController::class, 'sendMessage']);
+Route::get('messages/{senderId}/{receiverId}', [ChatsController::class, 'getMessages']);
 Route::get('users/{userId}/sent-chats', [ChatsController::class, 'getSentChats']);
 Route::get('users/{userId}/received-chats', [ChatsController::class, 'getReceivedChats']);
 

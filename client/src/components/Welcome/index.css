@@ -1,12 +1,12 @@
 .main-welcome {
-  height: calc(100vh - var(--header-height) - var(--footer-height));
+  height: calc(100vh - var(--header-height));
   width: 100%;
   margin-top: var(--header-height);
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.75),
       rgba(255, 255, 255, 0.5)
     ),
-    url(../../../public/images//assets/hero-u.jpg);
+    url(../../../public/images/Assets/hero-u.jpg);
   background-size: cover;
   background-position: center;
 }

@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
 import './index.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { sendRequest } from '../../../core/tools/apiRequest';
+import { requestMethods } from '../../../core/tools/apiRequestMethods';
 
 const Sidebar = () => {
     const [activeLink, setActiveLink] = useState('');
+    const [userRoleId, setUserRoleId] = useState('');
 
     const navigate = useNavigate();
 
     const handleSetActive = (link) => {
         setActiveLink(link);
+    };
+
+    const signOut = async () => {
+        try {
+            const response = await sendRequest(requestMethods.POST, '/auth/logout', null);
+            if (response.status === 200) {
+                setUserRoleId('');
+                localStorage.clear();
+                navigate('/');
+            } else {
+                return;
+            }
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
     };
 
     return (
@@ -54,6 +72,9 @@ const Sidebar = () => {
                     <Link to="/branch-invitation" onClick={() => handleSetActive('branch-invitation')}>
                         Branch Invitation
                     </Link>
+                </li>
+                <li className="sidebar-menu sidebar-bottom" onClick={signOut}>
+                    Sign Out
                 </li>
             </ul>
         </div>

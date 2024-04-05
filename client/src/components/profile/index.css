@@ -88,7 +88,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 5%;
+  margin-bottom: 15%;
   margin-top: 128px;
 }
 
@@ -124,7 +124,7 @@
   align-items: center !important;
   justify-content: center !important;
   background-color: #efefef;
-  bottom: -40px !important;
+  bottom: -55px !important;
   width: 35% !important;
   margin-left: 28% !important;
 }
@@ -149,7 +149,7 @@
 }
 
 .stars-ratings {
-  color: #ED941B;
+  color: #ed941b;
 }
 
 .review-card {

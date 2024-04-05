@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('coins_balance', 8, 2)->default(0);
             $table->unsignedBigInteger('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->string('image_url')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
