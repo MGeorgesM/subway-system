@@ -21,6 +21,7 @@ import DisplayRide from './components/AdminPanel/DisplayRide/DisplayRide';
 import DisplayStation from './components/AdminPanel/DisplayStation/DisplayStation';
 import BranchManagement from './components/AdminPanel/BranchManagement/BranchManagement';
 import Sidebar from './components/AdminPanel/Sidebar/Sidebar';
+import Chat from './components/Chat/Chat';
 
 import './App.css';
 import './styles/colors.css';
@@ -44,6 +45,7 @@ const App = () => {
         '/coin-request',
         '/branch-management',
         '/branch-invitation',
+        '/chat',
     ];
 
     const isRouteHidden = () => {
@@ -78,6 +80,7 @@ const App = () => {
 
             <AuthenticatedRoutes>
                 <Routes>
+                    <Route path="/chat" element={<Chat />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/ticket" element={<Ticket />} />
                 </Routes>

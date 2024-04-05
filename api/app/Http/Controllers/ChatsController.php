@@ -49,4 +49,20 @@ class ChatsController extends Controller
             'received_chats' => $receivedChats,
         ], 200);
     }
+
+    public function getMessages($senderId, $receiverId)
+    {
+        $messages = Chat::where(function ($query) use ($senderId, $receiverId) {
+            $query->where('sender_id', $senderId)
+                ->where('receiver_id', $receiverId);
+        })->orWhere(function ($query) use ($senderId, $receiverId) {
+            $query->where('sender_id', $receiverId)
+                ->where('receiver_id', $senderId);
+        })->orderBy('created_at', 'asc')
+            ->get();
+
+        return response()->json([
+            'messages' => $messages,
+        ], 200);
+    }
 }
