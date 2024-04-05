@@ -3,14 +3,14 @@ import { sendRequest } from '../../core/tools/apiRequest';
 import { requestMethods } from '../../core/tools/apiRequestMethods';
 import { useEffect } from 'react';
 
-const AdminRoutes = ({ children }) => {
+const GuestRoutes = ({ children }) => {
     const navigate = useNavigate();
 
     const validate = async () => {
         try {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
-            if (response.data.role === 3) {
-                console.log('User is an Admin');
+            if (response.data.role === 0) {
+                console.log('User is guest');
             } else {
                 navigate('/');
             }
@@ -27,4 +27,4 @@ const AdminRoutes = ({ children }) => {
     return children;
 };
 
-export default AdminRoutes;
+export default GuestRoutes;

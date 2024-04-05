@@ -7,9 +7,15 @@ const ChatInput = ({ senderId }) => {
 
   const sendMessage = async () => {
     try {
+
+      let receiverIdToSend = 2; // Default receiver_id
+      if (senderId !== 4) {
+        receiverIdToSend = 4;
+      }
+
       await axios.post('/send-message', {
         sender_id: senderId,
-        receiver_id: 2,
+        receiver_id: receiverIdToSend,
         message: message
       });
 

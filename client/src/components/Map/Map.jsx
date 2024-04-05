@@ -15,9 +15,11 @@ const Map = ({
     markersInput,
     saveLocationCoordinates,
     userLocationProp,
+    setShowWelcome,
     updateLocation = false,
     showUserLocation = true,
 }) => {
+    
     const [userLocation, setUserLocation] = useState(
         updateLocation ? null : userLocationProp ? userLocationProp : getUserLocation()
     );
@@ -37,6 +39,8 @@ const Map = ({
                 click(e) {
                     const { lat, lng } = e.latlng;
                     map.flyTo([lat, lng], map.getZoom());
+
+                    setShowWelcome && setShowWelcome(false);
                     setUserLocation([lat, lng]);
                     saveLocationCoordinates && saveLocationCoordinates([lat, lng]);
                 },
@@ -65,7 +69,6 @@ const Map = ({
             const data = await response.json();
 
             if (data.length > 0) {
-                console.log('data', data[0]);
                 const { lat, lon } = data[0];
                 saveLocationCoordinates && saveLocationCoordinates([parseFloat(lat), parseFloat(lon)]);
                 setUserLocation([parseFloat(lat), parseFloat(lon)]);
@@ -92,10 +95,9 @@ const Map = ({
             <MapContainer
                 center={userLocation ? userLocation : defaultLocation}
                 scrollWheelZoom={false}
-                zoom={13}
+                zoom={14}
                 zoomControl={false}
                 attributionControl={false}
-                // whenReady={() => setIsMapLoading(false)}
             >
                 <TileLayer url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=mAcRzbD1ube5o9h5uLquwxDCBvrejwwAbGRwYBhNElxs0oz896WWl2JIy9QQn7pN" />
                 {markersInput &&
@@ -109,6 +111,7 @@ const Map = ({
                                     <p>
                                         {formatTime(station.opening_time)} till {formatTime(station.closing_time)}
                                     </p>
+                                    <p>{station.active === 1 ? 'Active' : 'Closed' }</p>
                                 </div>
                             </Popup>
                         </Marker>

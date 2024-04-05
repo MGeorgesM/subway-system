@@ -11,7 +11,6 @@ const ManagerRoutes = ({ children }) => {
             const response = await sendRequest(requestMethods.GET, '/users/getuserrole');
             if (response.data.role === 2) {
                 console.log('User is Manager');
-                return;
             } else {
                 navigate('/');
             }
@@ -20,12 +19,11 @@ const ManagerRoutes = ({ children }) => {
             navigate('/');
         }
     };
-
+    
     useEffect(() => {
         validate();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
     return children;
 };
 

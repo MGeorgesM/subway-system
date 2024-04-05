@@ -1,29 +1,30 @@
-
 .main-welcome {
-    height: calc(100vh - var(--header-height) - var(--footer-height));
-    width: 100%;
-    margin-top: var(--header-height);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.75),
-            rgba(255, 255, 255, 0.5)),
-        url(../../../public/images/Assets/hero.jpg);
-    background-size: cover;
-    background-position: center;
+  height: calc(100vh - var(--header-height) );
+  width: 100%;
+  margin-top: var(--header-height);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url(../../../public/images//assets/hero-u.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .welcome-text h1 {
-    font-size: 48px;
-    font-weight: 600;
-    text-align: center;
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .welcome-text p {
-    font-size: 24px;
-    text-align: center;
-    max-width: 60%;
-    font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  max-width: 60%;
+  font-weight: 500;
 }
 
 .welcome-btns {
-    margin-top: 16px;
-    gap: 8px;
+  margin-top: 16px;
+  gap: 8px;
 }

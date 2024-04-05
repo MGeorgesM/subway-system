@@ -23,23 +23,11 @@ function Profile() {
   const [amount, setAmount] = useState("");
   const [coinsMessage, setCoinsMessage] = useState("");
 
-  const CustomPrevArrow = (props) => (
-    <button {...props} className="slick-prev">
-      Previous
-    </button>
-  );
-
-  const CustomNextArrow = (props) => (
-    <button {...props} className="slick-next">
-      Next
-    </button>
-  );
-
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 5,
     arrows: true,
   };
@@ -182,7 +170,7 @@ function Profile() {
     <div className="profile-wrapper">
       {isEditing && <div className="blurred"></div>}
       {isEditing && (
-        <div className="is-editting">
+        <div className="is-editting light-gray-bg">
           <div className="edit-inputs">
             {image && <img src={`${image}`} alt="User" />}
             <input
@@ -220,12 +208,12 @@ function Profile() {
 
       {requstCoins && <div className="blurred"></div>}
       {requstCoins && (
-        <div className="is-requesting-coins">
+        <div className="is-requesting-coins light-gray-bg">
           <div>
             <h1>Request Coins</h1>
           </div>
 
-          <div className="request-coins-wrapper">
+          <div className="request-coins-wrapper ">
             <input
               placeholder="Amout"
               onChange={(e) => {
@@ -250,7 +238,7 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src="./images/assets/mohamadDelete/user-image.jpeg" alt="user-profile"></img>
+        <img src="./images/assets/avatar.png" alt="user-profile"></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>
@@ -269,9 +257,9 @@ function Profile() {
               <b>Balance:</b>
             </p>
             <p>
-              <b>{user.coins_balance}</b>
+              <b>$ {user.coins_balance}</b>
             </p>
-            <button className="general-btn" onClick={openRequestCoins}>
+            <button className="primary-btn btn-s border-radius" onClick={openRequestCoins}>
               Request Coins
             </button>
           </div>
@@ -281,13 +269,13 @@ function Profile() {
       <div className="user-reviews-wrapper">
         <div className="button-switcher">
           <h1
-            className={activeButton === "userReviews" ? "active" : ""}
+            className={activeButton === "userReviews" ? "primary-text" : "light-text"}
             onClick={() => handleClick("userReviews")}
           >
             User Reviews
           </h1>
           <h1
-            className={activeButton === "adminMessages" ? "active" : ""}
+            className={activeButton === "adminMessages" ? "primary-text" : "light-text"}
             onClick={() => handleClick("adminMessages")}
           >
             Admin Messages
@@ -298,12 +286,19 @@ function Profile() {
           <div className="reviews-cards-wrapper">
             <Slider {...sliderSettings}>
               {reviews.map((review, index) => (
-                <div key={index} className="review-slide">
-                  <p>Ride ID: {review.ride_id}</p>
-                  <p>Station ID: {review.station_id}</p>
-                  <p>Rating: {review.rating}</p>
-                  <p>Comment: {review.comment}</p>
-                  {/* Add any other fields you want to display */}
+                <div key={index} className="review-slide review-slide light-gray-bg dark-text flex column center border">
+                  <p>
+                    <b>Ride ID:</b> {review.ride_id}
+                  </p>
+                  <p>
+                    <b>Station ID:</b> {review.station_id}
+                  </p>
+                  <p className="stars-ratings">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <FaStar key={i} />
+                    ))}
+                  </p>
+                  <p>{review.comment}</p>
                 </div>
               ))}
             </Slider>
@@ -318,7 +313,7 @@ function Profile() {
 
               <div className="chat-header-right">
                 <img src="./images/assets/mohamadDELETE/admin-image.jpg" alt="admin-image"></img>
-                <p>Admin Name</p>
+                <p>Manager Name</p>
               </div>
             </div>
 
