@@ -242,7 +242,7 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src={image} alt="user-profile"></img>
+        <img src="./images/assets/avatar.png" alt="user-profile"></img>
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>

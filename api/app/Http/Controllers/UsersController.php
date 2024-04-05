@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -100,6 +101,7 @@ class UsersController extends Controller
         ]);
     }
     
+
 
     public function getUserRole() {
         if (!auth()->check()) {
