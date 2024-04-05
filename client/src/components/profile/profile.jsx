@@ -17,7 +17,8 @@ function Profile() {
   const [displayContent, setDisplayContent] = useState("user-reviews");
   const [activeButton, setActiveButton] = useState("userReviews");
   const [isEditing, setIsEditing] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
+  const [imageData, setImageData] = useState();
   const [reviews, setReviews] = useState([]);
   const [requstCoins, setRequestCoins] = useState(false);
   const [amount, setAmount] = useState("");
@@ -61,7 +62,7 @@ function Profile() {
         setFirstName(data.user.first_name);
         setLastName(data.user.last_name);
         setEmail(data.user.email);
-        setImage(data.user.image_url);
+        setImage(data.user.profile_picture);
       } else {
         console.error("Empty response data");
       }
@@ -81,7 +82,6 @@ function Profile() {
       const data = response.data;
       if (data && Array.isArray(data.reviews)) {
         setReviews(data.reviews);
-        console.log(data.reviews);
       } else {
         console.log("Empty response data");
       }
@@ -96,12 +96,17 @@ function Profile() {
       formData.append("first_name", firstName);
       formData.append("last_name", lastName);
       formData.append("email", email);
-      formData.append("image_url", image);
+      formData.append("profile_picture", imageData);
 
       const response = await sendRequest(
         requestMethods.POST,
         "/users/update",
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       if (response.status === 200) {
         console.log("User updated successfully");
@@ -157,13 +162,12 @@ function Profile() {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    setImageData(file);
     const reader = new FileReader();
-    reader.onloadend = () => {
+    reader.readAsDataURL(file);
+    reader.onload = () => {
       setImage(reader.result);
     };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
   };
 
   return (
@@ -259,7 +263,10 @@ function Profile() {
             <p>
               <b>$ {user.coins_balance}</b>
             </p>
-            <button className="primary-btn btn-s border-radius" onClick={openRequestCoins}>
+            <button
+              className="primary-btn btn-s border-radius"
+              onClick={openRequestCoins}
+            >
               Request Coins
             </button>
           </div>
@@ -269,13 +276,17 @@ function Profile() {
       <div className="user-reviews-wrapper">
         <div className="button-switcher">
           <h1
-            className={activeButton === "userReviews" ? "primary-text" : "light-text"}
+            className={
+              activeButton === "userReviews" ? "primary-text" : "light-text"
+            }
             onClick={() => handleClick("userReviews")}
           >
             User Reviews
           </h1>
           <h1
-            className={activeButton === "adminMessages" ? "primary-text" : "light-text"}
+            className={
+              activeButton === "adminMessages" ? "primary-text" : "light-text"
+            }
             onClick={() => handleClick("adminMessages")}
           >
             Admin Messages
@@ -286,7 +297,10 @@ function Profile() {
           <div className="reviews-cards-wrapper">
             <Slider {...sliderSettings}>
               {reviews.map((review, index) => (
-                <div key={index} className="review-slide review-slide light-gray-bg dark-text flex column center border">
+                <div
+                  key={index}
+                  className="review-slide review-slide light-gray-bg dark-text flex column center border"
+                >
                   <p>
                     <b>Ride ID:</b> {review.ride_id}
                   </p>
@@ -312,7 +326,10 @@ function Profile() {
               </div>
 
               <div className="chat-header-right">
-                <img src="./images/assets/mohamadDELETE/admin-image.jpg" alt="admin-image"></img>
+                <img
+                  src="./images/assets/mohamadDELETE/admin-image.jpg"
+                  alt="admin-image"
+                ></img>
                 <p>Manager Name</p>
               </div>
             </div>
