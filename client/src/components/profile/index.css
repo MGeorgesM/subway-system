@@ -33,6 +33,9 @@
 }
 .user-info-wrapper img {
   object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
 }
 
 .personal-info-wrapper {
@@ -88,8 +91,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 15%;
   margin-top: 128px;
+  margin-bottom: 10%;
 }
 
 .admin-messages-wrapper {
@@ -256,7 +259,7 @@
 
 .chat {
   background-color: #6d6b6c;
-  height: 35vh;
+  height: 35vh !important;
 }
 
 .enter-message {

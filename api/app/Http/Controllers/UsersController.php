@@ -62,12 +62,10 @@ class UsersController extends Controller
             $filename = time() . '.' . $extension;
             $file->move(public_path('/profile_pictures/'), $filename);
     
-            // Remove existing profile picture if it exists
-            if ($user->profile_picture && File::exists(public_path('/profile_pictures/') . $user->profile_picture)) {
-                File::delete(public_path('/profile_pictures/') . $user->profile_picture);
+            if (File::exists(public_path('/profile_pictures/') . $user->profile_picture)) {
+                File::delete((public_path('/profile_pictures/') . $user->profile_picture));
             }
     
-            // Save the new profile picture filename to the user model
             $user->profile_picture = $filename;
         }
     

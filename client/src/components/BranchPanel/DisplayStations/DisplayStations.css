@@ -36,15 +36,15 @@
   gap: 20px;
   width: 40%;
   min-height: 80%;
-  background-image: url("../../../../public/images/assets/branch-form-background.jpg");
+  /* background-image: url("../../../../public/images/assets/branch-form-background.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 2;
   overflow-y: auto;
   border-radius: 10px;
   margin-left: 6%;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
+  color: black;
+  background-color: rgb(255, 255, 255); /* Adjust opacity as needed */
 }
 
 .confirm-error {
@@ -68,9 +68,8 @@
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 1);
-  border: 1px solid transparent;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
 }
 
 .branch-editting input:focus {

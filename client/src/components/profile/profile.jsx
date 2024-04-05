@@ -242,7 +242,14 @@ function Profile() {
       <div className="profile-header"></div>
 
       <div className="user-info-wrapper">
-        <img src="./images/assets/avatar.png" alt="user-profile"></img>
+        <img
+          src={
+            image
+              ? "http://127.0.0.1:8000/profile_pictures/" + image
+              : "./images/Assets/avatar.png"
+          }
+          alt="user-profile"
+        />
         <div className="personal-info-wrapper">
           <div className="personal-info">
             <p>

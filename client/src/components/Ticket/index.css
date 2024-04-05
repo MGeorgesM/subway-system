@@ -1,8 +1,8 @@
 .ticket-main {
-    height: calc(100vh - var(--header-height) - var(--footer-height));
-    margin-top: 120px;
-    width: 100%;
-    background-color: #D1D0D1;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin-top: 120px;
+  width: 100%;
+  background-color: #d1d0d1;
 }
 
 .ride-details-container {
@@ -12,9 +12,9 @@
 }
 
 .logo-order img {
-    height: 36px;
-    margin: 32px 0;
-    cursor: pointer;
+  height: 36px;
+  margin: 32px 0;
+  cursor: pointer;
 }
 
 .ride-details-title h1 {
@@ -60,13 +60,13 @@
 }
 
 .add-passengers input {
-    width: 25%;
-    height: 40px;
-    padding: 8px;
-    margin: 0;
-    font-size: 16px;
-    border: none;
-    text-align: center;
+  width: 25%;
+  height: 40px;
+  padding: 8px;
+  margin: 0;
+  font-size: 16px;
+  border: none;
+  text-align: center;
 }
 
 .add-passengers button {
@@ -99,19 +99,19 @@
 
 .cancel-btn,
 .checkout-btn {
-    text-align: center;
-    font-size: 16px;
-    height: 40px;
-    width: 120px;
+  text-align: center;
+  font-size: 16px;
+  height: 40px;
+  width: 120px;
 }
 
 .pass-prompt {
-    font-size: 16px;
-    text-align: center;
-    margin: 24px 0;
+  font-size: 16px;
+  text-align: center;
+  margin: 24px 0;
 }
 
 .pass-prompt p:hover {
-    cursor: pointer;
-    color: #CE091B;
+  cursor: pointer;
+  color: #ce091b;
 }

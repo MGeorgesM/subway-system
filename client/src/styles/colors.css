@@ -1,82 +1,81 @@
 .primary-text {
-    color: #CE091B;
+  color: #ce091b;
 }
 
 .black-text {
-    color: #161213;
+  color: #161213;
 }
 
 .dark-text {
-    color: #30302F;
+  color: #30302f;
 }
 
 .light-text {
-    color: #6D6B6C;
+  color: #6d6b6c;
 }
 
 .secondary-text {
-    color: #ED941B;
+  color: #ed941b;
 }
 
 .gray-bg {
-    background-color: #404040;
-
+  background-color: #404040;
 }
 
 .light-gray-bg {
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
 }
 
 .white-bg {
-    background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .white-text {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 .off-white-text {
-    color: #DEE2E6;
+  color: #dee2e6;
 }
 
 .off-white-bg {
-    color: #DEE2E6;
+  color: #dee2e6;
 }
 
 .onclick-nav-bg {
-    background-color: #ADB5BD;
+  background-color: #adb5bd;
 }
 
 .primary-bg {
-    background-color: #CE091B;
+  background-color: #ce091b;
 }
 
 .secondary-bg {
-    background-color: #ED941B;
+  background-color: #ed941b;
 }
 
 .black-bg {
-    background-color: #161213;
+  background-color: #161213;
 }
 
 .black-bg-trsp-s {
-    background-color: #16121395;
+  background-color: #16121395;
 }
 
 .black-bg-trsp {
-    background-color: #16121350;
-}   
+  background-color: #16121350;
+}
 
 .off-white-bg-trsp {
-    background-color: #DEE2E650;
+  background-color: #dee2e650;
 }
 
 .light-gray-bg-trsp {
-    background-color: #6D6B6C50;
+  background-color: #6d6b6c50;
 }
 
 .no-bg {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 /* Hover Color Button: #980511 Link Hover: #5C0206 */
