@@ -76,7 +76,7 @@ export const useTicketLogic = () => {
             }
             if (response.status === 201) {
                 setShowPopup(true);
-                setPopupMessage('Your Purchase was successfull');
+                setPopupMessage('Payment Successfull');
             } else {
                 throw new Error();
             }

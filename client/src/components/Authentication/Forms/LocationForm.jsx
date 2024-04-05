@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Map from '../../../components/Map/Map';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons';
 
 import { sendRequest } from '../../../core/tools/apiRequest';
 import { requestMethods } from '../../../core/tools/apiRequestMethods';
+
+import Map from '../../../components/Map/Map';
 
 const LocationForm = () => {
     const [submittedLocation, setSubmittedLocation] = useState('');
@@ -15,7 +15,6 @@ const LocationForm = () => {
     const [location, setLocation] = useState('');
 
     const navigate = useNavigate();
-    console.log(locationCoordinates);
 
     useEffect(() => {
         localStorage.setItem('location', JSON.stringify(locationCoordinates));
@@ -42,16 +41,11 @@ const LocationForm = () => {
         }
     };
 
-    // const saveLocationCoordinates = (coordinates) => {
-    //     setLocationCoordinates(coordinates);
-    // };
-
     const handleLocationRetrieval = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const { latitude, longitude } = position.coords;
                 setLocationCoordinates([latitude, longitude]);
-
             });
         } else {
             return;
@@ -76,23 +70,16 @@ const LocationForm = () => {
                         className="getlocation-btn light-text"
                         onClick={handleLocationRetrieval}
                     />
-                    {/* <i
-                        className="light-text getlocation-btn fa-solid fa-location-crosshairs"
-                        onClick={handleLocationRetrieval}
-                    ></i> */}
                     <button
                         className="location-btn primary-bg white-text box-shadow border-radius-l input-btn-lg"
                         onClick={handleLocationSubmit}
                     >
                         {locationCoordinates.length > 0 ? 'Continue' : 'Submit'}
                     </button>
-                    {/* <div className="skip-prompt">
-                        <p className="light-text">Skip for now</p>
-                    </div> */}
                 </div>
                 <div className="map-container">
                     <Map
-                        locationCoordinatesInput = {locationCoordinates}
+                        locationCoordinatesInput={locationCoordinates}
                         locationTextInput={submittedLocation}
                         saveLocationCoordinates={setLocationCoordinates}
                         updateLocation={true}
